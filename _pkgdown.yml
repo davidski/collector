@@ -1,0 +1,15 @@
+url: https://collector.severski.net
+
+template:
+  params:
+    bootswatch: flatly
+    ganalytics: UA-87348339-3
+
+navbar:
+  left:
+    - icon: fa-home fa-lg
+      href: index.html
+    - text: "Reference"
+      href: reference/index.html
+    - text: "News"
+      href: news/index.html

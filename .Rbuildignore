@@ -1,0 +1,9 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^CODE_OF_CONDUCT\.md$
+^docs$
+^_pkgdown.yml$
+
+^data-raw$
+^README\.Rmd$

@@ -1,0 +1,15 @@
+threat_community,threat_id,definition,low,high
+Organizational Leadership,TC-01,"",40,80
+Organizational Workforce,TC-02,,,
+External Attackers,TC-03,,,
+External Auditors,TC-04,,,
+Organizational IT,TC-05,,,
+Organizational Partners,TC-06,,,
+Organizational Security Team,TC-07,,,
+Computer Systems,TC-08,,,
+Nature,TC-09,,,
+Internal Attacker,TC-10,,,
+Organizational HR Team,TC-11,,,
+Organizational Security Team,TC-12,,,
+Organizational Vendors,TC-13,,,
+Organizational Workforce,TC-14,,,

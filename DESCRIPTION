@@ -1,0 +1,43 @@
+Package: collector
+Title: Quantified Risk Assessment Data Collection
+Version: 0.0.0.9000
+Authors@R: person("David", "Severski", email = "davidski@deadheaven.com", role = c("aut", "cre"), comment = "https://orcid.org/0000-0001-7867-0459")
+Description: An open source process for collecting quantified data inputs from 
+  subject matter experts. Intended for feeding into an OpenFAIR analysis using 
+  a tool such as Evaluator.
+Depends: R (>= 3.4.0)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports: 
+    EnvStats,
+    extrafont,
+    dplyr,
+    flextable,
+    glue,
+    ggpubr,
+    ggplot2,
+    ggpubr,
+    ggplot2,
+    hrbrthemes,
+    methods,
+    magrittr,
+    purrr,
+    readability,
+    readr,
+    rlang,
+    rmarkdown,
+    stringi,
+    stringr,
+    tibble,
+    tidyr,
+    officer,
+    xaringan
+Additional_repositories: 
+  https://github.com/yihui/xaringan,
+  https://github.com/trinker/readability
+Suggests: 
+    testthat
+URL: https://collector.severski.net
+BugReports: https://github.com/davidski/collector/issues
