@@ -7,3 +7,6 @@
 
 ^data-raw$
 ^README\.Rmd$
+^appveyor\.yml$
+^\.travis\.yml$
+^codecov\.yml$

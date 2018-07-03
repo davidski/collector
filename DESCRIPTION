@@ -10,7 +10,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
-Imports: 
+Imports:
     EnvStats,
     extrafont,
     dplyr,
@@ -34,10 +34,11 @@ Imports:
     tidyr,
     officer,
     xaringan
-Additional_repositories: 
+Additional_repositories:
   https://github.com/yihui/xaringan,
   https://github.com/trinker/readability
-Suggests: 
-    testthat
+Suggests:
+    testthat,
+    covr
 URL: https://collector.severski.net
 BugReports: https://github.com/davidski/collector/issues
