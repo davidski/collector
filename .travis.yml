@@ -1,20 +1,18 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
 language: R
 sudo: false
 cache: packages
-
 matrix:
   include:
-    - os: osx
-      osx_image: xcode9.3
-    - os: linux
-      dist: trusty
-      r: release
-    - os: linux
-      dist: trusty
-      r: devel
-
+  - os: osx
+    osx_image: xcode9.3
+  - os: linux
+    dist: trusty
+    r: release
+  - os: linux
+    dist: trusty
+    r: devel
 after_success:
-  - Rscript -e 'covr::codecov()'
-
+- Rscript -e 'covr::codecov()'
+notifications:
+  slack:
+    secure: F92ZtK4ZWf2JRTsjHpf5fxz4IkZBgWQiNWDdt3w6bqeyD7cy3/TsxulPPDKGC3epryKsb2d7Kv3znMz9UzX6yyacFahudnLAvOljGfXigCFdI/ASyaO6WLLUshD3CN54RuGftiEzReodA4loaVlY1vQI/x3p3SrJ/LAok+h1EyCAfbmCeErE/An3lN/bqprCMYo1jttGDK1EiOs2MndvvhBXhpQRCK6RyA7Hf65tLHXPdgm+P1pjXXH6VeSVodvZ38qR2uHaxxdVCzTlm4jQtvBSeAVYUhgn0Qzc78N4VPwRVsaz/lkdGTC5Ufb/w4zJ2csTvKh9dtgFcAsz92VWq23aJOlkXucHhDKJpRsyZYW7tOSZIEixDiPSozLOTviE+puXKbRkb5z3V7h4CQ/j2MLicqjNob/3ppZHZEPAY+PamfQ/6n9KEguqjkzYBxtpowDqj7+GGtj8z6o4dIb3dHh1SfoUjXpB1XvqT9ZlG1COICjYBKGSJbnyv8UiD1y1QKQdhG7dzrN0iUOPyKQx0eiYyTh44x/Dflz49bhkd9f7JCgmE5LtvzPeSk8+C3zvHITr7wOKZQE4H+ZblyTw12ujbCOjC/Hb+kOQMy+q7VSqmlQI/EJ1xn/c4wcOrC5y9BMlkfixEyRDBT6CYZgCGn6OH+LmbvURhei+iO7YHA0=
