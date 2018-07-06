@@ -18,7 +18,7 @@
 make_slides <- function(sme, source_dir, output_dir = getwd(), assessment_title = "Strategic Risk Assessment") {
 
   #read data
-  dat <- read_data(source_dir)
+  dat <- read_questions(source_dir)
 
   # ensure output directory is available
   if (!dir.exists(output_dir)) dir.create(output_dir)

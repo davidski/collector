@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' NULL
-read_question <- function(source_dir = getwd(), active_only = TRUE) {
+read_questions <- function(source_dir = getwd(), active_only = TRUE) {
 
   # domains
   domains <- {
