@@ -12,19 +12,17 @@ LazyData: true
 RoxygenNote: 6.0.1
 Imports:
     EnvStats,
-    extrafont,
     dplyr,
+    extrafont,
     flextable,
     glue,
-    ggpubr,
     ggplot2,
     ggpubr,
-    ggplot2,
     hrbrthemes,
     methods,
     magrittr,
     purrr,
-    readability,
+    quanteda,
     readr,
     rlang,
     rmarkdown,
@@ -34,9 +32,6 @@ Imports:
     tidyr,
     officer,
     xaringan
-Additional_repositories:
-  https://github.com/yihui/xaringan,
-  https://github.com/trinker/readability
 Suggests:
     testthat,
     covr

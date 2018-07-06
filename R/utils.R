@@ -1,4 +1,4 @@
-#' Read data files
+#' Read scenario questions
 #'
 #' @return A list.
 #' @export
@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' NULL
-read_data <- function(source_dir = getwd(), active_only = TRUE) {
+read_question <- function(source_dir = getwd(), active_only = TRUE) {
 
   # domains
   domains <- {
@@ -154,7 +154,7 @@ get_smes_domains <- function(sme, domains, expertise) {
 #'
 #' @return A dataframe.
 #' @export
-#' @importFrom readability readability
+#' @importFrom quanteda textstat_readability
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr arrange desc select
 #' @importFrom rlang .data
@@ -162,8 +162,7 @@ get_smes_domains <- function(sme, domains, expertise) {
 #' @examples
 #' NULL
 check_readability <- function(x) {
-  with(x, readability::readability(scenario, list(scenario_id, domain))) %>%
-    tibble::as_tibble() %>%
-    dplyr::arrange(dplyr::desc(.data$Flesch_Kincaid)) %>%
-    dplyr::select(.data$id, .data$domain, .data$Flesch_Kincaid)
+  bind_cols(x, quanteda::textstat_readability(x$scenario, "Flesch.Kincaid")) %>%
+    dplyr::arrange(dplyr::desc(.data$Flesch.Kincaid)) %>%
+    dplyr::select(.data$id, .data$domain, .data$Flesch.Kincaid)
 }

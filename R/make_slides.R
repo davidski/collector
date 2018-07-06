@@ -42,8 +42,7 @@ make_slides <- function(sme, source_dir, output_dir = getwd(), assessment_title 
                     output_file = paste0(tolower(sme) %>% stringr::str_replace_all(" ", "_"), ".html"),
                     knit_root_dir = output_dir,
                     params=list("sme"= sme,
-                                "assessment_title" = glue::glue("{assessment_title}<br>⚖️"),
+                                "assessment_title" = glue::glue("{assessment_title}<br>&#2696️"),
                                 "domain_list" = get_smes_domains(sme, dat$domains, dat$expertise),
                                 "source_dir" = source_dir))
-
 }
