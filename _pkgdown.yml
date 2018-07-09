@@ -13,3 +13,32 @@ navbar:
       href: reference/index.html
     - text: "News"
       href: news/index.html
+
+reference:
+  - title: "Combination Functions"
+    contents:
+      - starts_with("combine")
+  - title: "Distribution Fitting"
+    contents:
+      - starts_with("fit")
+      - generate_cost_function
+  - title: "Interview Creation"
+    contents:
+      - check_readability
+      - starts_with("make_")
+  - title: "Miscellaneous Functions"
+    contents:
+      - clean_answers
+      - collector
+      - derive_controls_alt
+      - generate_weights
+      - get_smes_domains
+      - lognormal_to_normal
+      - normal_to_lognormal
+      - prepare_data
+      - read_answers
+      - read_questions
+  - title: "Object Classes"
+    contents:
+      - questions
+      - responses

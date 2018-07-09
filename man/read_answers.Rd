@@ -7,14 +7,17 @@
 read_answers(source_dir = getwd())
 }
 \arguments{
-\item{source_dir}{Directory location to find input files.}
+\item{source_dir}{Directory location where input files are found.}
 }
 \value{
 A list.
 }
 \description{
-Reads in all the answers recorded.
+Reads in all the answers recorded to the calibration, sceanrios, and
+  capability questions.
 }
 \examples{
-NULL
+\dontrun{
+read_answers()
+}
 }

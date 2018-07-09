@@ -11,6 +11,8 @@ check_readability(x)
 }
 \value{
 A dataframe.
+
+A dataframe of the scenario id, domain, and the Flesch-Kincaid readability score.
 }
 \description{
 With a dataframe of scenario text, scenario_id, and domain, generate the Flesch-
@@ -18,5 +20,8 @@ With a dataframe of scenario text, scenario_id, and domain, generate the Flesch-
   as a tidy dataframe.
 }
 \examples{
-NULL
+\dontrun{
+questions <- read_questions()
+check_readability(questions)
+}
 }

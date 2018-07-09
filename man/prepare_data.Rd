@@ -5,7 +5,7 @@
 \title{Create a quantitative_scenarios dataframe suitable for `evaluator`}
 \usage{
 prepare_data(scenario_parameters, capability_parameters, threat_parameters,
-  scenarios, domains)
+  questions)
 }
 \arguments{
 \item{scenario_parameters}{Scenarios with final parameters defined.}
@@ -14,9 +14,7 @@ prepare_data(scenario_parameters, capability_parameters, threat_parameters,
 
 \item{threat_parameters}{Threat communities with final parameters defined.}
 
-\item{scenarios}{List of all scenarios.}
-
-\item{domains}{Domains.}
+\item{questions}{A questions object.}
 }
 \value{
 A dataframe.
@@ -25,5 +23,9 @@ A dataframe.
 Create a quantitative_scenarios dataframe suitable for `evaluator`
 }
 \examples{
-NULL
+\dontrun{
+questions <- read_questions()
+quantitative_scenarios <- prepare_data(scenario_parameters,
+      capability_parameters, threat_parameters, questions)
+}
 }

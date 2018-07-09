@@ -88,10 +88,13 @@
     <loc>https://collector.severski.net/reference/prepare_data.html</loc>
   </url>
   <url>
+    <loc>https://collector.severski.net/reference/questions.html</loc>
+  </url>
+  <url>
     <loc>https://collector.severski.net/reference/read_answers.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/read_data.html</loc>
+    <loc>https://collector.severski.net/reference/read_questions.html</loc>
   </url>
   <url>
     <loc>https://collector.severski.net/reference/responses.html</loc>

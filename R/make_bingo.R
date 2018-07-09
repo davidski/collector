@@ -8,8 +8,7 @@
 #'   they match the interview order flow.
 #'
 #' @param sme Name of SME.
-#' @param domains Domains dataframe.
-#' @param expertise Expertise dataframe.
+#' @param questions Questions object.
 #' @param output_dir Directory to place bingo cards.
 #'
 #' @return An invisible null.
@@ -23,10 +22,13 @@
 #' @importFrom ggpubr ggexport ggarrange
 #'
 #' @examples
-#' NULL
-make_bingo <- function(sme, domains, expertise, output_dir = getwd()) {
+#' \dontrun{
+#' questions <- read_questions()
+#' make_bingo("Sally Expert", questions)
+#' }
+make_bingo <- function(sme, questions, output_dir = getwd()) {
   # get ordered scenarios
-  values <- get_smes_domains(sme, domains, expertise)
+  values <- get_smes_domains(sme, questions)
 
   # calculate_dimensions
   n_col <- 4

@@ -4,24 +4,31 @@
 \alias{make_slides}
 \title{Create interview slides}
 \usage{
-make_slides(sme, source_dir, output_dir = getwd(),
+make_slides(sme, questions, source_dir, output_dir = getwd(),
   assessment_title = "Strategic Risk Assessment")
 }
 \arguments{
-\item{sme}{SME.}
+\item{sme}{Name of the SME being interviewed.}
+
+\item{questions}{Questions object.}
 
 \item{source_dir}{Directory location for input files.}
 
 \item{output_dir}{Directory location for knitted slides.}
 
-\item{assessment_title}{Title of the assessment being performed}
+\item{assessment_title}{Title of the assessment being performed.}
 }
 \value{
 Output of render.
 }
 \description{
-Creates a HTML-format slideshow for conducting and interview.
+Creates an in-browser slideshow as a visual aide when conducting an
+interview with a subject matter expert (SME). The slideshow is customized
+for the SME by placing the domains in the order of preference for that
+SME.
 }
 \examples{
-NULL
+\dontrun{
+make_slides("Sally Expert", source_dir = getwd())
+}
 }

@@ -17,7 +17,10 @@
 #' @importFrom rlang .data
 #'
 #' @examples
-#' NULL
+#' \dontrun{
+#' answers <- read_answers()
+#' clean_answers(answers)
+#' }
 clean_answers <- function(capability_answers, scenario_answers) {
   cap_ans <- capability_answers %>%
     dplyr::mutate(low = if_else(.data$low < 5, 5, .data$low),

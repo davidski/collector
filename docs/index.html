@@ -94,7 +94,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"collector"</span>)</a></code></pre></div>
 <p>If you wish to run the development (and potentially bleeding edge) version of Collector, you can install directly from Github via the following <code>devtools</code> command.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.pacakges("devtools")</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"davidski/collector"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"davidski/collector"</span>)</a></code></pre></div>
 </div>
 <div id="basic-flow" class="section level2">
 <h2 class="hasAnchor">
@@ -106,34 +106,34 @@
 <p>Read in the data</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(collector)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">dat &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_data.html">read_data</a></span>(source_dir)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">calibration &lt;-<span class="st"> </span>dat<span class="op">$</span>calibration</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">domains &lt;-<span class="st"> </span>dat<span class="op">$</span>domains</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">scenarios &lt;-<span class="st"> </span>dat<span class="op">$</span>scenarios</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">capabilities &lt;-<span class="st"> </span>dat<span class="op">$</span>capabilities</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">expertise &lt;-<span class="st"> </span>dat<span class="op">$</span>expertise</a></code></pre></div>
+<a class="sourceLine" id="cb3-3" data-line-number="3">dat &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_questions.html">read_questions</a></span>()</a></code></pre></div>
 </li>
 <li>
 <p>Generate slides</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/make_handouts.html">make_handouts</a></span>(<span class="st">"Leader Name"</span>, calibrarion, domains, expertise, scenarios, capabilities, output_dir)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="reference/make_bingo.html">make_bingo</a></span>(<span class="st">"Leader Name"</span>, domains, expertise, output_dir)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="reference/make_slides.html">make_slides</a></span>(<span class="st">"Leader Name"</span>, source_dir, output_dir)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/make_handouts.html">make_handouts</a></span>(<span class="st">"Leader Name"</span>, dat, output_dir)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="reference/make_bingo.html">make_bingo</a></span>(<span class="st">"Leader Name"</span>, dat, output_dir)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="reference/make_slides.html">make_slides</a></span>(<span class="st">"Leader Name"</span>, dat, output_dir)</a></code></pre></div>
 </li>
-<li><p>Input answers</p></li>
+<li>
+<p>Input answers</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">answers &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_answers.html">read_answers</a></span>()</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">scenario_answers &lt;-<span class="st"> </span>answers<span class="op">$</span>sce_ans</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">capability_answers &lt;-<span class="st"> </span>answers<span class="op">$</span>cap_ans</a></code></pre></div>
+</li>
 <li>
 <p>Fit SME answers</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">scenario_answers_fitted &lt;-<span class="st"> </span><span class="kw"><a href="reference/fit_scenarios.html">fit_scenarios</a></span>(scenario_answers)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">capability_answers_fitted &lt;-<span class="st"> </span>(capability_answers)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">scenario_answers_fitted &lt;-<span class="st"> </span><span class="kw"><a href="reference/fit_scenarios.html">fit_scenarios</a></span>(scenario_answers)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">capability_answers_fitted &lt;-<span class="st"> </span>(capability_answers)</a></code></pre></div>
 </li>
 <li>
 <p>Combined distributions into final parameters</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">scenario_parameters &lt;-<span class="st"> </span><span class="kw"><a href="reference/combine_scenario_parameters.html">combine_scenario_parameters</a></span>(scenario_answers_fitted)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">capability_parameters &lt;-<span class="st"> </span><span class="kw"><a href="reference/combine_capability_parameters.html">combine_capability_parameters</a></span>(capability_answers_fitted)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">scenario_parameters &lt;-<span class="st"> </span><span class="kw"><a href="reference/combine_scenario_parameters.html">combine_scenario_parameters</a></span>(scenario_answers_fitted)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">capability_parameters &lt;-<span class="st"> </span><span class="kw"><a href="reference/combine_capability_parameters.html">combine_capability_parameters</a></span>(capability_answers_fitted)</a></code></pre></div>
 </li>
 <li>
 <p>Build quantitative parameters for <code>Evaluator</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/prepare_data.html">prepare_data</a></span>(scenario_parameters, capability_parameters, threat_parameters, </a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">             scenarios, domains)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="reference/prepare_data.html">prepare_data</a></span>(scenario_parameters, capability_parameters, threat_parameters, </a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">             dat)</a></code></pre></div>
 </li>
 </ol>
 </div>

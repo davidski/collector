@@ -4,21 +4,12 @@
 \alias{make_handouts}
 \title{Create a set of interview handouts for a SME}
 \usage{
-make_handouts(sme, calibration_questions, domains, expertise, scenarios,
-  capabilities, output_dir = getwd())
+make_handouts(sme, questions, output_dir = getwd())
 }
 \arguments{
-\item{sme}{Name of SME.}
+\item{sme}{Name of the SME.}
 
-\item{calibration_questions}{calibration questions dataframe.}
-
-\item{domains}{domains dataframe.}
-
-\item{expertise}{expertise dataframe.}
-
-\item{scenarios}{scenarios dataframe.}
-
-\item{capabilities}{expertise dataframe.}
+\item{questions}{questions object}
 
 \item{output_dir}{Directory to place output.}
 }
@@ -32,5 +23,8 @@ Creates two MS Word formatted documents. One is an `answers` document
   take away) for the SME.
 }
 \examples{
-NULL
+\dontrun{
+questions <- read_questions()
+make_handouts("Sally Expert", questions)
+}
 }

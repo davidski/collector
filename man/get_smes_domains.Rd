@@ -4,23 +4,23 @@
 \alias{get_smes_domains}
 \title{Calculate the prioritized list of domains for a given SME}
 \usage{
-get_smes_domains(sme, domains, expertise)
+get_smes_domains(sme, questions)
 }
 \arguments{
 \item{sme}{Name of SME.}
 
-\item{domains}{Domains dataframe.}
-
-\item{expertise}{Expertise dataframe.}
+\item{questions}{A questions object.}
 }
 \value{
 A vector.
 }
 \description{
-With a dataframe of all domains, a datafrme of the prioritized list of
-  domains to focus on for a SME, and the name of a specific SME of interest,
-  return a vector of the domains in order of priority.
+Given a questions object and the name and the name of a specific SME of
+  interest, create a vector of the domains in order of priority.
 }
 \examples{
-NULL
+\dontrun{
+questions <- read_questions()
+get_sme_domains("Sally Expert", questions)
+}
 }

@@ -122,35 +122,18 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>make_handouts</span>(<span class='no'>sme</span>, <span class='no'>calibration_questions</span>, <span class='no'>domains</span>, <span class='no'>expertise</span>, <span class='no'>scenarios</span>,
-  <span class='no'>capabilities</span>, <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>())</pre>
+    <pre class="usage"><span class='fu'>make_handouts</span>(<span class='no'>sme</span>, <span class='no'>questions</span>, <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>sme</th>
-      <td><p>Name of SME.</p></td>
+      <td><p>Name of the SME.</p></td>
     </tr>
     <tr>
-      <th>calibration_questions</th>
-      <td><p>calibration questions dataframe.</p></td>
-    </tr>
-    <tr>
-      <th>domains</th>
-      <td><p>domains dataframe.</p></td>
-    </tr>
-    <tr>
-      <th>expertise</th>
-      <td><p>expertise dataframe.</p></td>
-    </tr>
-    <tr>
-      <th>scenarios</th>
-      <td><p>scenarios dataframe.</p></td>
-    </tr>
-    <tr>
-      <th>capabilities</th>
-      <td><p>expertise dataframe.</p></td>
+      <th>questions</th>
+      <td><p>questions object</p></td>
     </tr>
     <tr>
       <th>output_dir</th>
@@ -164,7 +147,10 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>NULL</span></div><div class='output co'>#&gt; NULL</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>questions</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_questions.html'>read_questions</a></span>()
+<span class='fu'>make_handouts</span>(<span class='st'>"Sally Expert"</span>, <span class='no'>questions</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

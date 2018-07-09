@@ -12,11 +12,15 @@ read_questions(source_dir = getwd(), active_only = TRUE)
 \item{active_only}{Read in only the active elements, defaults to TRUE.}
 }
 \value{
-A list.
+A questions object
 }
 \description{
-Read scenario questions
+Reads in all the questions for which subject matter expert input is
+  needed. Includes the domains, capabilities, scenarios, callibration
+  questions, and threat communities.
 }
 \examples{
-NULL
+\dontrun{
+read_questions()
+}
 }

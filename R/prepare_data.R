@@ -3,8 +3,7 @@
 #' @param scenario_parameters Scenarios with final parameters defined.
 #' @param capability_parameters Capabilities with final parameters defined.
 #' @param threat_parameters Threat communities with final parameters defined.
-#' @param scenarios List of all scenarios.
-#' @param domains Domains.
+#' @param questions A questions object.
 #'
 #' @importFrom dplyr rename left_join mutate select starts_with
 #' @importFrom tidyr drop_na
@@ -14,16 +13,20 @@
 #' @export
 #'
 #' @examples
-#' NULL
+#' \dontrun{
+#' questions <- read_questions()
+#' quantitative_scenarios <- prepare_data(scenario_parameters,
+#'       capability_parameters, threat_parameters, questions)
+#' }
 prepare_data <- function(scenario_parameters, capability_parameters,
-                         threat_parameters, scenarios, domains) {
+                         threat_parameters, questions) {
 
   # combine capabilities + scenarios into a single dataframe
   scenario_parameters %>%
     # bring in the scenario descriptions
-    dplyr::left_join(scenarios, by="scenario_id") %>%
+    dplyr::left_join(questions$scenarios, by="scenario_id") %>%
     # bring in the domain IDs
-    dplyr::left_join(domains, by="domain") %>%
+    dplyr::left_join(questions$domains, by="domain") %>%
     # add TC info
     #dplyr::mutate(tc_func = "stats::rnorm", tc_mean = 50, tc_sd = 3, tcomm = "placeholder") %>%
     dplyr::left_join(threat_parameters, by="threat_id") %>%

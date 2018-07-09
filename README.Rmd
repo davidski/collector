@@ -47,7 +47,7 @@ command.
 
 ```{r github_install, eval=FALSE}
 # install.pacakges("devtools")
-devtools::install_github("davidski/collector", dependencies = TRUE)
+devtools::install_github("davidski/collector")
 ```
 
 ## Basic Flow
@@ -64,40 +64,44 @@ reference. The flow for running interviews and sending along to
     ```{r, eval=FALSE}
     library(collector)
    
-    dat <- read_data(source_dir)
-    calibration <- dat$calibration
-    domains <- dat$domains
-    scenarios <- dat$scenarios
-    capabilities <- dat$capabilities
-    expertise <- dat$expertise
+    dat <- read_questions()
     ```
    
 3. Generate slides
 
     ```{r, eval=FALSE}
-    make_handouts("Leader Name", calibrarion, domains, expertise, scenarios, capabilities, output_dir)
-    make_bingo("Leader Name", domains, expertise, output_dir)
-    make_slides("Leader Name", source_dir, output_dir)
+    make_handouts("Leader Name", dat, output_dir)
+    make_bingo("Leader Name", dat, output_dir)
+    make_slides("Leader Name", dat, output_dir)
     ```
     
 4. Input answers
 
+    ```{r, eval=FALSE}
+    answers <- read_answers()
+    scenario_answers <- answers$sce_ans
+    capability_answers <- answers$cap_ans
+    ```
+
 5. Fit SME answers
+
     ```{r, eval=FALSE}
     scenario_answers_fitted <- fit_scenarios(scenario_answers)
     capability_answers_fitted <- (capability_answers)
     ```
     
 6. Combined distributions into final parameters
+
     ```{r eval = FALSE}
     scenario_parameters <- combine_scenario_parameters(scenario_answers_fitted)
     capability_parameters <- combine_capability_parameters(capability_answers_fitted)
     ```
     
 7. Build quantitative parameters for `Evaluator`
+
     ```{r eval=FALSE}
     prepare_data(scenario_parameters, capability_parameters, threat_parameters, 
-                 scenarios, domains)
+                 dat)
     ```
 
 

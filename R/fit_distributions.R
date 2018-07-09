@@ -13,6 +13,7 @@
 #'
 #' @return A list.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' lognormal_to_normal(meanlog=1, sdlog=3)
@@ -32,6 +33,7 @@ lognormal_to_normal <- function(meanlog, sdlog) {
 #'
 #' @return A list.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' normal_to_lognormal(normmean = 20, normsd = 3)
@@ -53,6 +55,7 @@ normal_to_lognormal <- function(normmean, normsd) {
 #' @importFrom rlang .data
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' dat <- data.frame(meanlog = c(1, 1.5),
@@ -86,6 +89,7 @@ combine_lognorm_trunc <- function(dat) {
 #' @importFrom rlang .data
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' dat <- data.frame(meanlog = c(1, 1.5),
@@ -110,6 +114,7 @@ combine_lognorm <- function(dat) {
 #' @importFrom rlang .data
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' dat <- data.frame(mean = c(10, 20, 30),
@@ -139,6 +144,7 @@ combine_norm <- function(dat) {
 #'
 #' @return A function.
 #' @export
+#' @family distribution fitting functions
 #' @importFrom rlang get_expr
 #'
 #' @examples
@@ -162,6 +168,7 @@ generate_cost_function <- function(func) {
 #'
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #' @importFrom tibble tibble
 #' @importFrom stats optim qlnorm
 #'
@@ -191,6 +198,7 @@ fit_lognorm <- function(low, high) {
 #' @importFrom stats optim
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' fit_lognorm_trunc(low = 10, high = 50, min = 0, max = 100)
@@ -221,6 +229,7 @@ fit_lognorm_trunc <- function(low, high, min = 0, max = Inf) {
 #' @importFrom stats optim
 #' @return Dataframe.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' fit_norm_trunc(low = 10, high = 50, min = 0, max = 100)
@@ -245,6 +254,7 @@ fit_norm_trunc <- function(low, high, min = 0, max = Inf) {
 #'
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #' @importFrom tibble tibble
 #' @importFrom stats optim qpois
 #'
@@ -262,6 +272,7 @@ fit_pois <- function(low, high) {
 #'
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #' @import dplyr
 #' @importFrom tidyr nest unnest replace_na
 #' @importFrom EnvStats geoMean
@@ -292,6 +303,7 @@ fit_capabilities_geomean <- function(capabilities_answers) {
 #' @importFrom rlang .data
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' NULL
@@ -331,6 +343,7 @@ fit_scenarios_geomean <- function(scenario_answers) {
 #' @importFrom rlang .data
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' NULL
@@ -364,6 +377,7 @@ fit_scenarios <- function(scenario_answers, maximum_impact = Inf,
 #' @importFrom rlang .data
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' NULL
@@ -387,6 +401,7 @@ fit_capabilities <- function(capability_answers) {
 #' @importFrom rlang .data
 #' @return A dataframe.
 #' @export
+#' @family distribution fitting functions
 #'
 #' @examples
 #' NULL

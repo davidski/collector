@@ -1,6 +1,9 @@
 #' Read scenario questions
 #'
-#' @return A list.
+#' Reads in all the questions for which subject matter expert input is
+#'   needed. Includes the domains, capabilities, scenarios, callibration
+#'   questions, and threat communities.
+#'
 #' @export
 #' @param source_dir Directory location to find input files.
 #' @param active_only Read in only the active elements, defaults to TRUE.
@@ -8,9 +11,12 @@
 #' @importFrom tidyr gather drop_na
 #' @import dplyr
 #' @importFrom rlang .data
+#' @return A questions object
 #'
 #' @examples
-#' NULL
+#' \dontrun{
+#' read_questions()
+#' }
 read_questions <- function(source_dir = getwd(), active_only = TRUE) {
 
   # domains
@@ -58,16 +64,17 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
                                           high = readr::col_number(),
                                           .default = readr::col_character()))
 
-  list(domains = domains, capabilities = caps, scenarios = scenarios,
+  questions(domains = domains, capabilities = caps, scenarios = scenarios,
        expertise = expertise, calibration = calibration,
        threat_communities = threat_communities)
 }
 
 #' Read all SMEs answers
 #'
-#' Reads in all the answers recorded.
+#' Reads in all the answers recorded to the calibration, sceanrios, and
+#'   capability questions.
 #'
-#' @param source_dir Directory location to find input files.
+#' @param source_dir Directory location where input files are found.
 #' @importFrom readr read_csv col_character col_date col_number col_integer cols
 #' @import dplyr
 #' @importFrom tidyr drop_na
@@ -77,7 +84,9 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
 #' @export
 #'
 #' @examples
-#' NULL
+#' \dontrun{
+#' read_answers()
+#' }
 read_answers <- function(source_dir = getwd()) {
   cal_ans <- readr::read_csv(file.path(source_dir, "calibration_answers.csv"),
                              col_types = readr::cols(.default = readr::col_character(),
@@ -120,13 +129,11 @@ read_answers <- function(source_dir = getwd()) {
 
 #' Calculate the prioritized list of domains for a given SME
 #'
-#' With a dataframe of all domains, a datafrme of the prioritized list of
-#'   domains to focus on for a SME, and the name of a specific SME of interest,
-#'   return a vector of the domains in order of priority.
+#' Given a questions object and the name and the name of a specific SME of
+#'   interest, create a vector of the domains in order of priority.
 #'
 #' @param sme Name of SME.
-#' @param domains Domains dataframe.
-#' @param expertise Expertise dataframe.
+#' @param questions A questions object.
 #'
 #' @return A vector.
 #' @export
@@ -135,13 +142,16 @@ read_answers <- function(source_dir = getwd()) {
 #'
 #'
 #' @examples
-#' NULL
-get_smes_domains <- function(sme, domains, expertise) {
-  doms <- dplyr::filter(expertise, sme == !!sme) %>%
+#' \dontrun{
+#' questions <- read_questions()
+#' get_sme_domains("Sally Expert", questions)
+#' }
+get_smes_domains <- function(sme, questions) {
+  doms <- dplyr::filter(questions$expertise, sme == !!sme) %>%
     dplyr::arrange(.data$key) %>%
     dplyr::distinct(.data$value) %>%
     dplyr::pull()
-  c(doms, domains[!domains$domain %in% doms,] %>% dplyr::pull(.data$domain))
+  c(doms, questions$domains[!questions$domains$domain %in% doms,] %>% dplyr::pull(.data$domain))
 }
 
 #' Check the readability of scenario text
@@ -158,10 +168,15 @@ get_smes_domains <- function(sme, domains, expertise) {
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr arrange desc select
 #' @importFrom rlang .data
+#' @return A dataframe of the scenario id, domain, and the Flesch-Kincaid readability score.
 #'
 #' @examples
-#' NULL
+#' \dontrun{
+#' questions <- read_questions()
+#' check_readability(questions)
+#' }
 check_readability <- function(x) {
+  x <- questions$scenarios
   bind_cols(x, quanteda::textstat_readability(x$scenario, "Flesch.Kincaid")) %>%
     dplyr::arrange(dplyr::desc(.data$Flesch.Kincaid)) %>%
     dplyr::select(.data$id, .data$domain, .data$Flesch.Kincaid)

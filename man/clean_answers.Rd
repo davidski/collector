@@ -25,5 +25,8 @@ Make the following assumptions/modifications
   - set a minimum frequency of once per 10 years (0.1)
 }
 \examples{
-NULL
+\dontrun{
+answers <- read_answers()
+clean_answers(answers)
+}
 }

@@ -40,11 +40,11 @@ library(tidyr)
 library(purrr)
 ```
 
-```{r read_data, include = FALSE}
-dat <- read_data(params$source_dir)
-domains <- dat$domains
-scenarios <- dat$scenarios
-capabilities <- dat$capabilities
+```{r read_questions, include = FALSE}
+dat <- read_questions(params$source_dir)
+domains <- questions$domains
+scenarios <- questions$scenarios
+capabilities <- questions$capabilities
 rm(dat)
 
 questions <- scenarios %>% dplyr::left_join(domains, by = "domain")

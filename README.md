@@ -41,7 +41,7 @@ following `devtools` command.
 
 ``` r
 # install.pacakges("devtools")
-devtools::install_github("davidski/collector", dependencies = TRUE)
+devtools::install_github("davidski/collector")
 ```
 
 ## Basic Flow
@@ -58,24 +58,24 @@ reference. The flow for running interviews and sending along to
     ``` r
     library(collector)
     
-    dat <- read_data(source_dir)
-    calibration <- dat$calibration
-    domains <- dat$domains
-    scenarios <- dat$scenarios
-    capabilities <- dat$capabilities
-    expertise <- dat$expertise
+    dat <- read_questions()
     ```
 
-3.  Generate
-    slides
+3.  Generate slides
     
     ``` r
-    make_handouts("Leader Name", calibrarion, domains, expertise, scenarios, capabilities, output_dir)
-    make_bingo("Leader Name", domains, expertise, output_dir)
-    make_slides("Leader Name", source_dir, output_dir)
+    make_handouts("Leader Name", dat, output_dir)
+    make_bingo("Leader Name", dat, output_dir)
+    make_slides("Leader Name", dat, output_dir)
     ```
 
 4.  Input answers
+    
+    ``` r
+    answers <- read_answers()
+    scenario_answers <- answers$sce_ans
+    capability_answers <- answers$cap_ans
+    ```
 
 5.  Fit SME answers
     
@@ -97,7 +97,7 @@ reference. The flow for running interviews and sending along to
     
     ``` r
     prepare_data(scenario_parameters, capability_parameters, threat_parameters, 
-                 scenarios, domains)
+                 dat)
     ```
 
 ## Contributing

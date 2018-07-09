@@ -5,12 +5,8 @@
 #'   contain answers and is intended to be a visual reference (and possible
 #'   take away) for the SME.
 #'
-#' @param sme Name of SME.
-#' @param calibration_questions calibration questions dataframe.
-#' @param domains domains dataframe.
-#' @param expertise expertise dataframe.
-#' @param scenarios scenarios dataframe.
-#' @param capabilities expertise dataframe.
+#' @param sme Name of the SME.
+#' @param questions questions object
 #' @param output_dir Directory to place output.
 #'
 #' @return Output of render.
@@ -22,13 +18,16 @@
 #' @importFrom purrr walk
 #'
 #' @examples
-#' NULL
-make_handouts <- function(sme, calibration_questions, domains, expertise, scenarios, capabilities, output_dir = getwd()) {
+#' \dontrun{
+#' questions <- read_questions()
+#' make_handouts("Sally Expert", questions)
+#' }
+make_handouts <- function(sme, questions, output_dir = getwd()) {
 
-  dat <- calibration_questions %>% dplyr::sample_n(10) # get 10 random questions for this SME
+  dat <- questions$calibration %>% dplyr::sample_n(10) # get 10 random questions for this SME
 
   # order_domains
-  domain_list <- get_smes_domains(sme, domains, expertise)
+  domain_list <- get_smes_domains(sme, questions)
 
   # create sme doc
   doc <- officer::read_docx(system.file(package = "collector", "templates", "template.docx"))
@@ -62,14 +61,14 @@ make_handouts <- function(sme, calibration_questions, domains, expertise, scenar
     # add the domain heading
     doc <- officer::body_add_par(x=doc,
                                  value = paste("Domain", d, sep =  " - "), style="heading 1")
-    if (nrow(domains[domains$domain==d, "description"]) > 0) {
-      doc <- officer::body_add_par(x=doc, value = domains[domains$domain==d, "description"])
+    if (nrow(questions$domains[questions$domains$domain==d, "description"]) > 0) {
+      doc <- officer::body_add_par(x=doc, value = questions$domains[questions$domains$domain==d, "description"])
     }
 
     # add the scenarios
     doc <- officer::body_add_par(x=doc,
                                  value = paste("Scenarios", d, sep =  " - "), style="heading 2")
-    scenarios[scenarios$domain==d, ] %>%
+    questions$scenarios[questions$scenarios$domain==d, ] %>%
     dplyr::select("ID" = .data$scenario_id, .data$scenario) %>%
     dplyr::mutate("Frequency Low" = NA_character_,
                   "Frequency High" = NA_character_,
@@ -107,7 +106,7 @@ make_handouts <- function(sme, calibration_questions, domains, expertise, scenar
 
     # add capabilities
     doc <- officer::body_add_par(x=doc, value = paste("Capabilities", d, sep =  " - "), style="heading 2")
-    capabilities[capabilities$domain==d, ] %>%
+    questions$capabilities[questions$capabilities$domain==d, ] %>%
       dplyr::select("ID" = .data$capability_id, .data$capability) %>%
       tibble::add_column(cap_low = NA_character_, cap_high = NA_character_) %>%
       flextable::regulartable() -> tbl
@@ -139,7 +138,7 @@ make_handouts <- function(sme, calibration_questions, domains, expertise, scenar
   doc <- officer::body_remove(doc)
 
   ## Create title page
-  doc <- officer::body_add_par(doc, paste0("FY18 ST Risk Assessment - ", sme, " (Answers)"), style = "Title")
+  doc <- officer::body_add_par(doc, paste0("Risk Assessment - ", sme, " (Answers)"), style = "Title")
   doc <- officer::body_add_par(x = doc, value = "Table of Contents", style = "heading 1") %>%
     officer::body_add_toc(level = 1)
   doc <- doc %>% officer::body_add_break()
@@ -165,14 +164,14 @@ make_handouts <- function(sme, calibration_questions, domains, expertise, scenar
     # add the domain heading
     doc <- officer::body_add_par(x=doc,
                                  value = paste("Domain", d, sep =  " - "), style="heading 1")
-    if (nrow(domains[domains$domain==d, "description"]) > 0) {
-      doc <- officer::body_add_par(x=doc, value = domains[domains$domain==d, "description"])
+    if (nrow(questions$domains[questions$domains$domain==d, "description"]) > 0) {
+      doc <- officer::body_add_par(x=doc, value = questions$domains[questions$domains$domain==d, "description"])
     }
 
     # add the scenarios
     doc <- officer::body_add_par(x=doc,
                                  value = paste("Scenarios", d, sep =  " - "), style="heading 2")
-    scenarios[scenarios$domain==d, ] %>%
+    questions$scenarios[questions$scenarios$domain==d, ] %>%
       dplyr::select("ID" = .data$scenario_id, .data$scenario) %>%
       dplyr::mutate("Frequency Low" = NA_character_,
                     "Frequency High" = NA_character_,
@@ -210,7 +209,7 @@ make_handouts <- function(sme, calibration_questions, domains, expertise, scenar
 
     # add capabilities
     doc <- officer::body_add_par(x=doc, value = paste("Capabilities", d, sep =  " - "), style="heading 2")
-    capabilities[capabilities$domain==d, ] %>%
+    questions$capabilities[questions$capabilities$domain==d, ] %>%
       dplyr::select("ID" = .data$capability_id, .data$capability) %>%
       tibble::add_column(cap_low = NA_character_, cap_high = NA_character_) %>%
       flextable::regulartable() -> tbl

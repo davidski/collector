@@ -4,14 +4,12 @@
 \alias{make_bingo}
 \title{Create a bingo-style card for marking progress through domains in an interview}
 \usage{
-make_bingo(sme, domains, expertise, output_dir = getwd())
+make_bingo(sme, questions, output_dir = getwd())
 }
 \arguments{
 \item{sme}{Name of SME.}
 
-\item{domains}{Domains dataframe.}
-
-\item{expertise}{Expertise dataframe.}
+\item{questions}{Questions object.}
 
 \item{output_dir}{Directory to place bingo cards.}
 }
@@ -28,5 +26,8 @@ The domains are ordered according to the SME's expertise profile, ensuring
   they match the interview order flow.
 }
 \examples{
-NULL
+\dontrun{
+questions <- read_questions()
+make_bingo("Sally Expert", questions)
+}
 }

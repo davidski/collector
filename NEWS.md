@@ -1,5 +1,6 @@
 # collector 0.0.0.9000
 
+* Begin initial documention build out.
 * Reference CRAN versions of `xaringan`.
 * `read_questions()` replaces poorly named `read_data()` function.
 * `make_slides()` properly escapes unicode for the default title slide.

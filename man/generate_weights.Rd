@@ -4,10 +4,10 @@
 \alias{generate_weights}
 \title{Generate a weighting table for SMEs based upon their calibration answers}
 \usage{
-generate_weights(calibration, calibration_answers)
+generate_weights(questions, calibration_answers)
 }
 \arguments{
-\item{calibration}{Calibration questions with answer key.}
+\item{questions}{Questions object.}
 
 \item{calibration_answers}{SME responses to calibration questions.}
 }

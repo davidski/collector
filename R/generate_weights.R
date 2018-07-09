@@ -1,6 +1,6 @@
 #' Generate a weighting table for SMEs based upon their calibration answers
 #'
-#' @param calibration Calibration questions with answer key.
+#' @param questions Questions object.
 #' @param calibration_answers SME responses to calibration questions.
 #' @importFrom dplyr mutate_at left_join group_by mutate summarize n case_when arrange
 #' @importFrom stringr str_extract_all
@@ -10,14 +10,18 @@
 #'
 #' @examples
 #' NULL
-generate_weights <- function(calibration, calibration_answers){
+generate_weights <- function(questions, calibration_answers){
+
+  # get calibration questions
+  calibration <- questions$calibration
+
   # convert string formatted calibration answers to numbers
   calibration %>% dplyr::mutate_at("answer", funs(stringr::str_extract_all(., "[\\d.]+") %>%
                                              purrr::map(~ paste(.x, collapse ="")) %>%
                                              as.numeric())) -> dat
 
   # calculate how many each SME got correct and compare to target
-  dplyr::left_join(calibration_answers, dat, by="calibration_id") %>%
+  dplyr::left_join(calibration_answers, calibration, by="calibration_id") %>%
     dplyr::mutate(correct = ifelse(.data$low <= .data$answer &
                                      .data$answer <= .data$high, TRUE, FALSE)) %>%
     dplyr::group_by(.data$sme) %>%
@@ -26,7 +30,7 @@ generate_weights <- function(calibration, calibration_answers){
                     .data$pct_correct == .9 ~ 4,      # perfectly calibrated, weight 4
                     .data$pct_correct <= .3 ~ 1,      # not well calibrated, weight 1
                     .data$pct_correct <= .6 ~ 2,      # imperfectly calibrated, weight 2
-                    TRUE              ~ 3       # partially calibrated, weight 3
+                    TRUE              ~ 3             # partially calibrated, weight 3
                     ),
                   pct_correct = NULL) %>%
     dplyr::arrange(.data$sme) -> weights
