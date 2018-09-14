@@ -19,7 +19,7 @@
 #' lognormal_to_normal(meanlog=1, sdlog=3)
 lognormal_to_normal <- function(meanlog, sdlog) {
   norm_mean <- exp(meanlog + sdlog^2/2)
-  norm_sd <- sqrt((exp(sdlog^2)-1) * exp(2*meanlog + sdlog^2))
+  norm_sd <- sqrt((exp(sdlog^2) - 1) * exp(2*meanlog + sdlog^2))
   list(mean = norm_mean, sd = norm_sd)
 }
 
@@ -38,15 +38,15 @@ lognormal_to_normal <- function(meanlog, sdlog) {
 #' @examples
 #' normal_to_lognormal(normmean = 20, normsd = 3)
 normal_to_lognormal <- function(normmean, normsd) {
-  phi <- sqrt(normsd^2 + normmean^2)
-  lognorm_meanlog <- log(normmean^2 / phi)
-  lognorm_sdlog <- sqrt(log(phi^2 / normmean ^2))
+  phi <- sqrt(normsd ^ 2 + normmean ^ 2)
+  lognorm_meanlog <- log(normmean ^ 2 / phi)
+  lognorm_sdlog <- sqrt(log(phi ^ 2 / normmean ^ 2))
   list(meanlog = lognorm_meanlog, sdlog = lognorm_sdlog)
 }
 
 #' Weight a set of lognormal parameters into a single distribution
 #'
-#' @param dat Dataframe.
+#' @param dat Dataframe of meanlog, sdlog, min, max, and sdlog.
 #'
 #' @importFrom dplyr mutate summarize_at mutate
 #' @importFrom tidyr nest unnest
@@ -108,7 +108,7 @@ combine_lognorm <- function(dat) {
 #' Given a set of arbitrary parameters that includes at least a weight column,
 #'   take a weighted average of all the other parameters.
 #'
-#' @param dat A dataframe.
+#' @param dat Dataframe of mean, sd and weights.
 #'
 #' @importFrom dplyr summarize_at
 #' @importFrom rlang .data
@@ -125,7 +125,7 @@ combine_norm <- function(dat) {
   dat %>%
     #unnest() %>%
     dplyr::summarize_at(.var = vars(-matches("weight")),
-                        .funs = funs(sum(. * .data$weight) / sum (.data$weight)))
+                        .funs = funs(sum(. * .data$weight) / sum(.data$weight)))
     #dplyr::summarize(mean = sum(.data$mean * .data$weight) / sum(.data$weight),
     #          sd = sum(.data$sd * .data$weight) / sum(.data$weight))
 }
@@ -153,7 +153,7 @@ generate_cost_function <- function(func) {
   function(x, quant, est, ...) {
     x1 <- x[1]
     x2 <- x[2]
-    if (x1 <0 | x2 <0) return(NA)
+    if (x1 < 0 | x2 < 0) return(NA)
     sum((rlang::get_expr(func)(quant, x1, x2, ...) - est)^2)
   }
 }
@@ -176,7 +176,7 @@ generate_cost_function <- function(func) {
 #' NULL
 fit_lognorm <- function(low, high) {
   dat <- stats::optim(c(0,1), generate_cost_function(stats::qlnorm),
-               quant=c(.05, .95), est = c(low, high))
+               quant = c(.05, .95), est = c(low, high))
   tibble::tibble(func = "stats::rlnorm",
                  meanlog = dat$par[[1]],
                  sdlog = dat$par[[2]])
@@ -204,7 +204,7 @@ fit_lognorm <- function(low, high) {
 #' fit_lognorm_trunc(low = 10, high = 50, min = 0, max = 100)
 fit_lognorm_trunc <- function(low, high, min = 0, max = Inf) {
   dat <- stats::optim(c(0.01, 1), generate_cost_function(EnvStats::qlnormTrunc),
-               quant=c(.05, .95), est = c(low, high), min = min, max = max)
+               quant = c(.05, .95), est = c(low, high), min = min, max = max)
   tibble::tibble(func = "EnvStats::rlnormTrunc",
                  meanlog = dat$par[[1]],
                  sdlog = dat$par[[2]],
@@ -235,7 +235,7 @@ fit_lognorm_trunc <- function(low, high, min = 0, max = Inf) {
 #' fit_norm_trunc(low = 10, high = 50, min = 0, max = 100)
 fit_norm_trunc <- function(low, high, min = 0, max = Inf) {
   dat <- stats::optim(c(0.01, 1), generate_cost_function(EnvStats::qnormTrunc),
-               quant=c(.05, .95), est = c(low, high), min = min, max = max)
+               quant = c(.05, .95), est = c(low, high), min = min, max = max)
   tibble::tibble(func = "EnvStats::rnormTrunc",
                  mean = dat$par[[1]],
                  sd = dat$par[[2]],
@@ -262,7 +262,7 @@ fit_norm_trunc <- function(low, high, min = 0, max = Inf) {
 #' fit_pois(low = 10, high = 50)
 fit_pois <- function(low, high) {
   dat <- stats::optim(c(0.01, 1), generate_cost_function(stats::qpois),
-               quant=c(.05, .95), est = c(low, high))
+               quant = c(.05, .95), est = c(low, high))
   tibble::tibble(func = "stats::rpois", lambda = dat$par[[1]])
 }
 
@@ -283,12 +283,12 @@ fit_pois <- function(low, high) {
 #' NULL
 fit_capabilities_geomean <- function(capabilities_answers) {
   capabilities_answers %>% dplyr::group_by(.data$capability_id) %>%
-    dplyr::summarise(low = EnvStats::geoMean(.data$low, na.rm=TRUE),
-              high = EnvStats::geoMean(.data$high, na.rm=TRUE)) %>%
+    dplyr::summarise(low = EnvStats::geoMean(.data$low, na.rm = TRUE),
+              high = EnvStats::geoMean(.data$high, na.rm = TRUE)) %>%
     tidyr::replace_na(list(low = 1, high = 1)) %>%
     tidyr::nest(.data$low:.data$high) %>%
     dplyr::mutate(capability = purrr::map(.data$data, ~ fit_norm_trunc(.x$low, .x$high,
-                                                          min=0, max=100))) %>%
+                                                          min = 0, max = 100))) %>%
     tidyr::unnest(.data$capability) %>% tidyr::unnest(.data$data)
 }
 
@@ -310,15 +310,15 @@ fit_capabilities_geomean <- function(capabilities_answers) {
 fit_scenarios_geomean <- function(scenario_answers) {
   scenario_answers %>% dplyr::group_by(.data$scenario_id) %>%
     #mutate_at(vars(matches("low|high")), .funs = funs(if(. == 0) {1} else {.})) ->dat
-    dplyr::summarise_at(vars(matches("low|high")), .funs = EnvStats::geoMean, na.rm=TRUE) %>%
+    dplyr::summarise_at(vars(matches("low|high")), .funs = EnvStats::geoMean, na.rm = TRUE) %>%
     #if we are missing any answers, fill it in with default values
-    tidyr::replace_na(list(imp_low=1, imp_high=1, freq_low=1, freq_high=1)) %>%
+    tidyr::replace_na(list(imp_low = 1, imp_high = 1, freq_low = 1, freq_high = 1)) %>%
     tidyr::nest(.data$imp_low:.data$imp_high) %>%
     dplyr::mutate(impact = purrr::map(.data$data, ~ fit_lognorm(.x$imp_low, .x$imp_high))) %>%
-    tidyr::unnest(.data$impact, .sep="_") %>% unnest(.data$data) %>%
+    tidyr::unnest(.data$impact, .sep = "_") %>% unnest(.data$data) %>%
     tidyr::nest(.data$freq_low:.data$freq_high) %>%
     dplyr::mutate(frequency = purrr::map(.data$data, ~ fit_lognorm(.x$freq_low, .x$freq_high))) %>%
-    tidyr::unnest(.data$frequency, .sep="_") %>% tidyr::unnest(.data$data)
+    tidyr::unnest(.data$frequency, .sep = "_") %>% tidyr::unnest(.data$data)
 }
 
 #' Fit SME scenario estimates to distribution parameters
@@ -356,13 +356,13 @@ fit_scenarios <- function(scenario_answers, maximum_impact = Inf,
     dplyr::mutate(impact = purrr::map(.data$data, ~
                                  fit_lognorm_trunc(.x$imp_low, .x$imp_high,
                                                    max = min(.x$imp_high * maximum_impact_factor, maximum_impact)))) %>%
-    tidyr::unnest(.data$impact, .sep="_") %>% tidyr::unnest(.data$data) %>%
+    tidyr::unnest(.data$impact, .sep = "_") %>% tidyr::unnest(.data$data) %>%
     # now process the frequency data
     tidyr::nest(.data$freq_low:.data$freq_high) %>%
     dplyr::mutate(frequency = map(
       .data$data, ~ fit_lognorm_trunc(.x$freq_low, .x$freq_high,
                                       max = .x$freq_high * maximum_frequency_factor))) %>%
-    tidyr::unnest(.data$frequency, .sep="_") %>%
+    tidyr::unnest(.data$frequency, .sep = "_") %>%
     tidyr::unnest(.data$data) -> sce_ans_fitted
   sce_ans_fitted
 }
@@ -386,7 +386,7 @@ fit_capabilities <- function(capability_answers) {
     tidyr::nest(.data$low:.data$high) %>%
     dplyr::mutate(capability = purrr::map(.data$data, ~ fit_norm_trunc(.x$low, .x$high,
                                                    min = 0, max = 100))) %>%
-    tidyr::unnest(.data$capability, .sep="_") %>%
+    tidyr::unnest(.data$capability, .sep = "_") %>%
     tidyr::unnest(.data$data) -> cap_ans_fitted
   cap_ans_fitted
 }
@@ -410,7 +410,7 @@ fit_threat_communities <- function(threat_communities) {
     tidyr::nest(.data$low:.data$high) %>%
     dplyr::mutate(threat = purrr::map(.data$data, ~ fit_norm_trunc(.x$low, .x$high,
                                                                    min = 0, max = 100))) %>%
-    tidyr::unnest(.data$threat, .sep="_") %>%
+    tidyr::unnest(.data$threat, .sep = "_") %>%
     tidyr::unnest(.data$data) -> threat_fitted
   threat_fitted
 }
@@ -443,7 +443,7 @@ combine_capability_parameters <- function(capability_parameters) {
     tidyr::nest(c(.data$mean:.data$sd, .data$weight, .data$min, .data$max)) %>%
     # perform the combination
     dplyr::mutate(capability = purrr::map(.data$data, combine_norm)) %>%
-    tidyr::unnest(.data$capability, .sep="_") %>%
+    tidyr::unnest(.data$capability, .sep = "_") %>%
     dplyr::select(-.data$data)
 }
 
@@ -473,7 +473,7 @@ combine_scenario_parameters <- function(scenario_parameters) {
     dplyr::group_by(.data$scenario_id, .data$impact_func) %>%
     tidyr::nest(c(.data$meanlog:.data$sdlog, .data$weight, .data$min, .data$max), .key = "data") %>%
     dplyr::mutate(impact = purrr::map(.data$data, combine_lognorm_trunc)) %>%
-    tidyr::unnest(.data$impact, .sep="_", .drop= TRUE) -> combined_sce_impact
+    tidyr::unnest(.data$impact, .sep = "_", .drop = TRUE) -> combined_sce_impact
 
   scenario_parameters %>%
     dplyr::rename(meanlog = .data$frequency_meanlog,
@@ -484,7 +484,7 @@ combine_scenario_parameters <- function(scenario_parameters) {
     dplyr::group_by(.data$scenario_id, .data$frequency_func) %>%
     tidyr::nest(c(.data$meanlog:.data$sdlog, .data$weight, .data$min, .data$max), .key = "data") %>%
     dplyr::mutate(frequency = purrr::map(.data$data, combine_lognorm_trunc)) %>%
-    tidyr::unnest(.data$frequency, .sep="_", .drop = TRUE) -> combined_sce_frequency
+    tidyr::unnest(.data$frequency, .sep = "_", .drop = TRUE) -> combined_sce_frequency
 
   dplyr::left_join(combined_sce_impact, combined_sce_frequency, by = "scenario_id")
 }

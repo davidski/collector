@@ -36,3 +36,4 @@ Other distribution fitting functions: \code{\link{combine_lognorm_trunc}},
   \code{\link{generate_cost_function}},
   \code{\link{normal_to_lognormal}}
 }
+\concept{distribution fitting functions}

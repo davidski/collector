@@ -30,22 +30,24 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
   domain_list <- get_smes_domains(sme, questions)
 
   # create sme doc
-  doc <- officer::read_docx(system.file(package = "collector", "templates", "template.docx"))
+  doc <- officer::read_docx(system.file(package = "collector", "templates",
+                                        "template.docx"))
   doc <- officer::body_remove(doc)
 
   ## Create title page
-  doc <- officer::body_add_par(doc, paste0("FY18 ST Risk Assessment - ", sme), style = "Title")
+  doc <- officer::body_add_par(doc, paste0("Risk Assessment - ", sme), style = "Title")
   doc <- officer::body_add_par(x = doc, value = "Table of Contents", style = "heading 1") %>%
     officer::body_add_toc(level = 1)
   doc <- doc %>% officer::body_add_break()
 
   # create calibration page
-  doc <- officer::body_add_par(x=doc, value = "Calibration Questions", style="heading 1")
+  doc <- officer::body_add_par(x = doc, value = "Calibration Questions",
+                               style = "heading 1")
   tbl <- dat %>% dplyr::select("Question" = .data$question) %>%
     dplyr::mutate("Low" = NA_character_, "High" = NA_character_) %>%
     flextable::regulartable()
-  tbl <- flextable::align(tbl, align ="left", part="body")
-  tbl <- flextable::align(tbl, align = "center", part="header")
+  tbl <- flextable::align(tbl, align = "left", part = "body")
+  tbl <- flextable::align(tbl, align = "center", part = "header")
   #tbl <- theme_vanilla(tbl)
   tbl <- flextable::autofit(tbl)
   tbl <- flextable::width(tbl, j = "Question", width = 4)
@@ -59,21 +61,24 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
     doc <- doc %>% officer::body_add_break()
 
     # add the domain heading
-    doc <- officer::body_add_par(x=doc,
-                                 value = paste("Domain", d, sep =  " - "), style="heading 1")
-    if (nrow(questions$domains[questions$domains$domain==d, "description"]) > 0) {
-      doc <- officer::body_add_par(x=doc, value = questions$domains[questions$domains$domain==d, "description"])
+    doc <- officer::body_add_par(x = doc,
+                                 value = paste("Domain", d, sep =  " - "),
+                                 style = "heading 1")
+    if (nrow(questions$domains[questions$domains$domain == d, "description"]) > 0) {
+      doc <- officer::body_add_par(x = doc, value = questions$domains[
+        questions$domains$domain == d, "description"])
     }
 
     # add the scenarios
-    doc <- officer::body_add_par(x=doc,
-                                 value = paste("Scenarios", d, sep =  " - "), style="heading 2")
-    questions$scenarios[questions$scenarios$domain==d, ] %>%
+    doc <- officer::body_add_par(x = doc,
+                                 value = paste("Scenarios", d, sep =  " - "),
+                                 style = "heading 2")
+    questions$scenarios[questions$scenarios$domain == d, ] %>%
     dplyr::select("ID" = .data$scenario_id, .data$scenario) %>%
-    dplyr::mutate("Frequency Low" = NA_character_,
-                  "Frequency High" = NA_character_,
-                  "Impact Low" = NA_character_,
-                  "Impact High" = NA_character_) %>%
+      dplyr::mutate("Frequency Low" = NA_character_,
+                    "Frequency High" = NA_character_,
+                    "Impact Low" = NA_character_,
+                    "Impact High" = NA_character_) %>%
       flextable::regulartable() -> tbl
     tbl <- flextable::set_header_labels(tbl, scenario_id = "ID",
                                         scenario = "Scenario",
@@ -94,8 +99,8 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
                                  `Impact High` = "High",
                                  top = FALSE ) %>%
       flextable::merge_h(part = "header")
-    tbl <- flextable::align(tbl, align ="left", part="body")
-    tbl <- flextable::align(tbl, align = "center", part="header")
+    tbl <- flextable::align(tbl, align = "left", part = "body")
+    tbl <- flextable::align(tbl, align = "center", part = "header")
     #tbl <- theme_vanilla(tbl)
     tbl <- flextable::autofit(tbl)
     tbl <- flextable::width(tbl, width = 2/3) %>%
@@ -105,8 +110,10 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
     doc <- doc %>% officer::body_add_break()
 
     # add capabilities
-    doc <- officer::body_add_par(x=doc, value = paste("Capabilities", d, sep =  " - "), style="heading 2")
-    questions$capabilities[questions$capabilities$domain==d, ] %>%
+    doc <- officer::body_add_par(x = doc, value = paste("Capabilities", d,
+                                                        sep =  " - "),
+                                 style = "heading 2")
+    questions$capabilities[questions$capabilities$domain == d, ] %>%
       dplyr::select("ID" = .data$capability_id, .data$capability) %>%
       tibble::add_column(cap_low = NA_character_, cap_high = NA_character_) %>%
       flextable::regulartable() -> tbl
@@ -119,13 +126,14 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
                                  top = FALSE)
     tbl <- flextable::add_header(tbl, cap_low = "Low", cap_high = "High", top = FALSE) %>%
       flextable::merge_h(part = "header")
-    tbl <- flextable::align(tbl, align ="left", part="body")
-    tbl <- flextable::align(tbl, align = "center", part="header")
+    tbl <- flextable::align(tbl, align = "left", part = "body")
+    tbl <- flextable::align(tbl, align = "center", part = "header")
     #tbl <- theme_vanilla(tbl)
     tbl <- flextable::autofit(tbl)
     tbl <- flextable::width(tbl, j = c("cap_low", "cap_high"), width = 2/3) %>%
       flextable::width(j = "capability", width = 3) %>%
-      flextable::style(pr_t = officer::fp_text(font.family = "Calibiri"), part = "all")
+      flextable::style(pr_t = officer::fp_text(font.family = "Calibiri"),
+                       part = "all")
     doc <- flextable::body_add_flextable(x = doc, align = "left", tbl)
     })
 
@@ -144,11 +152,13 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
   doc <- doc %>% officer::body_add_break()
 
   # create calibration page
-  doc <- officer::body_add_par(x=doc, value = "Calibration Questions", style="heading 1")
-  tbl <- dat %>% dplyr::select("Question" = .data$question, "Answer" = .data$answer) %>%
+  doc <- officer::body_add_par(x = doc, value = "Calibration Questions",
+                               style = "heading 1")
+  tbl <- dat %>%
+    dplyr::select("Question" = .data$question, "Answer" = .data$answer) %>%
     flextable::regulartable()
-  tbl <- flextable::align(tbl, align ="left", part="body")
-  tbl <- flextable::align(tbl, align = "center", part="header")
+  tbl <- flextable::align(tbl, align = "left", part = "body")
+  tbl <- flextable::align(tbl, align = "center", part = "header")
   #tbl <- theme_vanilla(tbl)
   tbl <- flextable::autofit(tbl)
   tbl <- flextable::width(tbl, j = "Question", width = 4)
@@ -162,16 +172,18 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
     doc <- doc %>% officer::body_add_break()
 
     # add the domain heading
-    doc <- officer::body_add_par(x=doc,
-                                 value = paste("Domain", d, sep =  " - "), style="heading 1")
-    if (nrow(questions$domains[questions$domains$domain==d, "description"]) > 0) {
-      doc <- officer::body_add_par(x=doc, value = questions$domains[questions$domains$domain==d, "description"])
+    doc <- officer::body_add_par(x = doc,
+                                 value = paste("Domain", d, sep =  " - "),
+                                 style = "heading 1")
+    if (nrow(questions$domains[questions$domains$domain == d, "description"]) > 0) {
+      doc <- officer::body_add_par(x = doc, value = questions$domains[questions$domains$domain == d, "description"])
     }
 
     # add the scenarios
-    doc <- officer::body_add_par(x=doc,
-                                 value = paste("Scenarios", d, sep =  " - "), style="heading 2")
-    questions$scenarios[questions$scenarios$domain==d, ] %>%
+    doc <- officer::body_add_par(x = doc,
+                                 value = paste("Scenarios", d, sep =  " - "),
+                                 style = "heading 2")
+    questions$scenarios[questions$scenarios$domain == d, ] %>%
       dplyr::select("ID" = .data$scenario_id, .data$scenario) %>%
       dplyr::mutate("Frequency Low" = NA_character_,
                     "Frequency High" = NA_character_,
@@ -197,8 +209,8 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
                                  `Impact High` = "High",
                                  top = FALSE ) %>%
       flextable::merge_h(part = "header")
-    tbl <- flextable::align(tbl, align ="left", part="body")
-    tbl <- flextable::align(tbl, align = "center", part="header")
+    tbl <- flextable::align(tbl, align = "left", part = "body")
+    tbl <- flextable::align(tbl, align = "center", part = "header")
     #tbl <- theme_vanilla(tbl)
     tbl <- flextable::autofit(tbl)
     tbl <- flextable::width(tbl, width = 2/3) %>%
@@ -208,8 +220,9 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
     doc <- doc %>% officer::body_add_break()
 
     # add capabilities
-    doc <- officer::body_add_par(x=doc, value = paste("Capabilities", d, sep =  " - "), style="heading 2")
-    questions$capabilities[questions$capabilities$domain==d, ] %>%
+    doc <- officer::body_add_par(x = doc, value = paste("Capabilities", d, sep =  " - "),
+                                 style = "heading 2")
+    questions$capabilities[questions$capabilities$domain == d, ] %>%
       dplyr::select("ID" = .data$capability_id, .data$capability) %>%
       tibble::add_column(cap_low = NA_character_, cap_high = NA_character_) %>%
       flextable::regulartable() -> tbl
@@ -221,8 +234,8 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
                                  `cap_high` = "% Better than World", top = FALSE)
     tbl <- flextable::add_header(tbl, cap_low = "Low", cap_high = "High", top = FALSE) %>%
       flextable::merge_h(part = "header")
-    tbl <- flextable::align(tbl, align ="left", part="body")
-    tbl <- flextable::align(tbl, align = "center", part="header")
+    tbl <- flextable::align(tbl, align = "left", part = "body")
+    tbl <- flextable::align(tbl, align = "center", part = "header")
     #tbl <- theme_vanilla(tbl)
     tbl <- flextable::autofit(tbl)
     tbl <- flextable::width(tbl, j = c("cap_low", "cap_high"), width = 2/3) %>%

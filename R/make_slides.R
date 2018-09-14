@@ -21,7 +21,8 @@
 #' \dontrun{
 #' make_slides("Sally Expert", source_dir = getwd())
 #' }
-make_slides <- function(sme, questions, source_dir, output_dir = getwd(), assessment_title = "Strategic Risk Assessment") {
+make_slides <- function(sme, questions, source_dir, output_dir = getwd(),
+                        assessment_title = "Strategic Risk Assessment") {
 
   # ensure output directory is available
   if (!dir.exists(output_dir)) dir.create(output_dir)
@@ -40,14 +41,16 @@ make_slides <- function(sme, questions, source_dir, output_dir = getwd(), assess
   file.copy(system.file(package = "collector", "interview.Rmd"),
             file.path(output_dir, "interview.Rmd"), overwrite = TRUE)
 
+  logo_emoji <- "\\U0002696"  # scales emoji
+
   rmarkdown::render(file.path(output_dir, "interview.Rmd"),
                     #output_dir = output_dir,
                     output_file = paste0(tolower(sme) %>% stringr::str_replace_all(" ", "_"), ".html"),
                     knit_root_dir = output_dir,
-                    params=list("sme"= sme,
-                                "assessment_title" = glue::glue("{assessment_title}<br>&#2696️"),
-                                "domain_list" = get_smes_domains(sme, questions),
-                                "source_dir" = source_dir))
+                    params = list("sme" = sme,
+                                  "assessment_title" = glue::glue("{assessment_title}<br>{logo_emoji}"),
+                                  "domain_list" = get_smes_domains(sme, questions),
+                                  "source_dir" = source_dir))
 
   # remove the temporary Rmd file
   file.remove(file.path(output_dir, "interview.Rmd"))
