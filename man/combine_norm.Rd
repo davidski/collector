@@ -7,7 +7,7 @@
 combine_norm(dat)
 }
 \arguments{
-\item{dat}{A dataframe.}
+\item{dat}{Dataframe of mean, sd and weights.}
 }
 \value{
 A dataframe.

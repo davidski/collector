@@ -22,7 +22,7 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
   # domains
   domains <- {
     dat <- readr::read_csv(file.path(source_dir, "domains.csv"),
-                           col_types=readr::cols(.default = readr::col_character(),
+                           col_types = readr::cols(.default = readr::col_character(),
                                                  active = readr::col_logical())) %>%
       dplyr::arrange(.data$domain)
     if (active_only) {dplyr::filter(dat, .data$active != FALSE | is.na(.data$active))} else {dat}
@@ -50,7 +50,7 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
   expertise <- readr::read_csv(file.path(source_dir, "sme_top_domains.csv"),
                                col_types = readr::cols(.default = readr::col_character()),
                                comment = "#") %>%
-    tidyr::gather(key="key", value="value", -.data$sme) %>%
+    tidyr::gather(key = "key", value = "value", -.data$sme) %>%
     tidyr::drop_na()
 
   # calibration

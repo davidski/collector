@@ -18,8 +18,8 @@
 #' @examples
 #' lognormal_to_normal(meanlog=1, sdlog=3)
 lognormal_to_normal <- function(meanlog, sdlog) {
-  norm_mean <- exp(meanlog + sdlog^2/2)
-  norm_sd <- sqrt((exp(sdlog^2) - 1) * exp(2*meanlog + sdlog^2))
+  norm_mean <- exp(meanlog + sdlog^2 / 2)
+  norm_sd <- sqrt( (exp(sdlog^2) - 1) * exp(2*meanlog + sdlog^2))
   list(mean = norm_mean, sd = norm_sd)
 }
 
@@ -154,7 +154,7 @@ generate_cost_function <- function(func) {
     x1 <- x[1]
     x2 <- x[2]
     if (x1 < 0 | x2 < 0) return(NA)
-    sum((rlang::get_expr(func)(quant, x1, x2, ...) - est)^2)
+    sum( (rlang::get_expr(func)(quant, x1, x2, ...) - est)^2)
   }
 }
 
@@ -175,7 +175,7 @@ generate_cost_function <- function(func) {
 #' @examples
 #' NULL
 fit_lognorm <- function(low, high) {
-  dat <- stats::optim(c(0,1), generate_cost_function(stats::qlnorm),
+  dat <- stats::optim(c(0, 1), generate_cost_function(stats::qlnorm),
                quant = c(.05, .95), est = c(low, high))
   tibble::tibble(func = "stats::rlnorm",
                  meanlog = dat$par[[1]],
@@ -287,8 +287,9 @@ fit_capabilities_geomean <- function(capabilities_answers) {
               high = EnvStats::geoMean(.data$high, na.rm = TRUE)) %>%
     tidyr::replace_na(list(low = 1, high = 1)) %>%
     tidyr::nest(.data$low:.data$high) %>%
-    dplyr::mutate(capability = purrr::map(.data$data, ~ fit_norm_trunc(.x$low, .x$high,
-                                                          min = 0, max = 100))) %>%
+    dplyr::mutate(capability = purrr::map(.data$data,
+                                          ~ fit_norm_trunc(.x$low, .x$high,
+                                                           min = 0, max = 100))) %>%
     tidyr::unnest(.data$capability) %>% tidyr::unnest(.data$data)
 }
 
@@ -309,9 +310,8 @@ fit_capabilities_geomean <- function(capabilities_answers) {
 #' NULL
 fit_scenarios_geomean <- function(scenario_answers) {
   scenario_answers %>% dplyr::group_by(.data$scenario_id) %>%
-    #mutate_at(vars(matches("low|high")), .funs = funs(if(. == 0) {1} else {.})) ->dat
     dplyr::summarise_at(vars(matches("low|high")), .funs = EnvStats::geoMean, na.rm = TRUE) %>%
-    #if we are missing any answers, fill it in with default values
+    # if we are missing any answers, fill it in with default values
     tidyr::replace_na(list(imp_low = 1, imp_high = 1, freq_low = 1, freq_high = 1)) %>%
     tidyr::nest(.data$imp_low:.data$imp_high) %>%
     dplyr::mutate(impact = purrr::map(.data$data, ~ fit_lognorm(.x$imp_low, .x$imp_high))) %>%

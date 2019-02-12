@@ -9,6 +9,7 @@
 #' @importFrom tidyr drop_na
 #' @importFrom purrr map pmap
 #' @importFrom rlang .data
+#' @importFrom evaluator evaluator_scen
 #' @return A dataframe.
 #' @export
 #'
@@ -24,12 +25,12 @@ prepare_data <- function(scenario_parameters, capability_parameters,
   # combine capabilities + scenarios into a single dataframe
   scenario_parameters %>%
     # bring in the scenario descriptions
-    dplyr::left_join(questions$scenarios, by="scenario_id") %>%
+    dplyr::left_join(questions$scenarios, by = "scenario_id") %>%
     # bring in the domain IDs
-    dplyr::left_join(questions$domains, by="domain") %>%
+    dplyr::left_join(questions$domains, by = "domain") %>%
     # add TC info
     #dplyr::mutate(tc_func = "stats::rnorm", tc_mean = 50, tc_sd = 3, tcomm = "placeholder") %>%
-    dplyr::left_join(threat_parameters, by="threat_id") %>%
+    dplyr::left_join(threat_parameters, by = "threat_id") %>%
     # massage the dataframe to look like the standard evaluator inputs
     dplyr::select(.data$scenario_id, scenario = .data$Scenario,
                   dplyr::starts_with("tc"), .data$domain_id,

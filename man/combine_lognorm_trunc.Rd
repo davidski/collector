@@ -7,7 +7,7 @@
 combine_lognorm_trunc(dat)
 }
 \arguments{
-\item{dat}{Dataframe.}
+\item{dat}{Dataframe of meanlog, sdlog, min, max, and sdlog.}
 }
 \value{
 A dataframe.

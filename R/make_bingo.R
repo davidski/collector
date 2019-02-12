@@ -1,4 +1,4 @@
-#' Create a bingo-style card for marking progress through domains in an interview
+#' Create a scorecard for marking progress through domains in an interview
 #'
 #' Creates a two page PDF with one grid for scenarios and one for capabilities.
 #'   Each grid contains a square for each domain. An analyst can mark/stamp
@@ -24,9 +24,9 @@
 #' @examples
 #' \dontrun{
 #' questions <- read_questions()
-#' make_bingo("Sally Expert", questions)
+#' make_scorecard("Sally Expert", questions)
 #' }
-make_bingo <- function(sme, questions, output_dir = getwd()) {
+make_scorecard <- function(sme, questions, output_dir = getwd()) {
   # get ordered scenarios
   values <- get_smes_domains(sme, questions)
 
@@ -36,34 +36,43 @@ make_bingo <- function(sme, questions, output_dir = getwd()) {
   rows <- c(rows, rep(max(rows) + 1, length(values) - length(rows)))
 
   # make_dataframe
-  dat <- tibble::tibble(id = stringr::str_wrap(values, width=15), row = rows,
+  dat <- tibble::tibble(id = stringr::str_wrap(values, width = 15), row = rows,
                 column = rep_len(1:n_col, length.out = length(values))) %>%
     dplyr::mutate(highlight = dplyr::if_else((row_number() - 1) %% 5 == 0, "Y", "N"))
 
   # create_plot
-  gg <- ggplot(dat, aes_string(x="column", y="row", label="id")) +
-    geom_tile(aes(fill="highlight"), alpha=0.5, color="black") +
-    scale_fill_manual(values=c("N" = "white", "Y" = "lightslategray"), guide=FALSE)+
+  gg <- ggplot(dat, aes_string(x = "column", y = "row", label = "id")) +
+    geom_tile(aes(fill = "highlight"), alpha = 0.5, color = "black") +
+    scale_fill_manual(values = c("N" = "white", "Y" = "lightslategray"),
+                      guide = FALSE) +
     coord_equal() + geom_text() + scale_y_reverse() +
     hrbrthemes::theme_ipsum() +
     theme(axis.text = element_blank(), panel.grid = element_blank()) +
-    labs(x=NULL, y=NULL, title = "Scenarios",
-         subtitle="Target takt time: 1 minute per response",
+    labs(x = NULL, y = NULL, title = "Scenarios",
+         subtitle = "Target takt time: 1 minute per response",
          caption = paste0("SME: ", sme))
 
   # make_capabilities_plot
-  gg_cap <- ggplot(dat, aes_string(x="column", y="row", label="id")) +
-    geom_tile(aes_string(fill="highlight"), alpha=0.5, color="black") +
-    scale_fill_manual(values=c("N" = "white", "Y" = "lightslategray"), guide=FALSE)+
+  gg_cap <- ggplot(dat, aes_string(x = "column", y = "row", label = "id")) +
+    geom_tile(aes_string(fill = "highlight"), alpha = 0.5, color = "black") +
+    scale_fill_manual(values = c("N" = "white", "Y" = "lightslategray"),
+                      guide = FALSE) +
     coord_equal() + geom_text() + scale_y_reverse() +
     hrbrthemes::theme_ipsum() +
     theme(axis.text = element_blank(), panel.grid = element_blank()) +
-    labs(x=NULL, y=NULL, title = "Capabilities",
-         subtitle="Target takt time: 1 minute per response",
+    labs(x = NULL, y = NULL, title = "Capabilities",
+         subtitle = "Target takt time: 1 minute per response",
          caption = paste0("SME: ", sme))
 
   # make_combined_pdf
   combo <- ggpubr::ggarrange(gg, gg_cap, ncol = 1)
   filename <- tolower(sme) %>% stringr::str_replace_all(" ", "_") %>% paste0(., "_bingo.pdf")
   ggpubr::ggexport(combo, filename = file.path(output_dir, filename))
+}
+
+#' @export
+#' @rdname make_scorecard
+make_bingo <- function(sme, questions, output_dir = getwd()) {
+  .Deprecated("make_scorecard")
+  make_scorecard(sme, questions, output_dir = getwd())
 }

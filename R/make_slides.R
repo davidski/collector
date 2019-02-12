@@ -14,8 +14,7 @@
 #' @return Output of render.
 #' @export
 #' @importFrom rmarkdown render
-#' @importFrom stringr str_replace_all
-#' @importFrom glue glue
+#' @importFrom stringr str_replace_all str_glue
 #'
 #' @examples
 #' \dontrun{
@@ -48,7 +47,7 @@ make_slides <- function(sme, questions, source_dir, output_dir = getwd(),
                     output_file = paste0(tolower(sme) %>% stringr::str_replace_all(" ", "_"), ".html"),
                     knit_root_dir = output_dir,
                     params = list("sme" = sme,
-                                  "assessment_title" = glue::glue("{assessment_title}<br>{logo_emoji}"),
+                                  "assessment_title" = stringr::str_glue("{assessment_title}<br>{logo_emoji}"),
                                   "domain_list" = get_smes_domains(sme, questions),
                                   "source_dir" = source_dir))
 
