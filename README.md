@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Collector <img alt="Collector Logo" title="Collector" align="right" src="man/figures/collector_logo.png" width="100" style="float:right;width:100px;"/>
+# collector <img alt="collector Logo" title="collector" align="right" src="man/figures/collector_hex.png" height="139">
 
 [![Travis Build
 Status](https://travis-ci.org/davidski/collector.svg?branch=master)](https://travis-ci.org/collector/evaluator)
@@ -46,30 +46,31 @@ devtools::install_github("davidski/collector")
 
 ## Basic Flow
 
-Documentation is still very much a pending To Do. Until documentation is
-authored, use the [package website](https://collector.severski.net) for
-reference. The flow for running interviews and sending along to
+See the [package website](https://collector.severski.net) for reference.
+While long form vignettes need to be created, the basic flow for
+preparing for inteviews with your SMEs, processing the results, and
+generating parameters for simulation via
 [evaulator](https://evaluator.severski.net) is:
 
 1.  Build questions and define SME expertise
 
-2.  Read in the data
+2.  Read in the questions
     
     ``` r
     library(collector)
     
-    dat <- read_questions()
+    questions <- read_questions()
     ```
 
-3.  Generate slides
+3.  Generate materials for interviewing a SME
     
     ``` r
-    make_handouts("Leader Name", dat, output_dir)
-    make_bingo("Leader Name", dat, output_dir)
-    make_slides("Leader Name", dat, output_dir)
+    make_handouts("Leader Name", questions, output_dir)
+    make_scorecard("Leader Name", questions, output_dir)
+    make_slides("Leader Name", questions, output_dir)
     ```
 
-4.  Input answers
+4.  Read in the answers from your SMEs
     
     ``` r
     answers <- read_answers()
@@ -77,27 +78,26 @@ reference. The flow for running interviews and sending along to
     capability_answers <- answers$cap_ans
     ```
 
-5.  Fit SME answers
+5.  Fit the SME answers to distributions.
     
     ``` r
     scenario_answers_fitted <- fit_scenarios(scenario_answers)
-    capability_answers_fitted <- (capability_answers)
+    capability_answers_fitted <- fit_capabilities(capability_answers)
     ```
 
-6.  Combined distributions into final
-    parameters
+6.  Combine distributions into final parameters, applying weighting
+    based on each SMEs level of calibrartion.
     
     ``` r
     scenario_parameters <- combine_scenario_parameters(scenario_answers_fitted)
     capability_parameters <- combine_capability_parameters(capability_answers_fitted)
     ```
 
-7.  Build quantitative parameters for
-    `Evaluator`
+7.  Build quantitative parameters for `evaluator`
     
     ``` r
-    prepare_data(scenario_parameters, capability_parameters, threat_parameters, 
-                 dat)
+    scenarios <- prepare_data(scenario_parameters, capability_parameters, 
+                              threat_parameters, questions)
     ```
 
 ## Contributing

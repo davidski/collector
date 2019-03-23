@@ -2,7 +2,7 @@
 % Please edit documentation in R/prepare_data.R
 \name{prepare_data}
 \alias{prepare_data}
-\title{Create a quantitative_scenarios dataframe suitable for `evaluator`}
+\title{Create a one or more quantitative scenarios objects suitable for simulaton by `evaluator`}
 \usage{
 prepare_data(scenario_parameters, capability_parameters, threat_parameters,
   questions)
@@ -17,10 +17,12 @@ prepare_data(scenario_parameters, capability_parameters, threat_parameters,
 \item{questions}{A questions object.}
 }
 \value{
-A dataframe.
+A list of \code{tidyrisk_scenario} objects.
 }
 \description{
-Create a quantitative_scenarios dataframe suitable for `evaluator`
+Given parameters for the scenarios, threat communities, capabilities, and
+the question set, generate a list of `tidyrisk_scenario` objects that may be
+fed into \code{evaluator::run_simulations()} for Monte Carlo simulation.
 }
 \examples{
 \dontrun{
