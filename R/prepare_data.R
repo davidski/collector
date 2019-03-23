@@ -1,4 +1,8 @@
-#' Create a quantitative_scenarios dataframe suitable for `evaluator`
+#' Create a one or more quantitative scenarios objects suitable for simulaton by `evaluator`
+#'
+#' Given parameters for the scenarios, threat communities, capabilities, and
+#' the question set, generate a list of `tidyrisk_scenario` objects that may be
+#' fed into \code{evaluator::run_simulations()} for Monte Carlo simulation.
 #'
 #' @param scenario_parameters Scenarios with final parameters defined.
 #' @param capability_parameters Capabilities with final parameters defined.
@@ -9,8 +13,8 @@
 #' @importFrom tidyr drop_na
 #' @importFrom purrr map pmap
 #' @importFrom rlang .data
-#' @importFrom evaluator evaluator_scen
-#' @return A dataframe.
+#' @importFrom evaluator tidyrisk_scenario
+#' @return A list of \code{tidyrisk_scenario} objects.
 #' @export
 #'
 #' @examples
