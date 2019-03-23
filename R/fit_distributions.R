@@ -23,7 +23,7 @@ lognormal_to_normal <- function(meanlog, sdlog) {
   list(mean = norm_mean, sd = norm_sd)
 }
 
-#' Convert normal paramaters to lognormal parameters
+#' Convert normal parameters to lognormal parameters
 #'
 #' Given parameters that describe a normal distribution, convert them back
 #'   to parameters for a lognormal distribution.
@@ -418,7 +418,7 @@ fit_threat_communities <- function(threat_communities) {
 #' Combine multiple SME distributions into a single unified view
 #'
 #' Given a dataframe with multiple SME fitted distributions for a single
-#'   capability, apply weighting for opinion pooling, and contruct a final
+#'   capability, apply weighting for opinion pooling, and construct a final
 #'   combined distribution for each OpenFAIR scenario parameter.
 #'
 #' @param capability_parameters Fitted individual parameters for capabilities.
@@ -451,10 +451,10 @@ combine_capability_parameters <- function(capability_parameters) {
 #'
 #' Given a dataframe with multiple SME fitted distributions for a single
 #'   scenario, decompose the lognormal distribution into normal parameters,
-#'   apply weighting for opinion pooling, and contruct a final combined
-#'   distribution for each OpenFAIR scenario parameter.
+#'   apply weighting for opinion pooling, and construct a final combined
+#'   distribution for each OpenFAIR scenario factor.
 #'
-#' @param scenario_parameters Fitted scenario parameters for individual SMEs.
+#' @param scenario_parameters Fitted scenario factors for individual SMEs.
 #'
 #' @importFrom dplyr rename group_by mutate select
 #' @importFrom tidyr nest unnest

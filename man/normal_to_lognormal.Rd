@@ -2,7 +2,7 @@
 % Please edit documentation in R/fit_distributions.R
 \name{normal_to_lognormal}
 \alias{normal_to_lognormal}
-\title{Convert normal paramaters to lognormal parameters}
+\title{Convert normal parameters to lognormal parameters}
 \usage{
 normal_to_lognormal(normmean, normsd)
 }

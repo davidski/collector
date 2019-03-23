@@ -13,7 +13,7 @@ read_answers(source_dir = getwd())
 A list.
 }
 \description{
-Reads in all the answers recorded to the calibration, sceanrios, and
+Reads in all the answers recorded to the calibration, scenarios, and
   capability questions.
 }
 \examples{

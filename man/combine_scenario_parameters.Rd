@@ -7,7 +7,7 @@
 combine_scenario_parameters(scenario_parameters)
 }
 \arguments{
-\item{scenario_parameters}{Fitted scenario parameters for individual SMEs.}
+\item{scenario_parameters}{Fitted scenario factors for individual SMEs.}
 }
 \value{
 A dataframe.
@@ -15,8 +15,8 @@ A dataframe.
 \description{
 Given a dataframe with multiple SME fitted distributions for a single
   scenario, decompose the lognormal distribution into normal parameters,
-  apply weighting for opinion pooling, and contruct a final combined
-  distribution for each OpenFAIR scenario parameter.
+  apply weighting for opinion pooling, and construct a final combined
+  distribution for each OpenFAIR scenario factor.
 }
 \examples{
 NULL

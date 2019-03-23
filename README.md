@@ -36,7 +36,7 @@ install.packages("collector")
 ```
 
 If you wish to run the development (and potentially bleeding edge)
-version of Collector, you can install directly from Github via the
+version of Collector, you can install directly from GitHub via the
 following `devtools` command.
 
 ``` r
@@ -48,9 +48,9 @@ devtools::install_github("davidski/collector")
 
 See the [package website](https://collector.severski.net) for reference.
 While long form vignettes need to be created, the basic flow for
-preparing for inteviews with your SMEs, processing the results, and
+preparing for interviews with your SMEs, processing the results, and
 generating parameters for simulation via
-[evaulator](https://evaluator.severski.net) is:
+[evaluator](https://evaluator.severski.net) is:
 
 1.  Build questions and define SME expertise
 
@@ -86,7 +86,7 @@ generating parameters for simulation via
     ```
 
 6.  Combine distributions into final parameters, applying weighting
-    based on each SMEs level of calibrartion.
+    based on each SMEs level of calibration.
     
     ``` r
     scenario_parameters <- combine_scenario_parameters(scenario_answers_fitted)

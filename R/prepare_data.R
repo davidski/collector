@@ -1,4 +1,4 @@
-#' Create a one or more quantitative scenarios objects suitable for simulaton by `evaluator`
+#' Create a one or more quantitative scenarios objects suitable for simulation by `evaluator`
 #'
 #' Given parameters for the scenarios, threat communities, capabilities, and
 #' the question set, generate a list of `tidyrisk_scenario` objects that may be

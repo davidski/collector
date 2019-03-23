@@ -2,7 +2,7 @@
 % Please edit documentation in R/prepare_data.R
 \name{prepare_data}
 \alias{prepare_data}
-\title{Create a one or more quantitative scenarios objects suitable for simulaton by `evaluator`}
+\title{Create a one or more quantitative scenarios objects suitable for simulation by `evaluator`}
 \usage{
 prepare_data(scenario_parameters, capability_parameters, threat_parameters,
   questions)

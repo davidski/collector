@@ -1,7 +1,7 @@
 #' Read scenario questions
 #'
 #' Reads in all the questions for which subject matter expert input is
-#'   needed. Includes the domains, capabilities, scenarios, callibration
+#'   needed. Includes the domains, capabilities, scenarios, calibration
 #'   questions, and threat communities.
 #'
 #' @export
@@ -71,7 +71,7 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
 
 #' Read all SMEs answers
 #'
-#' Reads in all the answers recorded to the calibration, sceanrios, and
+#' Reads in all the answers recorded to the calibration, scenarios, and
 #'   capability questions.
 #'
 #' @param source_dir Directory location where input files are found.

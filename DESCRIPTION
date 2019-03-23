@@ -32,7 +32,9 @@ Imports:
     officer,
     xaringan
 Suggests:
+    spelling,
     testthat,
     covr
 URL: https://collector.severski.net
 BugReports: https://github.com/davidski/collector/issues
+Language: en-US
