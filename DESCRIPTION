@@ -35,6 +35,7 @@ Suggests:
     spelling,
     testthat,
     covr
+Remotes: davidski/evaluator
 URL: https://collector.tidyrisk.org
 BugReports: https://github.com/davidski/collector/issues
 Language: en-US
