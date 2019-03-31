@@ -14,7 +14,7 @@ matrix:
 after_success:
 - Rscript -e 'covr::codecov()'
 deploy:
-- provider: s3
+  - provider: s3
     on:
       condition: $REPORTS_DEPLOY = "true"
       branch: master
