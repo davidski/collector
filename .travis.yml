@@ -13,6 +13,9 @@ matrix:
     r: devel
 addons:
   apt:
+    update: true
+    sources:
+      - sourceline: 'ppa:opencpu/imagemagick'
     pacakges:
       - libmagick++-dev
 after_success:
