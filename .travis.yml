@@ -16,7 +16,7 @@ addons:
     update: true
     sources:
       - sourceline: 'ppa:opencpu/imagemagick'
-    pacakges:
+    packages:
       - libmagick++-dev
 after_success:
 - Rscript -e 'covr::codecov()'
