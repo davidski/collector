@@ -78,7 +78,7 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
       dplyr::mutate("Frequency Low" = NA_character_,
                     "Frequency High" = NA_character_,
                     "Impact Low" = NA_character_,
-                    "Impact High" = NA_character_) %>%
+                    "impact High" = NA_character_) %>%
       flextable::regulartable() -> tbl
     tbl <- flextable::set_header_labels(tbl, scenario_id = "ID",
                                         scenario = "Scenario",

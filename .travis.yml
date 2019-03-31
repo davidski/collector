@@ -1,18 +1,33 @@
-language: R
-sudo: false
+language: r
 cache: packages
 matrix:
   include:
   - os: osx
-    osx_image: xcode9.3
+    osx_image: xcode10.2
   - os: linux
-    dist: trusty
+    dist: xenial
     r: release
+    env: REPORTS_DEPLOY="true"
   - os: linux
-    dist: trusty
+    dist: xenial
     r: devel
 after_success:
 - Rscript -e 'covr::codecov()'
+deploy:
+- provider: s3
+    on:
+      condition: $REPORTS_DEPLOY = "true"
+      branch: master
+    local-dir: docs
+    region: us-west-2
+    skip_cleanup: true
+    server_side_encryption: true
+    access_key_id:
+      secure: "JDDsrzb8cbW/pW5qB7qG4HYfTs7Xdfgwd/F4l+tDZDMy6EdCHAcwCZCuKpG5ig3lfeYOhxbLNBN+4viT9GtXApkAjowJBhf6z5gVzgvI4nDzfguhNynsEQ6yOZCiDtH1IiYOM24R5bwQrk+m1BEZBoIgC7Ph3WUulkyINehaXhOwdeEXJDBymFoLhvILfIZiOTi7Ioy3bRBQzZKddcfrpxCFjVnyXew6wUX6pEXB8D7hY1FY+fsncysyqFWTLHCczXkQEt24xvifdzGwx/ZPBpwjCb0rdOFcr5lpgVVUhzVHOYoQJNj4dinnowIUMiFuhi81O4/CGyQamjQsf9IwNNKAbF+OKO2L+229t7zFmuf75UDf2T6nfALK6o/fuvU/Gt9T2RhKBRshr+CjQE9BeUQwHidfkCa1a5LLsppTvbaLQfJwJr2Xl8+OmoSpA5ltjamuyfpyJ8AUE6Lf5l6DOehGhL06k9O7peN26SXHTC0Hpm9XGrOQoEjen+8+fDYp6VS95g6gRLfLqtkOsmuIWg6Zp9qN6RVFyR6D9dskc+PN0gaa1MdXTFhKXog/GM1yJNk3iyxB48UyhQPbbP5JJPw8vxyhpOmngOpIrU8+AIkz0omkJpDGuneffNObz+6UWrVpQ/BNnUwrM/psgzgPACgJFlkQZoi3ezv6EeJvBIY="
+    secret_access_key:
+      secure: "L2sBLw7APqyzPoeryJkO6X8BWXevNN1t31riJMCd6vnTzKzbtd2fDF3OVH4+8k9Jc4WfVNolVjBL1jixrQlVKqmOrt7ZKVaiQ/CzcHGXijAepGsMiRtOIvM2lCufpep4dYkO0dmQ/QaouxZQgcSRfmyF5QXS+7hHvbheEa3u9AUUPG5hpuhf9z682U5nyePpK7tbiPLlGPqyTJu+CDE2hojn8XJllvdFz+FXRjGE33dLzKQNy8SjodTHWuALM4nRAIM3D+aq5r/7HVyxibkHVuD/p/Kh0lxT1n+D+/hEEhrZlt2mTPNfy60MMVq1YeggVi/9hLP/do6VFUXmAwHZ0zt5l7iQHj/8gQuk11hr2j3k8DemfcrEx/TIbGG5DGsYv1n3V4rVa1vJH4oR72LY+HT0XR+YTIbpOGZP0NL1wcxa3rRpG1tTTMYnBGR+zZ4sdtjeHdDQ5yP36DwxgcJRPq//CuErnVgsIBmrYRHuCm8Y0eH3iGR/b0LNB68lS7WWHR4i7T/52Li/pNV2tEHnx0+n1M0DzDWNTs9nxQGR14TguACXKiiddAxupWzAft1S1QbD/IQR+yF4LiH1ZHZL0uSvl6wTbxlf4tqCfQyrWoIbFzmqp7Ni9lwEMpKzVqFOUIfj9r7dvRfv9x9V+MHZxso4MX6YtIovz53VePIHajA="
+    bucket:
+      secure: "vPxrIP1+77+ff/qktSq+zYlI4XJCUs40oYPMNS1gNQP04dK5BDNsqf8A/43mL10A1SqrL6O/BdzUicVS+zmItA1oyfx6cezVbKqtcwuZoQn77ofyHzS6fPfYsaYwy1DqAamGfu/m0Dvj56cFR4dEXha9PBA5ytxVZkXZAmwBbkFrYLp5hm73kVX5l46sXE37ee2tRQrUYU3xamQQinLWdEEIn/3vb7z1VMaAjcTsMWr9qVBBNHeponERbhluEVKgBQ1WpXmLyZBwZF52Jg5ajFdRkBEetJDpLIenIkZjB4oMpKUcmSHX7HTahXQPpUUJoNOxXI2Lrboo3ppgDG9xC3cztTAGsMo5SfuVgX7xajI+1EcXIDj8mbLWwVVJMH0rwXDA7KVCHqO8bz23JMlsh6NPL6okvkzClRU+F3UCUZ8ihYXTyUnb6InOThHF/UEhGoFH9xmneb3OM/RsV4YFnZQQAU5JPjOU25zZg5qS9BuQhWeLN7pesja26HWMfUBpaBIeEoLGXgAOnMj0T+foUVUGy++ragxgeBDoodHK5AurlGqPAzRKmoGAzB+VuBEmp3K0IX8c1QQbWqHFiCm6vsM7WJqCib/8pXBOcc8sAsItkMBm2dPpInQz5eXwVBd2W3o+mstg8A3/X5065+UmzWmGv5MrlbJ+WxyhvXODYwc="
 notifications:
   slack:
     secure: F92ZtK4ZWf2JRTsjHpf5fxz4IkZBgWQiNWDdt3w6bqeyD7cy3/TsxulPPDKGC3epryKsb2d7Kv3znMz9UzX6yyacFahudnLAvOljGfXigCFdI/ASyaO6WLLUshD3CN54RuGftiEzReodA4loaVlY1vQI/x3p3SrJ/LAok+h1EyCAfbmCeErE/An3lN/bqprCMYo1jttGDK1EiOs2MndvvhBXhpQRCK6RyA7Hf65tLHXPdgm+P1pjXXH6VeSVodvZ38qR2uHaxxdVCzTlm4jQtvBSeAVYUhgn0Qzc78N4VPwRVsaz/lkdGTC5Ufb/w4zJ2csTvKh9dtgFcAsz92VWq23aJOlkXucHhDKJpRsyZYW7tOSZIEixDiPSozLOTviE+puXKbRkb5z3V7h4CQ/j2MLicqjNob/3ppZHZEPAY+PamfQ/6n9KEguqjkzYBxtpowDqj7+GGtj8z6o4dIb3dHh1SfoUjXpB1XvqT9ZlG1COICjYBKGSJbnyv8UiD1y1QKQdhG7dzrN0iUOPyKQx0eiYyTh44x/Dflz49bhkd9f7JCgmE5LtvzPeSk8+C3zvHITr7wOKZQE4H+ZblyTw12ujbCOjC/Hb+kOQMy+q7VSqmlQI/EJ1xn/c4wcOrC5y9BMlkfixEyRDBT6CYZgCGn6OH+LmbvURhei+iO7YHA0=

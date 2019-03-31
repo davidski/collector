@@ -1,7 +1,11 @@
 .onAttach <- function(libname, pkgname) {
 
+  # ensure fonts are available for use/detection
+  # technique borrowed from r-pkg and hrbrthemes
+
   if (.Platform$OS.type == "windows")  { # nocov start
     if (interactive()) packageStartupMessage("Registering Windows fonts with R")
+    windowsFonts <- grDevices::windowsFonts # work around for https://github.com/wch/extrafont/issues/44
     extrafont::loadfonts("win", quiet = TRUE)
   }
 

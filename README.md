@@ -4,9 +4,9 @@
 # collector <img alt="collector Logo" title="collector" align="right" src="man/figures/collector_hex.png" height="139">
 
 [![Travis Build
-Status](https://travis-ci.org/davidski/collector.svg?branch=master)](https://travis-ci.org/collector/evaluator)
+Status](https://travis-ci.org/davidski/collector.svg?branch=master)](https://travis-ci.org/davidski/collector)
 [![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/davidski/collector?branch=master&svg=true)](https://ci.appveyor.com/project/collector/evaluator)
+Status](https://ci.appveyor.com/api/projects/status/github/davidski/collector?branch=master&svg=true)](https://ci.appveyor.com/project/davidski/collector)
 [![Coverage
 Status](https://codecov.io/gh/davidski/collector/branch/master/graph/badge.svg)](https://codecov.io/github/davidski/collector?branch=master)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/collector)](https://cran.r-project.org/package=colector)
@@ -24,7 +24,7 @@ offers functions for the following stages of input collection:
   - opinion pooling
   - distribution fitting
   - generating quantitative data structures for simulation and further
-    reporting by [Evaluator](https://evaluator.severski.net)
+    reporting by [Evaluator](https://evaluator.tidyrisk.org)
 
 ## Installation
 
@@ -46,11 +46,11 @@ devtools::install_github("davidski/collector")
 
 ## Basic Flow
 
-See the [package website](https://collector.severski.net) for reference.
+See the [package website](https://collector.tidyrisk.org) for reference.
 While long form vignettes need to be created, the basic flow for
 preparing for interviews with your SMEs, processing the results, and
 generating parameters for simulation via
-[evaluator](https://evaluator.severski.net) is:
+[evaluator](https://evaluator.tidyrisk.org) is:
 
 1.  Build questions and define SME expertise
 
@@ -86,14 +86,16 @@ generating parameters for simulation via
     ```
 
 6.  Combine distributions into final parameters, applying weighting
-    based on each SMEs level of calibration.
+    based on each SMEs level of
+    calibration.
     
     ``` r
     scenario_parameters <- combine_scenario_parameters(scenario_answers_fitted)
     capability_parameters <- combine_capability_parameters(capability_answers_fitted)
     ```
 
-7.  Build quantitative parameters for `evaluator`
+7.  Build quantitative parameters for
+    `evaluator`
     
     ``` r
     scenarios <- prepare_data(scenario_parameters, capability_parameters, 

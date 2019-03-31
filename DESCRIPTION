@@ -14,7 +14,7 @@ Imports:
     EnvStats,
     dplyr,
     extrafont,
-    evaluator,
+    evaluator (>= 0.3.2.900),
     flextable,
     ggplot2,
     ggpubr,
@@ -35,6 +35,6 @@ Suggests:
     spelling,
     testthat,
     covr
-URL: https://collector.severski.net
+URL: https://collector.tidyrisk.org
 BugReports: https://github.com/davidski/collector/issues
 Language: en-US
