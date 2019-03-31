@@ -1,102 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://collector.severski.net/index.html</loc>
+    <loc>https://collector.tidyrisk.org/index.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/check_readability.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/check_readability.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/clean_answers.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/clean_answers.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/collector.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/collector.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/combine_capability_parameters.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/combine_capability_parameters.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/combine_lognorm.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/combine_lognorm.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/combine_lognorm_trunc.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/combine_lognorm_trunc.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/combine_norm.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/combine_norm.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/combine_scenario_parameters.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/combine_scenario_parameters.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/derive_controls_alt.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/derive_controls_alt.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/fit_capabilities.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/fit_capabilities.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/fit_capabilities_geomean.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/fit_capabilities_geomean.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/fit_lognorm.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/fit_lognorm.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/fit_lognorm_trunc.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/fit_lognorm_trunc.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/fit_norm_trunc.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/fit_norm_trunc.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/fit_pois.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/fit_pois.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/fit_scenarios.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/fit_scenarios.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/fit_scenarios_geomean.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/fit_scenarios_geomean.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/fit_threat_communities.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/fit_threat_communities.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/generate_cost_function.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/generate_cost_function.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/generate_weights.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/generate_weights.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/get_smes_domains.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/get_smes_domains.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/lognormal_to_normal.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/lognormal_to_normal.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/make_handouts.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/make_handouts.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/make_scorecard.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/make_scorecard.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/make_slides.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/make_slides.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/normal_to_lognormal.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/normal_to_lognormal.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/pipe.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/prepare_data.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/prepare_data.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/questions.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/questions.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/read_answers.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/read_answers.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/read_questions.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/read_questions.html</loc>
   </url>
   <url>
-    <loc>https://collector.severski.net/reference/responses.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/responses.html</loc>
   </url>
 </urlset>
