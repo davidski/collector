@@ -107,33 +107,33 @@
 <p>Read in the questions</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(collector)</a>
 <a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3">questions &lt;-<span class="st"> </span><span class="kw">read_questions</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb3-3" title="3">questions &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_questions.html">read_questions</a></span>()</a></code></pre></div>
 </li>
 <li>
 <p>Generate materials for interviewing a SME</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">make_handouts</span>(<span class="st">"Leader Name"</span>, questions, output_dir)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw">make_scorecard</span>(<span class="st">"Leader Name"</span>, questions, output_dir)</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="kw">make_slides</span>(<span class="st">"Leader Name"</span>, questions, output_dir)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="reference/make_handouts.html">make_handouts</a></span>(<span class="st">"Leader Name"</span>, questions, output_dir)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="reference/make_scorecard.html">make_scorecard</a></span>(<span class="st">"Leader Name"</span>, questions, output_dir)</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="kw"><a href="reference/make_slides.html">make_slides</a></span>(<span class="st">"Leader Name"</span>, questions, output_dir)</a></code></pre></div>
 </li>
 <li>
 <p>Read in the answers from your SMEs</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">answers &lt;-<span class="st"> </span><span class="kw">read_answers</span>()</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">answers &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_answers.html">read_answers</a></span>()</a>
 <a class="sourceLine" id="cb5-2" title="2">scenario_answers &lt;-<span class="st"> </span>answers<span class="op">$</span>sce_ans</a>
 <a class="sourceLine" id="cb5-3" title="3">capability_answers &lt;-<span class="st"> </span>answers<span class="op">$</span>cap_ans</a></code></pre></div>
 </li>
 <li>
 <p>Fit the SME answers to distributions.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">scenario_answers_fitted &lt;-<span class="st"> </span><span class="kw">fit_scenarios</span>(scenario_answers)</a>
-<a class="sourceLine" id="cb6-2" title="2">capability_answers_fitted &lt;-<span class="st"> </span><span class="kw">fit_capabilities</span>(capability_answers)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">scenario_answers_fitted &lt;-<span class="st"> </span><span class="kw"><a href="reference/fit_scenarios.html">fit_scenarios</a></span>(scenario_answers)</a>
+<a class="sourceLine" id="cb6-2" title="2">capability_answers_fitted &lt;-<span class="st"> </span><span class="kw"><a href="reference/fit_capabilities.html">fit_capabilities</a></span>(capability_answers)</a></code></pre></div>
 </li>
 <li>
 <p>Combine distributions into final parameters, applying weighting based on each SMEs level of calibration.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">scenario_parameters &lt;-<span class="st"> </span><span class="kw">combine_scenario_parameters</span>(scenario_answers_fitted)</a>
-<a class="sourceLine" id="cb7-2" title="2">capability_parameters &lt;-<span class="st"> </span><span class="kw">combine_capability_parameters</span>(capability_answers_fitted)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">scenario_parameters &lt;-<span class="st"> </span><span class="kw"><a href="reference/combine_scenario_parameters.html">combine_scenario_parameters</a></span>(scenario_answers_fitted)</a>
+<a class="sourceLine" id="cb7-2" title="2">capability_parameters &lt;-<span class="st"> </span><span class="kw"><a href="reference/combine_capability_parameters.html">combine_capability_parameters</a></span>(capability_answers_fitted)</a></code></pre></div>
 </li>
 <li>
 <p>Build quantitative parameters for <code>evaluator</code></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">scenarios &lt;-<span class="st"> </span><span class="kw">prepare_data</span>(scenario_parameters, capability_parameters, </a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">scenarios &lt;-<span class="st"> </span><span class="kw"><a href="reference/prepare_data.html">prepare_data</a></span>(scenario_parameters, capability_parameters, </a>
 <a class="sourceLine" id="cb8-2" title="2">                          threat_parameters, questions)</a></code></pre></div>
 </li>
 </ol>

@@ -9,7 +9,7 @@
 #'
 #' @param sme Name of SME.
 #' @param questions Questions object.
-#' @param output_dir Directory to place bingo cards.
+#' @param output_dir Directory to place scorecards.
 #'
 #' @return An invisible null.
 #' @export
@@ -66,7 +66,7 @@ make_scorecard <- function(sme, questions, output_dir = getwd()) {
 
   # make_combined_pdf
   combo <- ggpubr::ggarrange(gg, gg_cap, ncol = 1)
-  filename <- tolower(sme) %>% stringr::str_replace_all(" ", "_") %>% paste0(., "_bingo.pdf")
+  filename <- tolower(sme) %>% stringr::str_replace_all(" ", "_") %>% paste0(., "_scorecard.pdf")
   ggpubr::ggexport(combo, filename = file.path(output_dir, filename))
 }
 

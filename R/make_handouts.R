@@ -1,8 +1,8 @@
 #' Create a set of interview handouts for a SME
 #'
-#' Creates two MS Word formatted documents. One is an `answers` document
-#'   that contains the answers to the calibration questions, the other does not
-#'   contain answers and is intended to be a visual reference (and possible
+#' Creates two MS Word documents. One is an `answers` document that contains
+#'   the answers to the calibration questions, the other (with the name of the SME)
+#'   does notcontain answers and is intended to be a visual reference (and possible
 #'   take away) for the SME.
 #'
 #' @param sme Name of the SME.
