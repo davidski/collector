@@ -27,6 +27,9 @@
 #' make_scorecard("Sally Expert", questions)
 #' }
 make_scorecard <- function(sme, questions, output_dir = getwd()) {
+
+  enforce_questions(questions)
+
   # get ordered scenarios
   values <- get_smes_domains(sme, questions)
 

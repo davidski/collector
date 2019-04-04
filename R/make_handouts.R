@@ -8,6 +8,7 @@
 #' @param sme Name of the SME.
 #' @param questions questions object
 #' @param output_dir Directory to place output.
+#' @param calibration_questions Number of calibration questions to ask.
 #'
 #' @return Output of render.
 #' @export
@@ -22,9 +23,12 @@
 #' questions <- read_questions()
 #' make_handouts("Sally Expert", questions)
 #' }
-make_handouts <- function(sme, questions, output_dir = getwd()) {
+make_handouts <- function(sme, questions, output_dir = getwd(), calibration_questions = 10) {
 
-  dat <- questions$calibration %>% dplyr::sample_n(10) # get 10 random questions for this SME
+  enforce_questions(questions)
+
+  # get a sample set of calibrarion questions for this SME
+  cal_ques <- questions$calibration %>% dplyr::sample_n(calibration_questions)
 
   # order_domains
   domain_list <- get_smes_domains(sme, questions)
@@ -43,7 +47,7 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
   # create calibration page
   doc <- officer::body_add_par(x = doc, value = "Calibration Questions",
                                style = "heading 1")
-  tbl <- dat %>% dplyr::select("Question" = .data$question) %>%
+  tbl <- cal_ques %>% dplyr::select("Question" = .data$question) %>%
     dplyr::mutate("Low" = NA_character_, "High" = NA_character_) %>%
     flextable::regulartable()
   tbl <- flextable::align(tbl, align = "left", part = "body")
@@ -154,7 +158,7 @@ make_handouts <- function(sme, questions, output_dir = getwd()) {
   # create calibration page
   doc <- officer::body_add_par(x = doc, value = "Calibration Questions",
                                style = "heading 1")
-  tbl <- dat %>%
+  tbl <- cal_ques %>%
     dplyr::select("Question" = .data$question, "Answer" = .data$answer) %>%
     flextable::regulartable()
   tbl <- flextable::align(tbl, align = "left", part = "body")

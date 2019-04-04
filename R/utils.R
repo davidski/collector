@@ -9,7 +9,7 @@
 #' @param active_only Read in only the active elements, defaults to TRUE.
 #' @importFrom readr read_csv col_character col_logical cols col_number
 #' @importFrom tidyr gather drop_na
-#' @import dplyr
+#' @importFrom dplyr filter arrange
 #' @importFrom rlang .data
 #' @return A questions object
 #'
@@ -25,7 +25,9 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
                            col_types = readr::cols(.default = readr::col_character(),
                                                  active = readr::col_logical())) %>%
       dplyr::arrange(.data$domain)
-    if (active_only) {dplyr::filter(dat, .data$active != FALSE | is.na(.data$active))} else {dat}
+    if (active_only && "active" %in% names(dat)) {
+      dplyr::filter(dat, .data$active != FALSE | is.na(.data$active))
+      } else {dat}
   }
 
   # capabilities
@@ -33,8 +35,9 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
                          col_types = readr::cols(.default = readr::col_character(),
                                                  active = readr::col_logical())) %>%
       dplyr::arrange(.data$domain, .data$capability_id)
-  caps <- if (active_only) { dplyr::filter(dat, .data$active != FALSE |
-                                             is.na(.data$active))} else {dat}
+  caps <- if (active_only  && "active" %in% names(dat)) {
+    dplyr::filter(dat, .data$active != FALSE | is.na(.data$active))
+    } else {dat}
 
   # scenarios
   scenarios <- {
@@ -42,7 +45,7 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
                            col_types = readr::cols(.default = readr::col_character(),
                                                    active = readr::col_logical())) %>%
       dplyr::arrange(.data$domain, .data$scenario_id)
-    if (active_only) {
+    if (active_only && "active" %in% names(dat)) {
       dplyr::filter(dat, .data$active != FALSE | is.na(.data$active))} else {dat}
   }
 
@@ -76,7 +79,7 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
 #'
 #' @param source_dir Directory location where input files are found.
 #' @importFrom readr read_csv col_character col_date col_number col_integer cols
-#' @import dplyr
+#' @importFrom dplyr mutate_at funs
 #' @importFrom tidyr drop_na
 #' @importFrom purrr map
 #' @importFrom stringr str_extract_all
@@ -109,8 +112,8 @@ read_answers <- function(source_dir = getwd()) {
                                imp_high = readr::col_character(),
                                date = readr::col_date(format = "%m/%d/%y"))) %>%
     tidyr::drop_na() %>%
-    dplyr::mutate_at(c("imp_low", "imp_high"), funs(stringr::str_extract_all(., "\\d+") %>%
-                                               purrr::map(~ paste(.x, collapse ="")) %>%
+    dplyr::mutate_at(c("imp_low", "imp_high"), dplyr::funs(stringr::str_extract_all(., "\\d+") %>%
+                                               purrr::map(~ paste(.x, collapse = "")) %>%
                                                as.numeric()))
 
   cap_ans <- readr::read_csv(file.path(source_dir, "capability_answers.csv"),
@@ -121,7 +124,7 @@ read_answers <- function(source_dir = getwd()) {
                                high = readr::col_character(),
                                date = readr::col_date(format = "%m/%d/%y"))) %>%
     tidyr::drop_na() %>%
-    mutate_at(c("low", "high"), funs(stringr::str_extract_all(., "[\\d.]+") %>%
+    dplyr::mutate_at(c("low", "high"), dplyr::funs(stringr::str_extract_all(., "[\\d.]+") %>%
                                        purrr::map(~ paste(.x, collapse ="")) %>%
                                        as.numeric()))
   list(cap_ans = cap_ans, sce_ans = sce_ans, cal_ans = cal_ans)
@@ -137,8 +140,8 @@ read_answers <- function(source_dir = getwd()) {
 #'
 #' @return A vector.
 #' @export
-#' @import dplyr
-#' @importFrom rlang .data
+#' @importFrom dplyr filter arrange distinct pull
+#' @importFrom rlang .data !!
 #'
 #'
 #' @examples
@@ -147,11 +150,16 @@ read_answers <- function(source_dir = getwd()) {
 #' get_sme_domains("Sally Expert", questions)
 #' }
 get_smes_domains <- function(sme, questions) {
+
+  enforce_questions(questions)
+
   doms <- dplyr::filter(questions$expertise, sme == !!sme) %>%
     dplyr::arrange(.data$key) %>%
     dplyr::distinct(.data$value) %>%
     dplyr::pull()
-  c(doms, questions$domains[!questions$domains$domain %in% doms,] %>% dplyr::pull(.data$domain))
+
+  c(doms, questions$domains[!questions$domains$domain %in% doms,] %>%
+      dplyr::pull(.data$domain))
 }
 
 #' Check the readability of scenario text
@@ -166,7 +174,7 @@ get_smes_domains <- function(sme, questions) {
 #' @export
 #' @importFrom quanteda textstat_readability
 #' @importFrom tibble as_tibble
-#' @importFrom dplyr arrange desc select
+#' @importFrom dplyr arrange desc select bind_cols
 #' @importFrom rlang .data
 #' @return A dataframe of the scenario id, domain, and the Flesch-Kincaid readability score.
 #'
@@ -176,8 +184,26 @@ get_smes_domains <- function(sme, questions) {
 #' check_readability(questions)
 #' }
 check_readability <- function(x) {
+  enforce_questions(x)
   x <- questions$scenarios
-  bind_cols(x, quanteda::textstat_readability(x$scenario, "Flesch.Kincaid")) %>%
+  dplyr::bind_cols(x, quanteda::textstat_readability(x$scenario, "Flesch.Kincaid")) %>%
     dplyr::arrange(dplyr::desc(.data$Flesch.Kincaid)) %>%
     dplyr::select(.data$id, .data$domain, .data$Flesch.Kincaid)
+}
+
+#' Validate that the parameter passed is a questions object
+#'
+#' @param x An object
+#'
+#' @return NULL
+#'
+#' @examples
+#' \dontrun{
+#' questions <- read_questions()
+#' enforce_questions(questions)
+#' }
+enforce_questions <- function(x) {
+  if (!is_questions(x)) {
+    stop("Must pass a questions object.", call. = FALSE)
+  }
 }

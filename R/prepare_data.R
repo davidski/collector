@@ -1,4 +1,4 @@
-#' Create ne or more quantitative scenarios objects suitable for simulation by `evaluator`
+#' Create one or more quantitative scenarios objects suitable for simulation by `evaluator`
 #'
 #' Given parameters for the scenarios, threat communities, capabilities, and
 #' the question set, generate a list of `tidyrisk_scenario` objects that may be
@@ -26,6 +26,8 @@
 prepare_data <- function(scenario_parameters, capability_parameters,
                          threat_parameters, questions) {
 
+  enforce_questions(questions)
+
   # combine capabilities + scenarios into a single dataframe
   scenario_parameters %>%
     # bring in the scenario descriptions
@@ -33,7 +35,6 @@ prepare_data <- function(scenario_parameters, capability_parameters,
     # bring in the domain IDs
     dplyr::left_join(questions$domains, by = "domain") %>%
     # add TC info
-    #dplyr::mutate(tc_func = "stats::rnorm", tc_mean = 50, tc_sd = 3, tcomm = "placeholder") %>%
     dplyr::left_join(threat_parameters, by = "threat_id") %>%
     # massage the dataframe to look like the standard evaluator inputs
     dplyr::select(.data$scenario_id, scenario = .data$Scenario,

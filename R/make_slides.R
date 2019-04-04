@@ -23,6 +23,8 @@
 make_slides <- function(sme, questions, source_dir, output_dir = getwd(),
                         assessment_title = "Strategic Risk Assessment") {
 
+  enforce_questions(questions)
+
   # ensure output directory is available
   if (!dir.exists(output_dir)) dir.create(output_dir)
 

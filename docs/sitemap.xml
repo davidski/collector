@@ -4,6 +4,9 @@
     <loc>https://collector.tidyrisk.org/index.html</loc>
   </url>
   <url>
+    <loc>https://collector.tidyrisk.org/reference/calibration_questions.html</loc>
+  </url>
+  <url>
     <loc>https://collector.tidyrisk.org/reference/check_readability.html</loc>
   </url>
   <url>
@@ -29,6 +32,9 @@
   </url>
   <url>
     <loc>https://collector.tidyrisk.org/reference/derive_controls_alt.html</loc>
+  </url>
+  <url>
+    <loc>https://collector.tidyrisk.org/reference/enforce_questions.html</loc>
   </url>
   <url>
     <loc>https://collector.tidyrisk.org/reference/fit_capabilities.html</loc>
@@ -67,6 +73,9 @@
     <loc>https://collector.tidyrisk.org/reference/get_smes_domains.html</loc>
   </url>
   <url>
+    <loc>https://collector.tidyrisk.org/reference/is_questions.html</loc>
+  </url>
+  <url>
     <loc>https://collector.tidyrisk.org/reference/lognormal_to_normal.html</loc>
   </url>
   <url>
@@ -77,6 +86,24 @@
   </url>
   <url>
     <loc>https://collector.tidyrisk.org/reference/make_slides.html</loc>
+  </url>
+  <url>
+    <loc>https://collector.tidyrisk.org/reference/mc_calibration_answers.html</loc>
+  </url>
+  <url>
+    <loc>https://collector.tidyrisk.org/reference/mc_capabilities.html</loc>
+  </url>
+  <url>
+    <loc>https://collector.tidyrisk.org/reference/mc_domains.html</loc>
+  </url>
+  <url>
+    <loc>https://collector.tidyrisk.org/reference/mc_scenario_answers.html</loc>
+  </url>
+  <url>
+    <loc>https://collector.tidyrisk.org/reference/mc_sme_top_domains.html</loc>
+  </url>
+  <url>
+    <loc>https://collector.tidyrisk.org/reference/mc_threat_communities.html</loc>
   </url>
   <url>
     <loc>https://collector.tidyrisk.org/reference/normal_to_lognormal.html</loc>

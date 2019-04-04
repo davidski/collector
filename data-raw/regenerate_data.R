@@ -2,34 +2,39 @@
 library(evaluator)
 
 # read in and save domain mappings
-domains <- readr::read_csv(here::here("inst/extdata/domains.csv"))
-devtools::use_data(domains, overwrite = TRUE)
+mc_domains <- evaluator::mc_domains
+usethis::use_data(mc_domains, overwrite = TRUE)
 
 # read in capabilities
-capabilities <- evaluator::import_capabilities(here::here("data-raw/survey.xlsx"),
-                                               domains = evaluator::domains)
-#devtools::use_data(capabilities, overwrite = TRUE)
+mc_capabilities <- evaluator::import_capabilities(here::here("data-raw/survey.xlsx"),
+                                               domains = evaluator::mc_domains)
+mc_capabilities <- mc_capabilities[, c("capability_id", "domain_id", "capability")]
+usethis::use_data(mc_capabilities, overwrite = TRUE)
 
 # read in capability_answers
 #devtools::use_data(capability_answers, overwrite = TRUE)
 
 # read in and save scenarios
-scenarios <- evaluator::import_scenarios(here::here("data-raw/survey.xlsx"),
-                                         domains = evaluator::domains)
-#devtools::use_data(domains, overwrite = TRUE)
+mc_scenarios <- evaluator::import_scenarios(here::here("data-raw/survey.xlsx"),
+                                         domains = evaluator::mc_domains)
+#devtools::use_data(scenarios, overwrite = TRUE)
 
 # scenario answers
-#devtools::use_data(scenario_answers, overwrite = TRUE)
+mc_scenario_answers <- readr::read_csv(here::here("data-raw/scenario_answers.csv"))
+usethis::use_data(mc_scenario_answers, overwrite = TRUE)
 
 # generate and save threat_communities
-devtools::use_data(threat_communities, overwrite = TRUE)
+mc_threat_communities <- readr::read_csv(here::here("data-raw/threat_communities.csv"))
+usethis::use_data(mc_threat_communities, overwrite = TRUE)
 
 # generate and save calibration_questions
-devtools::use_data(calibration_questons, overwrite = TRUE)
+calibration_questions <- readr::read_csv(here::here("data-raw/calibration_questions.csv"))
+usethis::use_data(calibration_questions, overwrite = TRUE)
 
 # generate and save calibration_answers
-devtools::use_data(calibration_answers, overwrite = TRUE)
+mc_calibration_answers <- readr::read_csv(here::here("data-raw/calibration_answers.csv"))
+usethis::use_data(mc_calibration_answers, overwrite = TRUE)
 
 # generate and save sme top domains
-devtools::use_data(sme_top_domains, overwrite = TRUE)
-
+mc_sme_top_domains <- readr::read_csv(here::here("data-raw/sme_top_domains.csv"))
+usethis::use_data(mc_sme_top_domains, overwrite = TRUE)

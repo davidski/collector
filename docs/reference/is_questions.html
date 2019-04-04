@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a set of interview handouts for a SME — make_handouts • collector</title>
+<title>Test if the object is a questions — is_questions • collector</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,12 +30,9 @@
 
 
 
-<meta property="og:title" content="Create a set of interview handouts for a SME — make_handouts" />
+<meta property="og:title" content="Test if the object is a questions — is_questions" />
 
-<meta property="og:description" content="Creates two MS Word documents. One is an `answers` document that contains
-  the answers to the calibration questions, the other (with the name of the SME)
-  does notcontain answers and is intended to be a visual reference (and possible
-  take away) for the SME." />
+<meta property="og:description" content="This function returns TRUE for questions or subclasses therof, and FALSE for all other objects." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -110,62 +107,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a set of interview handouts for a SME</h1>
+    <h1>Test if the object is a questions</h1>
     
-    <div class="hidden name"><code>make_handouts.Rd</code></div>
+    <div class="hidden name"><code>is_questions.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Creates two MS Word documents. One is an `answers` document that contains
-  the answers to the calibration questions, the other (with the name of the SME)
-  does notcontain answers and is intended to be a visual reference (and possible
-  take away) for the SME.</p>
+    <p>This function returns TRUE for questions or subclasses therof, and FALSE for all other objects.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>make_handouts</span>(<span class='no'>sme</span>, <span class='no'>questions</span>, <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(),
-  <span class='kw'>calibration_questions</span> <span class='kw'>=</span> <span class='fl'>10</span>)</pre>
+    <pre class="usage"><span class='fu'>is_questions</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>sme</th>
-      <td><p>Name of the SME.</p></td>
-    </tr>
-    <tr>
-      <th>questions</th>
-      <td><p>questions object</p></td>
-    </tr>
-    <tr>
-      <th>output_dir</th>
-      <td><p>Directory to place output.</p></td>
-    </tr>
-    <tr>
-      <th>calibration_questions</th>
-      <td><p>Number of calibration questions to ask.</p></td>
+      <th>x</th>
+      <td><p>An object</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Output of render.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>questions</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_questions.html'>read_questions</a></span>()
-<span class='fu'>make_handouts</span>(<span class='st'>"Sally Expert"</span>, <span class='no'>questions</span>)
+<span class='fu'>is_questions</span>(<span class='no'>x</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

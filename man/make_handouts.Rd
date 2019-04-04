@@ -4,7 +4,8 @@
 \alias{make_handouts}
 \title{Create a set of interview handouts for a SME}
 \usage{
-make_handouts(sme, questions, output_dir = getwd())
+make_handouts(sme, questions, output_dir = getwd(),
+  calibration_questions = 10)
 }
 \arguments{
 \item{sme}{Name of the SME.}
@@ -12,6 +13,8 @@ make_handouts(sme, questions, output_dir = getwd())
 \item{questions}{questions object}
 
 \item{output_dir}{Directory to place output.}
+
+\item{calibration_questions}{Number of calibration questions to ask.}
 }
 \value{
 Output of render.

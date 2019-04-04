@@ -41,4 +41,10 @@ reference:
   - title: "Object Classes"
     contents:
       - questions
+      - is_questions
       - responses
+  - title: "Provided Data Sets"
+    desc: "Reference and sample data sets"
+    contents:
+      - starts_with("mc_")
+      - calibration_questions

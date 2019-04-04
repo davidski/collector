@@ -299,7 +299,7 @@ fit_capabilities_geomean <- function(capabilities_answers) {
 #'
 #' @importFrom tidyr nest unnest replace_na
 #' @importFrom EnvStats geoMean
-#' @import dplyr
+#' @importFrom dplyr mutate vars group_by
 #' @importFrom purrr map
 #' @importFrom rlang .data
 #' @return A dataframe.
@@ -310,7 +310,7 @@ fit_capabilities_geomean <- function(capabilities_answers) {
 #' NULL
 fit_scenarios_geomean <- function(scenario_answers) {
   scenario_answers %>% dplyr::group_by(.data$scenario_id) %>%
-    dplyr::summarise_at(vars(matches("low|high")), .funs = EnvStats::geoMean, na.rm = TRUE) %>%
+    dplyr::summarise_at(dplyr::vars(matches("low|high")), .funs = EnvStats::geoMean, na.rm = TRUE) %>%
     # if we are missing any answers, fill it in with default values
     tidyr::replace_na(list(imp_low = 1, imp_high = 1, freq_low = 1, freq_high = 1)) %>%
     tidyr::nest(.data$imp_low:.data$imp_high) %>%
@@ -337,7 +337,7 @@ fit_scenarios_geomean <- function(scenario_answers) {
 #' @param maximum_frequency_factor Maximum frequency factor - scaling
 #'   factor at which to limit frequency of events.
 #'
-#' @import dplyr
+#' @importFrom dplyr mutate
 #' @importFrom tidyr nest unnest
 #' @importFrom purrr map
 #' @importFrom rlang .data
@@ -372,7 +372,7 @@ fit_scenarios <- function(scenario_answers, maximum_impact = Inf,
 #' @param capability_answers Capability answers.
 #'
 #' @importFrom tidyr nest unnest
-#' @import dplyr
+#' @importFrom dplyr mutate
 #' @importFrom purrr map
 #' @importFrom rlang .data
 #' @return A dataframe.
@@ -396,7 +396,7 @@ fit_capabilities <- function(capability_answers) {
 #' @param threat_communities Dataframe of threat communities.
 #'
 #' @importFrom tidyr nest unnest
-#' @import dplyr
+#' @importFrom dplyr mutate
 #' @importFrom purrr map
 #' @importFrom rlang .data
 #' @return A dataframe.

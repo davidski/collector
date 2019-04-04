@@ -12,6 +12,8 @@
 #' NULL
 generate_weights <- function(questions, calibration_answers){
 
+  enforce_questions(questions)
+
   # get calibration questions
   calibration <- questions$calibration
 
@@ -21,16 +23,16 @@ generate_weights <- function(questions, calibration_answers){
                                              as.numeric())) -> dat
 
   # calculate how many each SME got correct and compare to target
-  dplyr::left_join(calibration_answers, calibration, by="calibration_id") %>%
+  dplyr::left_join(calibration_answers, calibration, by = "calibration_id") %>%
     dplyr::mutate(correct = ifelse(.data$low <= .data$answer &
                                      .data$answer <= .data$high, TRUE, FALSE)) %>%
     dplyr::group_by(.data$sme) %>%
-    dplyr::summarise(pct_correct = sum(.data$correct)/ n()) %>%
+    dplyr::summarise(pct_correct = sum(.data$correct) / n()) %>%
     dplyr::mutate(weight = dplyr::case_when(
-                    .data$pct_correct == .9 ~ 4,      # perfectly calibrated, weight 4
-                    .data$pct_correct <= .3 ~ 1,      # not well calibrated, weight 1
-                    .data$pct_correct <= .6 ~ 2,      # imperfectly calibrated, weight 2
-                    TRUE              ~ 3             # partially calibrated, weight 3
+                    .data$pct_correct >= .9 ~ 4,      # perfectly calibrated, weight 4
+                    .data$pct_correct >= .6 ~ 3,      # imperfectly calibrated, weight 3
+                    .data$pct_correct >= .3 ~ 2,      # imperfectly calibrated, weight 2
+                    TRUE                    ~ 1,      # not well calibrated, weight 1
                     ),
                   pct_correct = NULL) %>%
     dplyr::arrange(.data$sme) -> weights

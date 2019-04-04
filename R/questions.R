@@ -49,3 +49,17 @@ as.questions <- function(x, ...) {
 as.data.frame.questions <- function(x, ...) {
   x$scenarios
 }
+
+#' Test if the object is a questions
+#'
+#' This function returns TRUE for questions or subclasses therof, and FALSE for all other objects.
+#'
+#' @param x An object
+#' @export
+#' @examples
+#' \dontrun{
+#' is_questions(x)
+#' }
+is_questions <- function(x) {
+  inherits(x, "questions")
+}
