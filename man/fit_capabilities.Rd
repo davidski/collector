@@ -4,10 +4,10 @@
 \alias{fit_capabilities}
 \title{Fit SME capability estimates to distribution parameters}
 \usage{
-fit_capabilities(capability_answers)
+fit_capabilities(answers)
 }
 \arguments{
-\item{capability_answers}{Capability answers.}
+\item{answers}{Responses object}
 }
 \value{
 A dataframe.

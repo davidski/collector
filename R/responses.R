@@ -35,3 +35,17 @@ new_responses <- function(calibration_answers, scenario_answers, capability_answ
 as.responses <- function(x, ...) {
   UseMethod("as.responses")
 }
+
+#' Test if the object is a responses
+#'
+#' This function returns TRUE for responses or subclasses therof, and FALSE for all other objects.
+#'
+#' @param x An object
+#' @export
+#' @examples
+#' \dontrun{
+#' is_responses(x)
+#' }
+is_responses <- function(x) {
+  inherits(x, "responses")
+}

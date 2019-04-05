@@ -30,7 +30,6 @@ reference:
     contents:
       - clean_answers
       - collector
-      - derive_controls_alt
       - generate_weights
       - get_smes_domains
       - lognormal_to_normal
@@ -43,6 +42,7 @@ reference:
       - questions
       - is_questions
       - responses
+      - is_responses
   - title: "Provided Data Sets"
     desc: "Reference and sample data sets"
     contents:

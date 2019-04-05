@@ -74,28 +74,27 @@ generating parameters for simulation via
     
     ``` r
     answers <- read_answers()
-    scenario_answers <- answers$sce_ans
-    capability_answers <- answers$cap_ans
     ```
 
 5.  Fit the SME answers to distributions.
     
     ``` r
-    scenario_answers_fitted <- fit_scenarios(scenario_answers)
-    capability_answers_fitted <- fit_capabilities(capability_answers)
+    scenario_answers_fitted <- fit_scenarios(answers)
+    capability_answers_fitted <- fit_capabilities(answers)
     ```
 
 6.  Combine distributions into final parameters, applying weighting
-    based on each SMEs level of
-    calibration.
+    based on each SMEs level of calibration.
     
     ``` r
-    scenario_parameters <- combine_scenario_parameters(scenario_answers_fitted)
-    capability_parameters <- combine_capability_parameters(capability_answers_fitted)
+    sme_weightings <- generate_weights(questions, answers)
+    scenario_parameters <- left_join(scenario_answers_fitted, sme_weightings, by = "sme") %>% 
+      combine_scenario_parameters()
+    capability_parameters <- left_join(capability_answers_fitted, sme_weightings, by = "sme") %>% 
+      combine_capability_parameters()
     ```
 
-7.  Build quantitative parameters for
-    `evaluator`
+7.  Build quantitative parameters for `evaluator`
     
     ``` r
     scenarios <- prepare_data(scenario_parameters, capability_parameters, 

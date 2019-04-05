@@ -4,12 +4,12 @@
 \alias{generate_weights}
 \title{Generate a weighting table for SMEs based upon their calibration answers}
 \usage{
-generate_weights(questions, calibration_answers)
+generate_weights(questions, responses)
 }
 \arguments{
 \item{questions}{Questions object.}
 
-\item{calibration_answers}{SME responses to calibration questions.}
+\item{responses}{Responses object}
 }
 \value{
 A dataframe.

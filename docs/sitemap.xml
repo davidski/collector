@@ -31,10 +31,10 @@
     <loc>https://collector.tidyrisk.org/reference/combine_scenario_parameters.html</loc>
   </url>
   <url>
-    <loc>https://collector.tidyrisk.org/reference/derive_controls_alt.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/enforce_questions.html</loc>
   </url>
   <url>
-    <loc>https://collector.tidyrisk.org/reference/enforce_questions.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/enforce_responses.html</loc>
   </url>
   <url>
     <loc>https://collector.tidyrisk.org/reference/fit_capabilities.html</loc>
@@ -76,6 +76,9 @@
     <loc>https://collector.tidyrisk.org/reference/is_questions.html</loc>
   </url>
   <url>
+    <loc>https://collector.tidyrisk.org/reference/is_responses.html</loc>
+  </url>
+  <url>
     <loc>https://collector.tidyrisk.org/reference/lognormal_to_normal.html</loc>
   </url>
   <url>
@@ -98,6 +101,9 @@
   </url>
   <url>
     <loc>https://collector.tidyrisk.org/reference/mc_scenario_answers.html</loc>
+  </url>
+  <url>
+    <loc>https://collector.tidyrisk.org/reference/mc_scenarios.html</loc>
   </url>
   <url>
     <loc>https://collector.tidyrisk.org/reference/mc_sme_top_domains.html</loc>

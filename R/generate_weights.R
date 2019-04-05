@@ -1,7 +1,7 @@
 #' Generate a weighting table for SMEs based upon their calibration answers
 #'
 #' @param questions Questions object.
-#' @param calibration_answers SME responses to calibration questions.
+#' @param responses Responses object
 #' @importFrom dplyr mutate_at left_join group_by mutate summarize n case_when arrange
 #' @importFrom stringr str_extract_all
 #' @importFrom purrr map
@@ -10,9 +10,10 @@
 #'
 #' @examples
 #' NULL
-generate_weights <- function(questions, calibration_answers){
+generate_weights <- function(questions, responses){
 
   enforce_questions(questions)
+  enforce_responses(responses)
 
   # get calibration questions
   calibration <- questions$calibration
@@ -23,7 +24,7 @@ generate_weights <- function(questions, calibration_answers){
                                              as.numeric())) -> dat
 
   # calculate how many each SME got correct and compare to target
-  dplyr::left_join(calibration_answers, calibration, by = "calibration_id") %>%
+  dplyr::left_join(responses$calibration, dat, by = "calibration_id") %>%
     dplyr::mutate(correct = ifelse(.data$low <= .data$answer &
                                      .data$answer <= .data$high, TRUE, FALSE)) %>%
     dplyr::group_by(.data$sme) %>%
@@ -36,5 +37,6 @@ generate_weights <- function(questions, calibration_answers){
                     ),
                   pct_correct = NULL) %>%
     dplyr::arrange(.data$sme) -> weights
+
   weights
 }

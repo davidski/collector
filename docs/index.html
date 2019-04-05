@@ -117,19 +117,20 @@
 </li>
 <li>
 <p>Read in the answers from your SMEs</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">answers &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_answers.html">read_answers</a></span>()</a>
-<a class="sourceLine" id="cb5-2" title="2">scenario_answers &lt;-<span class="st"> </span>answers<span class="op">$</span>sce_ans</a>
-<a class="sourceLine" id="cb5-3" title="3">capability_answers &lt;-<span class="st"> </span>answers<span class="op">$</span>cap_ans</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">answers &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_answers.html">read_answers</a></span>()</a></code></pre></div>
 </li>
 <li>
 <p>Fit the SME answers to distributions.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">scenario_answers_fitted &lt;-<span class="st"> </span><span class="kw"><a href="reference/fit_scenarios.html">fit_scenarios</a></span>(scenario_answers)</a>
-<a class="sourceLine" id="cb6-2" title="2">capability_answers_fitted &lt;-<span class="st"> </span><span class="kw"><a href="reference/fit_capabilities.html">fit_capabilities</a></span>(capability_answers)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">scenario_answers_fitted &lt;-<span class="st"> </span><span class="kw"><a href="reference/fit_scenarios.html">fit_scenarios</a></span>(answers)</a>
+<a class="sourceLine" id="cb6-2" title="2">capability_answers_fitted &lt;-<span class="st"> </span><span class="kw"><a href="reference/fit_capabilities.html">fit_capabilities</a></span>(answers)</a></code></pre></div>
 </li>
 <li>
 <p>Combine distributions into final parameters, applying weighting based on each SMEs level of calibration.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">scenario_parameters &lt;-<span class="st"> </span><span class="kw"><a href="reference/combine_scenario_parameters.html">combine_scenario_parameters</a></span>(scenario_answers_fitted)</a>
-<a class="sourceLine" id="cb7-2" title="2">capability_parameters &lt;-<span class="st"> </span><span class="kw"><a href="reference/combine_capability_parameters.html">combine_capability_parameters</a></span>(capability_answers_fitted)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">sme_weightings &lt;-<span class="st"> </span><span class="kw"><a href="reference/generate_weights.html">generate_weights</a></span>(questions, answers)</a>
+<a class="sourceLine" id="cb7-2" title="2">scenario_parameters &lt;-<span class="st"> </span><span class="kw">left_join</span>(scenario_answers_fitted, sme_weightings, <span class="dt">by =</span> <span class="st">"sme"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw"><a href="reference/combine_scenario_parameters.html">combine_scenario_parameters</a></span>()</a>
+<a class="sourceLine" id="cb7-4" title="4">capability_parameters &lt;-<span class="st"> </span><span class="kw">left_join</span>(capability_answers_fitted, sme_weightings, <span class="dt">by =</span> <span class="st">"sme"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="st">  </span><span class="kw"><a href="reference/combine_capability_parameters.html">combine_capability_parameters</a></span>()</a></code></pre></div>
 </li>
 <li>
 <p>Build quantitative parameters for <code>evaluator</code></p>

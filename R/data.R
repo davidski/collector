@@ -44,6 +44,23 @@
 #' }
 "mc_capabilities"
 
+#' MetroCare Hospital Capability Answers
+#'
+#' A dataset of SME answers to capabilities.
+#'
+#' @source
+#' This is hypothetical information. Any similarity to any other
+#' entitiy is completely coincidental.
+#' @format A data frame with 1 rows and 7 variables:
+#' \describe{
+#'   \item{sme}{name of the sme}
+#'   \item{capability_id}{identifier of the capability}
+#'   \item{low}{capability estimate, low}
+#'   \item{high}{capability estimate, high}
+#'   \item{date}{date of the answer}
+#' }
+"mc_capability_answers"
+
 #' MetroCare Hospital Scenario Answers
 #'
 #' A dataset of SME answers to scenarios.
@@ -114,3 +131,20 @@
 #'   \item{action_type}{action type of the threat community}
 #' }
 "mc_threat_communities"
+
+#' MetroCare Risk Scenarios
+#'
+#' A dataset of sample risk scenarios.
+#'
+#' @source
+#' This is hypothetical information. Any similarity to any other
+#' entitiy is completely coincidental.
+#' @format A data frame with 56 rows and 5 variables:
+#' \describe{
+#'   \item{scenario_id}{unique identifier}
+#'   \item{scenario}{scenario description}
+#'   \item{tcomm}{name of threat community}
+#'   \item{domain_id}{domain id}
+#'   \item{controls}{comma seperated list of control ids}
+#' }
+"mc_scenarios"

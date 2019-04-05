@@ -12,20 +12,28 @@ mc_capabilities <- mc_capabilities[, c("capability_id", "domain_id", "capability
 usethis::use_data(mc_capabilities, overwrite = TRUE)
 
 # read in capability_answers
-#devtools::use_data(capability_answers, overwrite = TRUE)
-
-# read in and save scenarios
-mc_scenarios <- evaluator::import_scenarios(here::here("data-raw/survey.xlsx"),
-                                         domains = evaluator::mc_domains)
-#devtools::use_data(scenarios, overwrite = TRUE)
-
-# scenario answers
-mc_scenario_answers <- readr::read_csv(here::here("data-raw/scenario_answers.csv"))
-usethis::use_data(mc_scenario_answers, overwrite = TRUE)
+mc_capability_answers <- readr::read_csv(here::here("data-raw/capability_answers.csv"),
+                                         col_types = cols(sme = col_character(),
+                                                          capability_id = col_character(),
+                                                          low = col_number(),
+                                                          high = col_number(),
+                                                          date = col_date()))
+usethis::use_data(mc_capability_answers, overwrite = TRUE)
 
 # generate and save threat_communities
 mc_threat_communities <- readr::read_csv(here::here("data-raw/threat_communities.csv"))
 usethis::use_data(mc_threat_communities, overwrite = TRUE)
+
+# read in and save scenarios
+mc_scenarios <- evaluator::import_scenarios(here::here("data-raw/survey.xlsx"),
+                                         domains = evaluator::mc_domains) %>%
+  left_join(mc_threat_communities, by = c("tcomm" = "threat_community")) %>%
+  select(scenario_id, scenario, threat_id, domain_id, controls)
+usethis::use_data(mc_scenarios, overwrite = TRUE)
+
+# scenario answers
+mc_scenario_answers <- readr::read_csv(here::here("data-raw/scenario_answers.csv"))
+usethis::use_data(mc_scenario_answers, overwrite = TRUE)
 
 # generate and save calibration_questions
 calibration_questions <- readr::read_csv(here::here("data-raw/calibration_questions.csv"))

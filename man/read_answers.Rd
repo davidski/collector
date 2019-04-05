@@ -10,7 +10,7 @@ read_answers(source_dir = getwd())
 \item{source_dir}{Directory location where input files are found.}
 }
 \value{
-A list.
+A responses object
 }
 \description{
 Reads in all the answers recorded to the calibration, scenarios, and

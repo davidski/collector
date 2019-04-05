@@ -329,7 +329,7 @@ fit_scenarios_geomean <- function(scenario_answers) {
 #'   distribution for LM (losses cannot be infinite in size) and
 #'   for the TEF.
 #'
-#' @param scenario_answers Scenario answers.
+#' @param answers Scenario responses.
 #' @param maximum_impact The absolute maximum potential impact of any
 #'   single loss event.
 #' @param maximum_impact_factor Maximum impact factor - scaling factor
@@ -347,10 +347,13 @@ fit_scenarios_geomean <- function(scenario_answers) {
 #'
 #' @examples
 #' NULL
-fit_scenarios <- function(scenario_answers, maximum_impact = Inf,
+fit_scenarios <- function(answers, maximum_impact = Inf,
                           maximum_impact_factor = 10,
                           maximum_frequency_factor = 10) {
-  scenario_answers %>%
+
+  enforce_responses(answers)
+
+  answers$scenarios %>%
     # first we work on the impact data
     tidyr::nest(.data$imp_low:.data$imp_high) %>%
     dplyr::mutate(impact = purrr::map(.data$data, ~
@@ -369,7 +372,7 @@ fit_scenarios <- function(scenario_answers, maximum_impact = Inf,
 
 #' Fit SME capability estimates to distribution parameters
 #'
-#' @param capability_answers Capability answers.
+#' @param answers Responses object
 #'
 #' @importFrom tidyr nest unnest
 #' @importFrom dplyr mutate
@@ -381,8 +384,11 @@ fit_scenarios <- function(scenario_answers, maximum_impact = Inf,
 #'
 #' @examples
 #' NULL
-fit_capabilities <- function(capability_answers) {
-  capability_answers %>%
+fit_capabilities <- function(answers) {
+
+  enforce_responses(answers)
+
+  answers$capabilities %>%
     tidyr::nest(.data$low:.data$high) %>%
     dplyr::mutate(capability = purrr::map(.data$data, ~ fit_norm_trunc(.x$low, .x$high,
                                                    min = 0, max = 100))) %>%
@@ -468,7 +474,7 @@ combine_capability_parameters <- function(capability_parameters) {
 combine_scenario_parameters <- function(scenario_parameters) {
   scenario_parameters %>%
     dplyr::rename(meanlog = .data$impact_meanlog, sdlog = .data$impact_sdlog,
-           weight = .data$imp_weight, min = .data$impact_min,
+           weight = .data$weight, min = .data$impact_min,
            max = .data$impact_max) %>%
     dplyr::group_by(.data$scenario_id, .data$impact_func) %>%
     tidyr::nest(c(.data$meanlog:.data$sdlog, .data$weight, .data$min, .data$max), .key = "data") %>%
@@ -478,7 +484,7 @@ combine_scenario_parameters <- function(scenario_parameters) {
   scenario_parameters %>%
     dplyr::rename(meanlog = .data$frequency_meanlog,
                   sdlog = .data$frequency_sdlog,
-                  weight = .data$freq_weight,
+                  weight = .data$weight,
                   min = .data$frequency_min,
                   max = .data$frequency_max) %>%
     dplyr::group_by(.data$scenario_id, .data$frequency_func) %>%

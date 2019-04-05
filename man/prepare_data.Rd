@@ -26,8 +26,9 @@ fed into \code{evaluator::run_simulations()} for Monte Carlo simulation.
 }
 \examples{
 \dontrun{
-questions <- read_questions()
-quantitative_scenarios <- prepare_data(scenario_parameters,
+question_set <- questions(mc_domains, mc_capabilities, mc_scenarios,
+                          mc_sme_top_domains, calibration_questions,
+                          mc_threat_communities))
       capability_parameters, threat_parameters, questions)
 }
 }

@@ -83,7 +83,7 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
 #' @importFrom tidyr drop_na
 #' @importFrom purrr map
 #' @importFrom stringr str_extract_all
-#' @return A list.
+#' @return A responses object
 #' @export
 #'
 #' @examples
@@ -127,7 +127,10 @@ read_answers <- function(source_dir = getwd()) {
     dplyr::mutate_at(c("low", "high"), dplyr::funs(stringr::str_extract_all(., "[\\d.]+") %>%
                                        purrr::map(~ paste(.x, collapse ="")) %>%
                                        as.numeric()))
-  list(cap_ans = cap_ans, sce_ans = sce_ans, cal_ans = cal_ans)
+
+  responses(capability_answers = cap_ans,
+            scenario_answers = sce_ans,
+            calibration_answers = cal_ans)
 }
 
 #' Calculate the prioritized list of domains for a given SME
@@ -205,5 +208,22 @@ check_readability <- function(x) {
 enforce_questions <- function(x) {
   if (!is_questions(x)) {
     stop("Must pass a questions object.", call. = FALSE)
+  }
+}
+
+#' Validate that the parameter passed is a responses object
+#'
+#' @param x An object
+#'
+#' @return NULL
+#'
+#' @examples
+#' \dontrun{
+#' answers <- read_answers()
+#' enforce_answers(answers)
+#' }
+enforce_responses <- function(x) {
+  if (!is_responses(x)) {
+    stop("Must pass a responses answers object.", call. = FALSE)
   }
 }

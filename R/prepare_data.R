@@ -9,7 +9,7 @@
 #' @param threat_parameters Threat communities with final parameters defined.
 #' @param questions A questions object.
 #'
-#' @importFrom dplyr rename left_join mutate select starts_with
+#' @importFrom dplyr rename left_join mutate select starts_with pull
 #' @importFrom tidyr drop_na
 #' @importFrom purrr map pmap
 #' @importFrom rlang .data
@@ -19,8 +19,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' questions <- read_questions()
-#' quantitative_scenarios <- prepare_data(scenario_parameters,
+#' question_set <- questions(mc_domains, mc_capabilities, mc_scenarios,
+#'                           mc_sme_top_domains, calibration_questions,
+#'                           mc_threat_communities))
+#  quantitative_scenarios <- prepare_data(scenario_parameters,
 #'       capability_parameters, threat_parameters, questions)
 #' }
 prepare_data <- function(scenario_parameters, capability_parameters,
@@ -32,8 +34,8 @@ prepare_data <- function(scenario_parameters, capability_parameters,
   scenario_parameters %>%
     # bring in the scenario descriptions
     dplyr::left_join(questions$scenarios, by = "scenario_id") %>%
-    # bring in the domain IDs
-    dplyr::left_join(questions$domains, by = "domain") %>%
+    # bring in the domains
+    dplyr::left_join(questions$domains, by = "domain_id") %>%
     # add TC info
     dplyr::left_join(threat_parameters, by = "threat_id") %>%
     # massage the dataframe to look like the standard evaluator inputs
@@ -44,7 +46,7 @@ prepare_data <- function(scenario_parameters, capability_parameters,
                   tef_func = .data$frequency_func, tef_meanlog = .data$frequency_meanlog, tef_sdlog = .data$frequency_sdlog,
                   # LM parameters
                   lm_func = .data$impact_func, lm_meanlog = .data$impact_meanlog, lm_sdlog = .data$impact_sdlog, lm_min = .data$impact_min, lm_max = .data$impact_max) %>%
-    # there should be only one NA, for the retired scenario, drop it
+    # the only NAs should be for retired scenarios
     tidyr::drop_na() ->
     # anywhere we don't have data, put dummy values in for testing
     #replace_na(list(tef_func = "stats::rlnorm", tef_meanlog=3, tef_sdlog=0.541,
@@ -53,17 +55,23 @@ prepare_data <- function(scenario_parameters, capability_parameters,
 
   # actually derive controls
   scenarios_final$diff_params <- purrr::map(scenarios_final$controls,
-                                            ~derive_controls_alt(capability_ids = .x,
-                                                                 capabilities = capability_parameters))
+                                           #do something to get diff_params
+                                           {})
+
   # create our list columns for tef/tc/lm
   scenarios_final %>%
-    dplyr::mutate(tef_params = purrr::pmap(with(scenarios_final, list(tef_func, tef_meanlog, tef_sdlog)),
-                                    ~ list(func = ..1, meanlog = ..2, sdlog = ..3)),
-           tc_params = purrr::pmap(with(scenarios_final, list(tc_func, tc_mean, tc_sd, tc_min, tc_max)),
-                                   ~ list(func = ..1, mean = ..2, sd = ..3, min = ..4, max = ..5)),
-           lm_params = purrr::pmap(with(scenarios_final, list(lm_func, lm_meanlog, lm_sdlog, lm_min, lm_max)),
-                                   ~ list(func = ..1, meanlog = ..2, sdlog = ..3, min = ..4, max = ..5))) %>%
-    dplyr::select(-contains("_mean"), -contains("_sd"), -contains("_func")) -> scenarios_final
+    dplyr::mutate(
+      tef_params = purrr::pmap(with(scenarios_final, list(tef_func, tef_meanlog, tef_sdlog)),
+                               ~ list(func = ..1, meanlog = ..2, sdlog = ..3)),
+      tc_params = purrr::pmap(with(scenarios_final, list(tc_func, tc_mean, tc_sd, tc_min, tc_max)),
+                              ~ list(func = ..1, mean = ..2, sd = ..3, min = ..4, max = ..5)),
+      lm_params = purrr::pmap(with(scenarios_final, list(lm_func, lm_meanlog, lm_sdlog, lm_min, lm_max)),
+                              ~ list(func = ..1, meanlog = ..2, sdlog = ..3, min = ..4, max = ..5))) %>%
+    dplyr::mutate(scenarios = evaluator::tidyrisk_scenario(
+      tef_params = .data$tef_params, tc_params = .data$tc_params,
+      lm_params = .data$lm_params, diff_params = .data$diff_params,
+      model = "openfair_tef_tc_diff_lm")) %>%
+    dplyr::pull(.data$scenarios) -> scenarios_final
 
   scenarios_final
   }
