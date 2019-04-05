@@ -1,4 +1,4 @@
-context("test-make_slides")
+context("Make Slides")
 
 test_that("make slides", {
   skip("Not yet ready.")

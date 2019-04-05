@@ -1,5 +1,7 @@
 ## Regenerate sample data sets
 library(evaluator)
+library(readr)
+library(dplyr)
 
 # read in and save domain mappings
 mc_domains <- readr::read_csv(here::here("inst/sample_questions/domains.csv"),
@@ -10,18 +12,17 @@ mc_domains <- readr::read_csv(here::here("inst/sample_questions/domains.csv"),
 usethis::use_data(mc_domains, overwrite = TRUE)
 
 # read in capabilities
-mc_capabilities <- evaluator::import_capabilities(here::here("data-raw/survey.xlsx"),
-                                               domains = evaluator::mc_domains)
+mc_capabilities <- evaluator::import_capabilities(domains = evaluator::mc_domains)
 mc_capabilities <- mc_capabilities[, c("capability_id", "domain_id", "capability")]
 usethis::use_data(mc_capabilities, overwrite = TRUE)
 
 # read in capability_answers
 mc_capability_answers <- readr::read_csv(here::here("data-raw/capability_answers.csv"),
-                                         col_types = cols(sme = col_character(),
-                                                          capability_id = col_character(),
-                                                          low = col_number(),
-                                                          high = col_number(),
-                                                          date = col_date()))
+                                         col_types = readr::cols(sme = readr::col_character(),
+                                                          capability_id = readr::col_character(),
+                                                          low = readr::col_number(),
+                                                          high = readr::col_number(),
+                                                          date = readr::col_date()))
 usethis::use_data(mc_capability_answers, overwrite = TRUE)
 
 # generate and save threat_communities
@@ -29,8 +30,7 @@ mc_threat_communities <- readr::read_csv(here::here("data-raw/threat_communities
 usethis::use_data(mc_threat_communities, overwrite = TRUE)
 
 # read in and save scenarios
-mc_scenarios <- evaluator::import_scenarios(here::here("data-raw/survey.xlsx"),
-                                         domains = evaluator::mc_domains) %>%
+mc_scenarios <- evaluator::import_scenarios(domains = evaluator::mc_domains) %>%
   left_join(mc_threat_communities, by = c("tcomm" = "threat_community")) %>%
   select(scenario_id, scenario, threat_id, domain_id, controls)
 usethis::use_data(mc_scenarios, overwrite = TRUE)

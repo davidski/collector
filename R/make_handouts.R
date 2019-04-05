@@ -120,7 +120,7 @@ make_handouts <- function(sme, questions, output_dir = getwd(), calibration_ques
     doc <- officer::body_add_par(x = doc, value = paste("Capabilities", d,
                                                         sep =  " - "),
                                  style = "heading 2")
-    questions$capabilities[questions$capabilities$domain == d, ] %>%
+    questions$capabilities[questions$capabilities$domain_id == dom_id, ] %>%
       dplyr::select("ID" = .data$capability_id, .data$capability) %>%
       tibble::add_column(cap_low = NA_character_, cap_high = NA_character_) %>%
       flextable::regulartable() -> tbl
@@ -178,6 +178,9 @@ make_handouts <- function(sme, questions, output_dir = getwd(), calibration_ques
   domain_list %>% purrr::walk(function(d) {
     doc <- doc %>% officer::body_add_break()
 
+    # get the domain id
+    dom_id <- questions$domains[questions$domains$domain == d, ]$domain_id
+
     # add the domain heading
     doc <- officer::body_add_par(x = doc,
                                  value = paste("Domain", d, sep =  " - "),
@@ -190,14 +193,14 @@ make_handouts <- function(sme, questions, output_dir = getwd(), calibration_ques
     doc <- officer::body_add_par(x = doc,
                                  value = paste("Scenarios", d, sep =  " - "),
                                  style = "heading 2")
-    questions$scenarios[questions$scenarios$domain == d, ] %>%
+    questions$scenarios[questions$scenarios$domain_id == dom_id, ] %>%
       dplyr::select("ID" = .data$scenario_id, .data$scenario) %>%
       dplyr::mutate("Frequency Low" = NA_character_,
                     "Frequency High" = NA_character_,
                     "Impact Low" = NA_character_,
                     "Impact High" = NA_character_) %>%
       flextable::regulartable() -> tbl
-    tbl <- flextable::set_header_labels(tbl, scenario_id = "ID",
+    tbl <- flextable::set_header_labels(tbl, ID = "ID",
                                         scenario = "Scenario",
                                         `Frequency Low` = "Frequency",
                                         `Frequency High` = "Frequency",
@@ -229,12 +232,12 @@ make_handouts <- function(sme, questions, output_dir = getwd(), calibration_ques
     # add capabilities
     doc <- officer::body_add_par(x = doc, value = paste("Capabilities", d, sep =  " - "),
                                  style = "heading 2")
-    questions$capabilities[questions$capabilities$domain == d, ] %>%
+    questions$capabilities[questions$capabilities$domain_id == dom_id, ] %>%
       dplyr::select("ID" = .data$capability_id, .data$capability) %>%
       tibble::add_column(cap_low = NA_character_, cap_high = NA_character_) %>%
       flextable::regulartable() -> tbl
-    tbl <- flextable::set_header_labels(tbl, capability_id = "ID",
-                                        capabilty = "Capability",
+    tbl <- flextable::set_header_labels(tbl, ID = "ID",
+                                        capability = "Capability",
                                         cap_low = "Capability Range",
                                         cap_high = "Capability Range")
     tbl <- flextable::add_header(tbl, `cap_low` = "% Better than World",

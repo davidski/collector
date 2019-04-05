@@ -1,4 +1,4 @@
-context("test-generate_weights")
+context("Generate Weights")
 
 test_that("weights are generated", {
   data("calibration_questions")

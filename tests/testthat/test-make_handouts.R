@@ -1,4 +1,4 @@
-context("test-make_handouts")
+context("Make Handouts")
 
 test_that("handouts works", {
   data(calibration_questions)
@@ -17,8 +17,16 @@ test_that("handouts works", {
                                 expertise =  mc_sme_top_domains,
                                 threat_communities = mc_threat_communities)
 
-  make_handouts("Natalie Wade", ques, tmpdir)
-  file_location <- file.path(tmpdir, "natalie_wade.docx")
+  sme <- "Natalie Wade"
+  sme_title <- tolower(gsub(" ", "_", sme))
+
+  make_handouts(sme, ques, tmpdir)
+
+  file_location <- file.path(tmpdir, paste0(sme_title, ".docx"))
   expect_true(file.exists(file_location))
-  unlink(file_location)
+
+  ans_file_location <- file.path(tmpdir, paste0(sme_title, "_answers", ".docx"))
+  expect_true(file.exists(ans_file_location))
+
+  unlink(c(file_location, ans_file_location))
 })

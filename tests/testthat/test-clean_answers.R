@@ -1,4 +1,4 @@
-context("clean_answers")
+context("Clean Answers")
 
 test_that("clean_answers works", {
   data("mc_capability_answers")
