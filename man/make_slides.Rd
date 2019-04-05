@@ -10,7 +10,7 @@ make_slides(sme, questions, source_dir, output_dir = getwd(),
 \arguments{
 \item{sme}{Name of the SME being interviewed.}
 
-\item{questions}{Questions object.}
+\item{questions}{tidyrisk_question_set object.}
 
 \item{source_dir}{Directory location for input files.}
 

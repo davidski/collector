@@ -10,14 +10,11 @@ make_handouts(sme, questions, output_dir = getwd(),
 \arguments{
 \item{sme}{Name of the SME.}
 
-\item{questions}{questions object}
+\item{questions}{tidyrisk_question_set object}
 
 \item{output_dir}{Directory to place output.}
 
 \item{calibration_questions}{Number of calibration questions to ask.}
-}
-\value{
-Output of render.
 }
 \description{
 Creates two MS Word documents. One is an `answers` document that contains

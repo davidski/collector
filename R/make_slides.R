@@ -6,7 +6,7 @@
 #' SME.
 #'
 #' @param sme Name of the SME being interviewed.
-#' @param questions Questions object.
+#' @param questions tidyrisk_question_set object.
 #' @param output_dir Directory location for knitted slides.
 #' @param source_dir Directory location for input files.
 #' @param assessment_title Title of the assessment being performed.
@@ -23,7 +23,7 @@
 make_slides <- function(sme, questions, source_dir, output_dir = getwd(),
                         assessment_title = "Strategic Risk Assessment") {
 
-  enforce_questions(questions)
+  enforce_tidyrisk_question_set(questions)
 
   # ensure output directory is available
   if (!dir.exists(output_dir)) dir.create(output_dir)

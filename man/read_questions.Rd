@@ -12,7 +12,7 @@ read_questions(source_dir = getwd(), active_only = TRUE)
 \item{active_only}{Read in only the active elements, defaults to TRUE.}
 }
 \value{
-A questions object
+A tidyrisk_question_set object
 }
 \description{
 Reads in all the questions for which subject matter expert input is

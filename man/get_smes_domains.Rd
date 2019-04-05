@@ -9,13 +9,13 @@ get_smes_domains(sme, questions)
 \arguments{
 \item{sme}{Name of SME.}
 
-\item{questions}{A questions object.}
+\item{questions}{A tidyrisk_question_set object.}
 }
 \value{
 A vector.
 }
 \description{
-Given a questions object and the name and the name of a specific SME of
+Given a tidyrisk_question_set object and the name and the name of a specific SME of
   interest, create a vector of the domains in order of priority.
 }
 \examples{

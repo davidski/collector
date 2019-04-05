@@ -1,16 +1,16 @@
 domain,description,active,domain_id
-Organization and Authority,,,ORG
-Communications and Operations Management,,,OPS
-Compliance,,,COMP
-Risk Management,,,RISK
-Privacy Practices,,,PRI
-Information Security Incident Management,,,IM
-Human Resources Security,,,HR
-Organization of Information Security,,,ORG
-Business Continuity Management,,,BC
-Physical and Environmental Security,,,PHY
-Asset Management,,,ASSET
-Access Control,,,AC
-Information Security Management Program,,,ISMP
-"Information Systems Acquisition, Development, and Maintenance",,,ADM
-Security Policy,,,POL
+Organization and Authority,,TRUE,ORG
+Communications and Operations Management,,TRUE,OPS
+Compliance,,TRUE,COMP
+Risk Management,,TRUE,RISK
+Privacy Practices,,TRUE,PRI
+Information Security Incident Management,,TRUE,IM
+Human Resources Security,,TRUE,HR
+Organization of Information Security,,TRUE,ORG
+Business Continuity Management,,TRUE,BC
+Physical and Environmental Security,,TRUE,PHY
+Asset Management,,TRUE,ASSET
+Access Control,,TRUE,AC
+Information Security Management Program,,TRUE,ISMP
+"Information Systems Acquisition, Development, and Maintenance",,TRUE,ADM
+Security Policy,,TRUE,POL

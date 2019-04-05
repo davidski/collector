@@ -7,12 +7,12 @@
 generate_weights(questions, responses)
 }
 \arguments{
-\item{questions}{Questions object.}
+\item{questions}{tidyrisk_question_set object.}
 
-\item{responses}{Responses object}
+\item{responses}{tidyrisk_response_set object}
 }
 \value{
-A dataframe.
+A dataframe of SMEs and their numerical weighting.
 }
 \description{
 Generate a weighting table for SMEs based upon their calibration answers

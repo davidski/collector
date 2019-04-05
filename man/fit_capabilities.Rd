@@ -7,7 +7,7 @@
 fit_capabilities(answers)
 }
 \arguments{
-\item{answers}{Responses object}
+\item{answers}{tidyrisk_response_set object}
 }
 \value{
 A dataframe.

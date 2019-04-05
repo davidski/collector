@@ -295,7 +295,7 @@ fit_capabilities_geomean <- function(capabilities_answers) {
 
 #' Fit scenario parameters by applying a geometric mean
 #'
-#' @param scenario_answers Scenario answers.
+#' @param scenario_answers Scenario answers dataframe.
 #'
 #' @importFrom tidyr nest unnest replace_na
 #' @importFrom EnvStats geoMean
@@ -351,7 +351,7 @@ fit_scenarios <- function(answers, maximum_impact = Inf,
                           maximum_impact_factor = 10,
                           maximum_frequency_factor = 10) {
 
-  enforce_responses(answers)
+  enforce_tidyrisk_response_set(answers)
 
   answers$scenarios %>%
     # first we work on the impact data
@@ -372,7 +372,7 @@ fit_scenarios <- function(answers, maximum_impact = Inf,
 
 #' Fit SME capability estimates to distribution parameters
 #'
-#' @param answers Responses object
+#' @param answers tidyrisk_response_set object
 #'
 #' @importFrom tidyr nest unnest
 #' @importFrom dplyr mutate
@@ -386,7 +386,7 @@ fit_scenarios <- function(answers, maximum_impact = Inf,
 #' NULL
 fit_capabilities <- function(answers) {
 
-  enforce_responses(answers)
+  enforce_tidyrisk_response_set(answers)
 
   answers$capabilities %>%
     tidyr::nest(.data$low:.data$high) %>%

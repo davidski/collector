@@ -31,10 +31,10 @@
     <loc>https://collector.tidyrisk.org/reference/combine_scenario_parameters.html</loc>
   </url>
   <url>
-    <loc>https://collector.tidyrisk.org/reference/enforce_questions.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/enforce_tidyrisk_question_set.html</loc>
   </url>
   <url>
-    <loc>https://collector.tidyrisk.org/reference/enforce_responses.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/enforce_tidyrisk_response_set.html</loc>
   </url>
   <url>
     <loc>https://collector.tidyrisk.org/reference/fit_capabilities.html</loc>
@@ -73,10 +73,10 @@
     <loc>https://collector.tidyrisk.org/reference/get_smes_domains.html</loc>
   </url>
   <url>
-    <loc>https://collector.tidyrisk.org/reference/is_questions.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/is_tidyrisk_question_set.html</loc>
   </url>
   <url>
-    <loc>https://collector.tidyrisk.org/reference/is_responses.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/is_tidyrisk_response_set.html</loc>
   </url>
   <url>
     <loc>https://collector.tidyrisk.org/reference/lognormal_to_normal.html</loc>
@@ -124,15 +124,15 @@
     <loc>https://collector.tidyrisk.org/reference/prepare_data.html</loc>
   </url>
   <url>
-    <loc>https://collector.tidyrisk.org/reference/questions.html</loc>
-  </url>
-  <url>
     <loc>https://collector.tidyrisk.org/reference/read_answers.html</loc>
   </url>
   <url>
     <loc>https://collector.tidyrisk.org/reference/read_questions.html</loc>
   </url>
   <url>
-    <loc>https://collector.tidyrisk.org/reference/responses.html</loc>
+    <loc>https://collector.tidyrisk.org/reference/tidyrisk_question_set.html</loc>
+  </url>
+  <url>
+    <loc>https://collector.tidyrisk.org/reference/tidyrisk_response_set.html</loc>
   </url>
 </urlset>

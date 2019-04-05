@@ -11,7 +11,7 @@
 #' @importFrom tidyr gather drop_na
 #' @importFrom dplyr filter arrange
 #' @importFrom rlang .data
-#' @return A questions object
+#' @return A tidyrisk_question_set object
 #'
 #' @examples
 #' \dontrun{
@@ -67,7 +67,7 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
                                           high = readr::col_number(),
                                           .default = readr::col_character()))
 
-  questions(domains = domains, capabilities = caps, scenarios = scenarios,
+  tidyrisk_question_set(domains = domains, capabilities = caps, scenarios = scenarios,
        expertise = expertise, calibration = calibration,
        threat_communities = threat_communities)
 }
@@ -83,7 +83,7 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
 #' @importFrom tidyr drop_na
 #' @importFrom purrr map
 #' @importFrom stringr str_extract_all
-#' @return A responses object
+#' @return A tidyrisk_response_set object
 #' @export
 #'
 #' @examples
@@ -128,22 +128,23 @@ read_answers <- function(source_dir = getwd()) {
                                        purrr::map(~ paste(.x, collapse ="")) %>%
                                        as.numeric()))
 
-  responses(capability_answers = cap_ans,
+  tidyrisk_response_set(capability_answers = cap_ans,
             scenario_answers = sce_ans,
             calibration_answers = cal_ans)
 }
 
 #' Calculate the prioritized list of domains for a given SME
 #'
-#' Given a questions object and the name and the name of a specific SME of
+#' Given a tidyrisk_question_set object and the name and the name of a specific SME of
 #'   interest, create a vector of the domains in order of priority.
 #'
 #' @param sme Name of SME.
-#' @param questions A questions object.
+#' @param questions A tidyrisk_question_set object.
 #'
 #' @return A vector.
 #' @export
 #' @importFrom dplyr filter arrange distinct pull
+#' @importFrom tidyr gather drop_na
 #' @importFrom rlang .data !!
 #'
 #'
@@ -154,9 +155,11 @@ read_answers <- function(source_dir = getwd()) {
 #' }
 get_smes_domains <- function(sme, questions) {
 
-  enforce_questions(questions)
+  enforce_tidyrisk_question_set(questions)
 
   doms <- dplyr::filter(questions$expertise, sme == !!sme) %>%
+    tidyr::gather("key", "value", -sme) %>%
+    tidyr::drop_na() %>%
     dplyr::arrange(.data$key) %>%
     dplyr::distinct(.data$value) %>%
     dplyr::pull()
@@ -187,14 +190,14 @@ get_smes_domains <- function(sme, questions) {
 #' check_readability(questions)
 #' }
 check_readability <- function(x) {
-  enforce_questions(x)
-  x <- questions$scenarios
-  dplyr::bind_cols(x, quanteda::textstat_readability(x$scenario, "Flesch.Kincaid")) %>%
+  enforce_tidyrisk_question_set(x)
+  x <- x$scenarios
+  dplyr::bind_cols(x, quanteda::textstat_readability(x$scenarios, "Flesch.Kincaid")) %>%
     dplyr::arrange(dplyr::desc(.data$Flesch.Kincaid)) %>%
     dplyr::select(.data$id, .data$domain, .data$Flesch.Kincaid)
 }
 
-#' Validate that the parameter passed is a questions object
+#' Validate that the parameter passed is a tidyrisk_question_set object
 #'
 #' @param x An object
 #'
@@ -203,15 +206,15 @@ check_readability <- function(x) {
 #' @examples
 #' \dontrun{
 #' questions <- read_questions()
-#' enforce_questions(questions)
+#' enforce_tidyrisk_question_set(questions)
 #' }
-enforce_questions <- function(x) {
-  if (!is_questions(x)) {
-    stop("Must pass a questions object.", call. = FALSE)
+enforce_tidyrisk_question_set <- function(x) {
+  if (!is_tidyrisk_question_set(x)) {
+    stop("Must pass a tidyrisk_question_set object.", call. = FALSE)
   }
 }
 
-#' Validate that the parameter passed is a responses object
+#' Validate that the parameter passed is a tidyrisk_response_set object
 #'
 #' @param x An object
 #'
@@ -222,8 +225,8 @@ enforce_questions <- function(x) {
 #' answers <- read_answers()
 #' enforce_answers(answers)
 #' }
-enforce_responses <- function(x) {
-  if (!is_responses(x)) {
-    stop("Must pass a responses answers object.", call. = FALSE)
+enforce_tidyrisk_response_set <- function(x) {
+  if (!is_tidyrisk_response_set(x)) {
+    stop("Must pass a tidyrisk_response_set object.", call. = FALSE)
   }
 }

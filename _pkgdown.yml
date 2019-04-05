@@ -39,10 +39,7 @@ reference:
       - read_questions
   - title: "Object Classes"
     contents:
-      - questions
-      - is_questions
-      - responses
-      - is_responses
+      - contains("tidyrisk")
   - title: "Provided Data Sets"
     desc: "Reference and sample data sets"
     contents:

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate a weighting table for SMEs based upon their calibration answers — generate_weights • collector</title>
+<title>Validate that the parameter passed is a tidyrisk_question_set object — enforce_tidyrisk_question_set • collector</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Generate a weighting table for SMEs based upon their calibration answers — generate_weights" />
+<meta property="og:title" content="Validate that the parameter passed is a tidyrisk_question_set object — enforce_tidyrisk_question_set" />
 
-<meta property="og:description" content="Generate a weighting table for SMEs based upon their calibration answers" />
+<meta property="og:description" content="Validate that the parameter passed is a tidyrisk_question_set object" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,47 +107,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate a weighting table for SMEs based upon their calibration answers</h1>
+    <h1>Validate that the parameter passed is a tidyrisk_question_set object</h1>
     
-    <div class="hidden name"><code>generate_weights.Rd</code></div>
+    <div class="hidden name"><code>enforce_tidyrisk_question_set.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Generate a weighting table for SMEs based upon their calibration answers</p>
+    <p>Validate that the parameter passed is a tidyrisk_question_set object</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>generate_weights</span>(<span class='no'>questions</span>, <span class='no'>responses</span>)</pre>
+    <pre class="usage"><span class='fu'>enforce_tidyrisk_question_set</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>questions</th>
-      <td><p>tidyrisk_question_set object.</p></td>
-    </tr>
-    <tr>
-      <th>responses</th>
-      <td><p>tidyrisk_response_set object</p></td>
+      <th>x</th>
+      <td><p>An object</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A dataframe of SMEs and their numerical weighting.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>NULL</span></div><div class='output co'>#&gt; NULL</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>questions</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_questions.html'>read_questions</a></span>()
+<span class='fu'>enforce_tidyrisk_question_set</span>(<span class='no'>questions</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

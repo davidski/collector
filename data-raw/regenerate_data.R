@@ -2,7 +2,11 @@
 library(evaluator)
 
 # read in and save domain mappings
-mc_domains <- evaluator::mc_domains
+mc_domains <- readr::read_csv(here::here("inst/sample_questions/domains.csv"),
+                              col_types = cols(domain = col_character(),
+                                               description = col_character(),
+                                               active = col_logical(),
+                                               domain_id = col_character()))
 usethis::use_data(mc_domains, overwrite = TRUE)
 
 # read in capabilities

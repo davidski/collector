@@ -6,11 +6,11 @@
 #'   take away) for the SME.
 #'
 #' @param sme Name of the SME.
-#' @param questions questions object
+#' @param questions tidyrisk_question_set object
 #' @param output_dir Directory to place output.
 #' @param calibration_questions Number of calibration questions to ask.
 #'
-#' @return Output of render.
+#' @return NULL
 #' @export
 #' @importFrom dplyr sample_n select mutate
 #' @importFrom tibble tibble add_column
@@ -25,7 +25,7 @@
 #' }
 make_handouts <- function(sme, questions, output_dir = getwd(), calibration_questions = 10) {
 
-  enforce_questions(questions)
+  enforce_tidyrisk_question_set(questions)
 
   # get a sample set of calibrarion questions for this SME
   cal_ques <- questions$calibration %>% dplyr::sample_n(calibration_questions)
@@ -73,18 +73,21 @@ make_handouts <- function(sme, questions, output_dir = getwd(), calibration_ques
         questions$domains$domain == d, "description"])
     }
 
+    # get the domain id
+    dom_id <- questions$domains[questions$domains$domain == d, ]$domain_id
+
     # add the scenarios
     doc <- officer::body_add_par(x = doc,
                                  value = paste("Scenarios", d, sep =  " - "),
                                  style = "heading 2")
-    questions$scenarios[questions$scenarios$domain == d, ] %>%
+    questions$scenarios[questions$scenarios$domain_id == dom_id, ] %>%
     dplyr::select("ID" = .data$scenario_id, .data$scenario) %>%
       dplyr::mutate("Frequency Low" = NA_character_,
                     "Frequency High" = NA_character_,
                     "Impact Low" = NA_character_,
-                    "impact High" = NA_character_) %>%
+                    "Impact High" = NA_character_) %>%
       flextable::regulartable() -> tbl
-    tbl <- flextable::set_header_labels(tbl, scenario_id = "ID",
+    tbl <- flextable::set_header_labels(tbl, ID = "ID",
                                         scenario = "Scenario",
                                         `Frequency Low` = "Frequency",
                                         `Frequency High` = "Frequency",
@@ -121,7 +124,7 @@ make_handouts <- function(sme, questions, output_dir = getwd(), calibration_ques
       dplyr::select("ID" = .data$capability_id, .data$capability) %>%
       tibble::add_column(cap_low = NA_character_, cap_high = NA_character_) %>%
       flextable::regulartable() -> tbl
-    tbl <- flextable::set_header_labels(tbl, capability_id = "ID",
+    tbl <- flextable::set_header_labels(tbl, ID = "ID",
                                         capability = "Capability",
                                         cap_low = "Capability Range",
                                         cap_high = "Capability Range")

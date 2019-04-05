@@ -7,7 +7,7 @@
 fit_scenarios_geomean(scenario_answers)
 }
 \arguments{
-\item{scenario_answers}{Scenario answers.}
+\item{scenario_answers}{Scenario answers dataframe.}
 }
 \value{
 A dataframe.

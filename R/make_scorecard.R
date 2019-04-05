@@ -28,7 +28,7 @@
 #' }
 make_scorecard <- function(sme, questions, output_dir = getwd()) {
 
-  enforce_questions(questions)
+  enforce_tidyrisk_question_set(questions)
 
   # get ordered scenarios
   values <- get_smes_domains(sme, questions)
