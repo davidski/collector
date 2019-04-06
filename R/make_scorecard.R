@@ -17,7 +17,6 @@
 #' @importFrom rlang .data
 #' @importFrom tibble tibble
 #' @importFrom stringr str_wrap str_replace_all
-#' @importFrom hrbrthemes theme_ipsum
 #' @import ggplot2
 #' @importFrom ggpubr ggexport ggarrange
 #'
@@ -39,8 +38,9 @@ make_scorecard <- function(sme, questions, output_dir = getwd()) {
   rows <- c(rows, rep(max(rows) + 1, length(values) - length(rows)))
 
   # make_dataframe
-  dat <- tibble::tibble(id = stringr::str_wrap(values, width = 15), row = rows,
-                column = rep_len(1:n_col, length.out = length(values))) %>%
+  dat <- tibble::tibble(id = stringr::str_wrap(values, width = 15),
+                        row = rows,
+                        column = rep_len(1:n_col, length.out = length(values))) %>%
     dplyr::mutate(highlight = dplyr::if_else((row_number() - 1) %% 5 == 0, "Y", "N"))
 
   # create_plot
@@ -49,7 +49,7 @@ make_scorecard <- function(sme, questions, output_dir = getwd()) {
     scale_fill_manual(values = c("N" = "white", "Y" = "lightslategray"),
                       guide = FALSE) +
     coord_equal() + geom_text() + scale_y_reverse() +
-    hrbrthemes::theme_ipsum() +
+    theme_void() +
     theme(axis.text = element_blank(), panel.grid = element_blank()) +
     labs(x = NULL, y = NULL, title = "Scenarios",
          subtitle = "Target takt time: 1 minute per response",
@@ -61,7 +61,7 @@ make_scorecard <- function(sme, questions, output_dir = getwd()) {
     scale_fill_manual(values = c("N" = "white", "Y" = "lightslategray"),
                       guide = FALSE) +
     coord_equal() + geom_text() + scale_y_reverse() +
-    hrbrthemes::theme_ipsum() +
+    theme_void() +
     theme(axis.text = element_blank(), panel.grid = element_blank()) +
     labs(x = NULL, y = NULL, title = "Capabilities",
          subtitle = "Target takt time: 1 minute per response",

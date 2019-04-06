@@ -13,12 +13,10 @@ RoxygenNote: 6.1.1
 Imports:
     EnvStats,
     dplyr,
-    extrafont,
     evaluator (>= 0.3.2.900),
     flextable,
     ggplot2,
     ggpubr,
-    hrbrthemes,
     methods,
     magrittr,
     purrr,
