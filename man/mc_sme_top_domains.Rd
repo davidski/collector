@@ -6,17 +6,17 @@
 \title{MetroCare Hospital SME Top Domains}
 \format{A data frame with 5 rows and 7 variables:
 \describe{
-  \item{sme}{sme name}
-  \item{domain1}{sme's first domain}
-  \item{domain2}{sme's second domain}
-  \item{domain3}{sme's third domain}
-  \item{domain4}{sme's fourth domain}
-  \item{domain5}{sme's fifth domain}
-  \item{domain6}{sme's sixth domain}
+  \item{sme}{SME name}
+  \item{domain1}{SME's first domain}
+  \item{domain2}{SME's second domain}
+  \item{domain3}{SME's third domain}
+  \item{domain4}{SME's fourth domain}
+  \item{domain5}{SME's fifth domain}
+  \item{domain6}{SME's sixth domain}
 }}
 \source{
 This is hypothetical information. Any similarity to any other
-entitiy is completely coincidental.
+entity is completely coincidental.
 }
 \usage{
 mc_sme_top_domains

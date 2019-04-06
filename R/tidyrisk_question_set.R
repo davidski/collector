@@ -52,7 +52,8 @@ as.data.frame.tidyrisk_question_set <- function(x, ...) {
 
 #' Test if the object is a tidyrisk_question_set
 #'
-#' This function returns TRUE for tidyrisk_question_set or subclasses therof, and FALSE for all other objects.
+#' This function returns TRUE for tidyrisk_question_set or sub-classes
+#'   thereof, and FALSE for all other objects.
 #'
 #' @param x An object
 #' @export

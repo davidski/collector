@@ -14,17 +14,17 @@
 
 #' MetroCare Hospital Calibration Answers
 #'
-#' A dataset of SME answers to calibrartion questions.
+#' A dataset of SME answers to calibration questions.
 #'
 #' @source
 #' This is hypothetical information. Any similarity to any other
-#' entitiy is completely coincidental.
+#' entity is completely coincidental.
 #' @format A data frame with 50 rows and 5 variables:
 #' \describe{
 #'   \item{sme}{name of the subject matter expert}
 #'   \item{calibration_id}{unique identifier of the calibration question}
-#'   \item{low}{sme's low end estimate}
-#'   \item{high}{sme's high end estimate}
+#'   \item{low}{SME's low end estimate}
+#'   \item{high}{SME's high end estimate}
 #'   \item{date}{date of answer}
 #' }
 "mc_calibration_answers"
@@ -35,7 +35,7 @@
 #'
 #' @source
 #' This is hypothetical information. Any similarity to any other
-#' entitiy is completely coincidental.
+#' entity is completely coincidental.
 #' @format A data frame with 60 rows and 3 variables:
 #' \describe{
 #'   \item{capability_id}{unique identifier of the capability}
@@ -50,10 +50,10 @@
 #'
 #' @source
 #' This is hypothetical information. Any similarity to any other
-#' entitiy is completely coincidental.
+#' entity is completely coincidental.
 #' @format A data frame with 1 rows and 7 variables:
 #' \describe{
-#'   \item{sme}{name of the sme}
+#'   \item{sme}{name of the SME}
 #'   \item{capability_id}{identifier of the capability}
 #'   \item{low}{capability estimate, low}
 #'   \item{high}{capability estimate, high}
@@ -67,11 +67,11 @@
 #'
 #' @source
 #' This is hypothetical information. Any similarity to any other
-#' entitiy is completely coincidental.
+#' entity is completely coincidental.
 #' @format A data frame with 1 rows and 7 variables:
 #' \describe{
-#'   \item{sme}{name of the sme}
-#'   \item{scenario_id}{identifier of the scneario}
+#'   \item{sme}{name of the SME}
+#'   \item{scenario_id}{identifier of the scenario}
 #'   \item{freq_low}{frequency estimate, low}
 #'   \item{freq_high}{frequency estimate, high}
 #'   \item{imp_low}{impact estimate, low}
@@ -86,7 +86,7 @@
 #'
 #' @source
 #' This is hypothetical information. Any similarity to any other
-#' entitiy is completely coincidental.
+#' entity is completely coincidental.
 #' @format A data frame with 15 rows and 4 variables:
 #' \describe{
 #'   \item{domain}{domain title}
@@ -102,16 +102,16 @@
 #'
 #' @source
 #' This is hypothetical information. Any similarity to any other
-#' entitiy is completely coincidental.
+#' entity is completely coincidental.
 #' @format A data frame with 5 rows and 7 variables:
 #' \describe{
-#'   \item{sme}{sme name}
-#'   \item{domain1}{sme's first domain}
-#'   \item{domain2}{sme's second domain}
-#'   \item{domain3}{sme's third domain}
-#'   \item{domain4}{sme's fourth domain}
-#'   \item{domain5}{sme's fifth domain}
-#'   \item{domain6}{sme's sixth domain}
+#'   \item{sme}{SME name}
+#'   \item{domain1}{SME's first domain}
+#'   \item{domain2}{SME's second domain}
+#'   \item{domain3}{SME's third domain}
+#'   \item{domain4}{SME's fourth domain}
+#'   \item{domain5}{SME's fifth domain}
+#'   \item{domain6}{SME's sixth domain}
 #' }
 "mc_sme_top_domains"
 
@@ -121,7 +121,7 @@
 #'
 #' @source
 #' This is hypothetical information. Any similarity to any other
-#' entitiy is completely coincidental.
+#' entity is completely coincidental.
 #' @format A data frame with 6 rows and 7 variables:
 #' \describe{
 #'   \item{threat_community}{text title of the threat community}
@@ -140,13 +140,13 @@
 #'
 #' @source
 #' This is hypothetical information. Any similarity to any other
-#' entitiy is completely coincidental.
+#' entity is completely coincidental.
 #' @format A data frame with 56 rows and 5 variables:
 #' \describe{
 #'   \item{scenario_id}{unique identifier}
 #'   \item{scenario}{scenario description}
-#'   \item{tcomm}{name of threat community}
+#'   \item{threat_id}{threat community id}
 #'   \item{domain_id}{domain id}
-#'   \item{controls}{comma seperated list of control ids}
+#'   \item{controls}{comma separated list of control ids}
 #' }
 "mc_scenarios"

@@ -6,8 +6,8 @@
 \title{MetroCare Hospital Scenario Answers}
 \format{A data frame with 1 rows and 7 variables:
 \describe{
-  \item{sme}{name of the sme}
-  \item{scenario_id}{identifier of the scneario}
+  \item{sme}{name of the SME}
+  \item{scenario_id}{identifier of the scenario}
   \item{freq_low}{frequency estimate, low}
   \item{freq_high}{frequency estimate, high}
   \item{imp_low}{impact estimate, low}
@@ -16,7 +16,7 @@
 }}
 \source{
 This is hypothetical information. Any similarity to any other
-entitiy is completely coincidental.
+entity is completely coincidental.
 }
 \usage{
 mc_scenario_answers

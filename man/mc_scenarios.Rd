@@ -8,13 +8,13 @@
 \describe{
   \item{scenario_id}{unique identifier}
   \item{scenario}{scenario description}
-  \item{tcomm}{name of threat community}
+  \item{threat_id}{threat community id}
   \item{domain_id}{domain id}
-  \item{controls}{comma seperated list of control ids}
+  \item{controls}{comma separated list of control ids}
 }}
 \source{
 This is hypothetical information. Any similarity to any other
-entitiy is completely coincidental.
+entity is completely coincidental.
 }
 \usage{
 mc_scenarios

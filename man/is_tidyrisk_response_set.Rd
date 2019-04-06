@@ -10,7 +10,8 @@ is_tidyrisk_response_set(x)
 \item{x}{An object}
 }
 \description{
-This function returns TRUE for tidyrisk_response_set or subclasses therof, and FALSE for all other objects.
+This function returns TRUE for tidyrisk_response_set or sub-classes
+  thereof, and FALSE for all other objects.
 }
 \examples{
 \dontrun{

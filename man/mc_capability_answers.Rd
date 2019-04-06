@@ -6,7 +6,7 @@
 \title{MetroCare Hospital Capability Answers}
 \format{A data frame with 1 rows and 7 variables:
 \describe{
-  \item{sme}{name of the sme}
+  \item{sme}{name of the SME}
   \item{capability_id}{identifier of the capability}
   \item{low}{capability estimate, low}
   \item{high}{capability estimate, high}
@@ -14,7 +14,7 @@
 }}
 \source{
 This is hypothetical information. Any similarity to any other
-entitiy is completely coincidental.
+entity is completely coincidental.
 }
 \usage{
 mc_capability_answers

@@ -2,7 +2,7 @@
 #'
 #' Confirms that all scenario data is well formed (internally consistent).
 #'   This is a good sanity check after reading in new scenario data to ensure
-#'   that no data entry errors occured.
+#'   that no data entry errors occurred.
 #'
 #' @export
 #' @param questions a tidyrisk_question_set object

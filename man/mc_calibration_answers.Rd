@@ -8,18 +8,18 @@
 \describe{
   \item{sme}{name of the subject matter expert}
   \item{calibration_id}{unique identifier of the calibration question}
-  \item{low}{sme's low end estimate}
-  \item{high}{sme's high end estimate}
+  \item{low}{SME's low end estimate}
+  \item{high}{SME's high end estimate}
   \item{date}{date of answer}
 }}
 \source{
 This is hypothetical information. Any similarity to any other
-entitiy is completely coincidental.
+entity is completely coincidental.
 }
 \usage{
 mc_calibration_answers
 }
 \description{
-A dataset of SME answers to calibrartion questions.
+A dataset of SME answers to calibration questions.
 }
 \keyword{datasets}
