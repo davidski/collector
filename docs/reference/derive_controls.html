@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Test if the object is a tidyrisk_question_set — is_tidyrisk_question_set • collector</title>
+<title>Generate the quantified capability parameters for a scenario — derive_controls • collector</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Test if the object is a tidyrisk_question_set — is_tidyrisk_question_set" />
+<meta property="og:title" content="Generate the quantified capability parameters for a scenario — derive_controls" />
 
-<meta property="og:description" content="This function returns TRUE for tidyrisk_question_set or sub-classes
-  thereof, and FALSE for all other objects." />
+<meta property="og:description" content="Based on the derive_controls function" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,40 +107,60 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Test if the object is a tidyrisk_question_set</h1>
+    <h1>Generate the quantified capability parameters for a scenario</h1>
     
-    <div class="hidden name"><code>is_tidyrisk_question_set.Rd</code></div>
+    <div class="hidden name"><code>derive_controls.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function returns TRUE for tidyrisk_question_set or sub-classes
-  thereof, and FALSE for all other objects.</p>
+    <p>Based on the <code><a href='https://evaluator.tidyrisk.org/reference/derive_controls.html'>derive_controls</a></code> function</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>is_tidyrisk_question_set</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>derive_controls</span>(<span class='no'>capability_ids</span>, <span class='no'>capability_parameters</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>An object</p></td>
+      <th>capability_ids</th>
+      <td><p>Comma-delimited list of capability ids</p></td>
+    </tr>
+    <tr>
+      <th>capability_parameters</th>
+      <td><p>Dataframe of fitted and combined capability parameters</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list of diff_params</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Creates the difficulty parameters (embedded list) for quantitative
+  parameters.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='https://evaluator.tidyrisk.org/reference/derive_controls.html'>derive_controls</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>is_tidyrisk_question_set</span>(<span class='no'>x</span>)
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='kw'>NULL</span></div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

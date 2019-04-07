@@ -4,6 +4,7 @@
 \alias{tidyrisk_question_set}
 \alias{new_tidyrisk_question_set}
 \alias{as.tidyrisk_question_set}
+\alias{validate_tidyrisk_question_set}
 \title{Construct a tidyrisk_question_set object}
 \usage{
 tidyrisk_question_set(domains, scenarios, capabilities, calibration,
@@ -12,6 +13,8 @@ tidyrisk_question_set(domains, scenarios, capabilities, calibration,
 new_tidyrisk_question_set(x)
 
 as.tidyrisk_question_set(x, ...)
+
+validate_tidyrisk_question_set(x)
 }
 \arguments{
 \item{domains}{Domains}
@@ -33,7 +36,8 @@ as.tidyrisk_question_set(x, ...)
 \description{
 \code{new.tidyrisk_question_set} is a low-level constructor that takes a list of dataframes.
 \code{tidyrisk_question_set} constructs a tidyrisk_question_set object from dataframes.
-\code{as.blob} is a S3 generic that converts existing objects.
+\code{as.tidyrisk_question_set} is a S3 generic that converts existing objects.
+\code{validate_tidyrisk_question_set} verifies that the data elements are internally consistent.
 }
 \examples{
 NULL
