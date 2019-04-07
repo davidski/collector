@@ -1,9 +1,9 @@
 threat_community,threat_id,definition,low,high,category,action_type
 Technology Leadership,TC-01,"Technology leaders at the director level and above",.40,.80,employee,error
-Externak Cyber Adversaries,TC-02,Hackers or external entities that attempt to penetrate our systems,.10,.50,external,malicious
+External Cyber Adversaries,TC-02,Hackers or external entities that attempt to penetrate our systems,.10,.50,external,malicious
 Environmental,TC-03,Natural disasters,.20,.80,natural,geological
 Third Parties,TC-04,"Vendors and other organizations that work directly with our company",.30,.60,external,error
 Regulators or Auditors,TC-05,Internal and external auditors and regulators,.40,.75,external,
 External Litigants,TC-06,"Civil and criminal corporate litigation. Mostly employment matters.",.30,.50,external,competitive
 Organizational Internal Users,TC-07,"Internal users at the individual contributor level.",.30,.50,employee,error
-Political Activists,TC-07,"Terrorists and political activitists.",.30,.50,external,malicious
+Political Activists,TC-08,"Terrorists and political activitists.",.30,.50,external,malicious

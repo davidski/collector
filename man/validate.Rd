@@ -10,7 +10,7 @@ validate(questions)
 \item{questions}{a tidyrisk_question_set object}
 }
 \value{
-Invisibly returns TRUE if all checks pass
+Invisibly returns TRUE if all checks pass or FALSE if any checks fail
 }
 \description{
 Confirms that all scenario data is well formed (internally consistent).

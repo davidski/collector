@@ -25,8 +25,14 @@ test_that("Scenario objects are created", {
   fitted_capabilities <- fit_capabilities(ans)
   fitted_threat_communities <- fit_threat_communities(mc_threat_communities)
 
-  scen_objs <- prepare_data(fitted_scenarios, fitted_capabilities,
+  sme_weightings <- generate_weights(ques, ans)
+  scenario_parameters <- left_join(fitted_scenarios, sme_weightings, by = "sme") %>%
+    combine_scenario_parameters()
+  capability_parameters <- left_join(fitted_capabilities, sme_weightings, by = "sme") %>%
+    combine_capability_parameters()
+
+  scen_objs <- prepare_data(scenario_parameters, capability_parameters,
                             fitted_threat_communities, ques)
   expect_s3_class(scen_objs[[1]], "tidyrisk_scenario")
-  expect_equal(length(scen_objs), 1)
+  expect_equal(length(scen_objs), nrow(mc_scenarios))
 })

@@ -356,17 +356,19 @@ fit_scenarios <- function(answers, maximum_impact = Inf,
   answers$scenarios %>%
     # first we work on the impact data
     tidyr::nest(.data$imp_low:.data$imp_high) %>%
-    dplyr::mutate(impact = purrr::map(.data$data, ~
-                                 fit_lognorm_trunc(.x$imp_low, .x$imp_high,
-                                                   max = min(.x$imp_high * maximum_impact_factor, maximum_impact)))) %>%
-    tidyr::unnest(.data$impact, .sep = "_") %>% tidyr::unnest(.data$data) %>%
+    dplyr::mutate(impact = purrr::map(.data$data, ~ fit_lognorm_trunc(
+      .x$imp_low, .x$imp_high, max = min(.x$imp_high * maximum_impact_factor, maximum_impact)))) %>%
+    tidyr::unnest(.data$impact, .sep = "_") %>% tidyr::unnest(.data$data) ->
+    sce_ans_fitted
+
     # now process the frequency data
+  sce_ans_fitted %>%
     tidyr::nest(.data$freq_low:.data$freq_high) %>%
-    dplyr::mutate(frequency = map(
-      .data$data, ~ fit_lognorm_trunc(.x$freq_low, .x$freq_high,
-                                      max = .x$freq_high * maximum_frequency_factor))) %>%
-    tidyr::unnest(.data$frequency, .sep = "_") %>%
-    tidyr::unnest(.data$data) -> sce_ans_fitted
+    dplyr::mutate(frequency = purrr::map(.data$data, ~ fit_lognorm_trunc(
+      .x$freq_low, .x$freq_high, max = .x$freq_high * maximum_frequency_factor))) %>%
+    tidyr::unnest(.data$frequency, .sep = "_") %>% tidyr::unnest(.data$data) ->
+    sce_ans_fitted
+
   sce_ans_fitted
 }
 

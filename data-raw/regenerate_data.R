@@ -22,7 +22,8 @@ mc_capability_answers <- readr::read_csv(here::here("data-raw/capability_answers
                                                           capability_id = readr::col_character(),
                                                           low = readr::col_number(),
                                                           high = readr::col_number(),
-                                                          date = readr::col_date()))
+                                                          date = readr::col_date()),
+                                         comment = "#")
 usethis::use_data(mc_capability_answers, overwrite = TRUE)
 
 # generate and save threat_communities
@@ -36,7 +37,15 @@ mc_scenarios <- evaluator::import_scenarios(domains = evaluator::mc_domains) %>%
 usethis::use_data(mc_scenarios, overwrite = TRUE)
 
 # scenario answers
-mc_scenario_answers <- readr::read_csv(here::here("data-raw/scenario_answers.csv"))
+mc_scenario_answers <- readr::read_csv(here::here("data-raw/scenario_answers.csv"),
+                                       comment = "#",
+                                       col_types = readr::cols(sme = col_character(),
+                                                               scenario_id = col_character(),
+                                                               freq_low = col_number(),
+                                                               freq_high = col_number(),
+                                                               imp_low = col_number(),
+                                                               imp_high = col_number(),
+                                                               date = col_date()))
 usethis::use_data(mc_scenario_answers, overwrite = TRUE)
 
 # generate and save calibration_questions

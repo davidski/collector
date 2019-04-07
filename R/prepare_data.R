@@ -48,15 +48,13 @@ prepare_data <- function(scenario_parameters, capability_parameters,
                   lm_func = .data$impact_func, lm_meanlog = .data$impact_meanlog, lm_sdlog = .data$impact_sdlog, lm_min = .data$impact_min, lm_max = .data$impact_max) %>%
     # the only NAs should be for retired scenarios
     tidyr::drop_na() ->
-    # anywhere we don't have data, put dummy values in for testing
-    #replace_na(list(tef_func = "stats::rlnorm", tef_meanlog=3, tef_sdlog=0.541,
-    #                lm_func = "stats::rlnorm", lm_meanlog=1, lm_sdlog=10)) ->
     scenarios_final
 
   # actually derive controls
-  scenarios_final$diff_params <- purrr::map(scenarios_final$controls,
-                                           #do something to get diff_params
-                                           ~{list(func = "rnorm", mean=.4, sd=.05)})
+  scenarios_final$diff_params <- purrr::map(
+    scenarios_final$controls,
+    ~derive_controls(capability_ids = .x,
+                     capability_parameters = capability_parameters))
 
   # create our list columns for tef/tc/lm
   scenarios_final %>%
@@ -67,13 +65,43 @@ prepare_data <- function(scenario_parameters, capability_parameters,
                               ~ list(func = ..1, mean = ..2, sd = ..3, min = ..4, max = ..5)),
       lm_params = purrr::pmap(with(scenarios_final, list(lm_func, lm_meanlog, lm_sdlog, lm_min, lm_max)),
                               ~ list(func = ..1, meanlog = ..2, sdlog = ..3, min = ..4, max = ..5))) %>%
-    dplyr::mutate(scenarios = pmap(list(tef_params = .data$tef_params,
-                                        tc_params = .data$tc_params,
-                                        lm_params = .data$lm_params,
+    dplyr::mutate(scenarios = pmap(list(tef_params  = .data$tef_params,
+                                        tc_params   = .data$tc_params,
+                                        lm_params   = .data$lm_params,
                                         diff_params = .data$diff_params,
-                                        model = "openfair_tef_tc_diff_lm"),
+                                        model       = "openfair_tef_tc_diff_lm"),
                                    evaluator::tidyrisk_scenario)) %>%
     dplyr::pull(.data$scenarios) -> scenarios_final
 
   scenarios_final
-  }
+}
+
+#' Generate the quantified capability parameters for a scenario
+#'
+#' Based on the \code{\link[evaluator]{derive_controls}} function
+#'
+#' Creates the difficulty parameters (embedded list) for quantitative
+#'   parameters.
+#' @param capability_ids Comma-delimited list of capability ids
+#' @param capability_parameters Dataframe of fitted and combined capability parameters
+#' @seealso \code{\link[evaluator]{derive_controls}}
+#' @importFrom stringr str_split_fixed
+#' @importFrom dplyr select pull
+#' @importFrom purrr pmap
+#' @importFrom rlang .data set_names
+#'
+#' @return A list of diff_params
+#'
+#' @examples
+#' NULL
+derive_controls <- function(capability_ids, capability_parameters) {
+  control_list <- stringr::str_split_fixed(capability_ids, ", ", Inf) %>% unlist()
+
+  capability_parameters[capability_parameters$capability_id %in% control_list, ] %>%
+    dplyr::mutate(diff_params = purrr::pmap(
+      list(.data$capability_func, .data$capability_mean, .data$capability_sd,
+           .data$capability_min, .data$capability_max),
+      ~ list(func = ..1, mean = ..2, sd = ..3, min = ..4, max = ..5))) %>%
+    dplyr::pull(.data$diff_params) %>%
+    rlang::set_names(nm = control_list)
+}
