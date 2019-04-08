@@ -1,4 +1,3 @@
-context("Fit Distributions")
 test_that("Lognormal to normal conversion is idempotent", {
   meanlog <- 1.54
   sdlog <- 10.3

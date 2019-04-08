@@ -20,7 +20,14 @@ addons:
       - libmagick++-dev
 after_success:
 - Rscript -e 'covr::codecov()'
+before_cache: Rscript -e 'remote::install_cran("pkgdown")'
 deploy:
+  - provider: script
+    on:
+      condition: $REPORTS_DEPLOY = "true"
+      branch: master
+    script: Rscript -e 'pkgdown::build_site(preview = FALSE)'
+    skip_cleanup: true
   - provider: s3
     on:
       condition: $REPORTS_DEPLOY = "true"

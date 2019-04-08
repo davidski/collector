@@ -1,5 +1,3 @@
-context("test-make_scorecard")
-
 test_that("scorecard generation works", {
   data(calibration_questions)
   data(mc_domains)

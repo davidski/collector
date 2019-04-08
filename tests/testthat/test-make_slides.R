@@ -1,5 +1,3 @@
-context("Make Slides")
-
 test_that("make slides", {
   skip("Not yet ready.")
   data(calibration_questions)

@@ -1,7 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# collector <img alt="collector Logo" title="collector" align="right" src="man/figures/collector_hex.png" height="139">
+# collector <a href="https://collector.tidyrisk.org"><img alt="collector Logo" title="collector" align="right" src="man/figures/logo.png" height="139"></a>
+
+<!-- badges: start -->
 
 [![Travis Build
 Status](https://travis-ci.org/davidski/collector.svg?branch=master)](https://travis-ci.org/davidski/collector)
@@ -11,6 +13,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/davidski/collector?br
 Status](https://codecov.io/gh/davidski/collector/branch/master/graph/badge.svg)](https://codecov.io/github/davidski/collector?branch=master)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/collector)](https://cran.r-project.org/package=colector)
 ![downloads](https://cranlogs.r-pkg.org/badges/grand-total/collector)
+<!-- badges: end -->
 
 **collector** is an R package for conducting interviews with subject
 matter experts (SMEs) on the risk scenarios facing an organization. It

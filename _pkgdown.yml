@@ -13,6 +13,10 @@ navbar:
       href: reference/index.html
     - text: "News"
       href: news/index.html
+  right:
+    - icon: fa-github fa-lg
+      text: "github"
+      href: https://github.com/davidski/collector/
 
 reference:
   - title: "Combination Functions"
