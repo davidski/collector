@@ -4,7 +4,7 @@ library(readr)
 library(dplyr)
 
 # read in and save domain mappings
-mc_domains <- readr::read_csv(here::here("inst/sample_questions/domains.csv"),
+mc_domains <- readr::read_csv(here::here("data-raw/domains.csv"),
                               col_types = cols(domain = col_character(),
                                                description = col_character(),
                                                active = col_logical(),

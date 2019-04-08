@@ -14,7 +14,7 @@ h2, h3, i{
   font-weight: normal;
 }
 
-.footer-left { 
+.footer-left {
   position: absolute;
   bottom: 12px;
   left: 20px;
@@ -29,10 +29,10 @@ h2, h3, i{
   margin: auto;
   bottom: 0;
   position: absolute;
-  
+
 }
 
-.header-right { 
+.header-right {
   position: absolute;
   top: 12px;
   right: 20px;
@@ -58,7 +58,9 @@ h2, h3, i{
 }
 
 .banner {
+/*
     background:url('../img/word_risk.jpg');
+*/
     background-position:center;
     width:100%;
     background-size: cover;
@@ -66,7 +68,9 @@ h2, h3, i{
 }
 
 .capability-slide .banner {
-  background:url('../img/word_strength.jpg');
+/*
+    background:url('../img/word_strength.jpg');
+*/
     background-position:center;
     background-size: 100% 100%;
 }
