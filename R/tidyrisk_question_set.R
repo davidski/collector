@@ -1,6 +1,3 @@
-#' @importFrom methods setOldClass
-setOldClass("tidyrisk_question_set")
-
 #' Construct a tidyrisk_question_set object
 #'
 #' \code{new.tidyrisk_question_set} is a low-level constructor that takes a list of dataframes.

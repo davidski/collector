@@ -17,7 +17,6 @@ Imports:
     flextable,
     ggplot2,
     ggpubr,
-    methods,
     magrittr,
     purrr,
     quanteda,

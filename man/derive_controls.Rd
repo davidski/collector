@@ -12,7 +12,7 @@ derive_controls(capability_ids, capability_parameters)
 \item{capability_parameters}{Dataframe of fitted and combined capability parameters}
 }
 \value{
-A list of diff_params
+A list.
 }
 \description{
 Based on the \code{\link[evaluator]{derive_controls}} function

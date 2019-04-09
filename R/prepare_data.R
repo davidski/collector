@@ -90,7 +90,7 @@ prepare_data <- function(scenario_parameters, capability_parameters,
 #' @importFrom purrr pmap
 #' @importFrom rlang .data set_names
 #'
-#' @return A list of diff_params
+#' @return A list.
 #'
 #' @examples
 #' NULL

@@ -12,7 +12,7 @@ mc_domains <- readr::read_csv(here::here("data-raw/domains.csv"),
 usethis::use_data(mc_domains, overwrite = TRUE)
 
 # read in capabilities
-mc_capabilities <- evaluator::import_capabilities(domains = evaluator::mc_domains)
+mc_capabilities <- evaluator::import_capabilities(domains = mc_domains)
 mc_capabilities <- mc_capabilities[, c("capability_id", "domain_id", "capability")]
 usethis::use_data(mc_capabilities, overwrite = TRUE)
 
