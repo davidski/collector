@@ -22,8 +22,8 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
   # domains
   domains <- {
     dat <- readr::read_csv(file.path(source_dir, "domains.csv"),
-                           col_types = readr::cols(.default = readr::col_character(),
-                                                 active = readr::col_logical())) %>%
+                           col_types = readr::cols(domain = readr::col_character(),
+                                                   domain_id = readr::col_character())) %>%
       dplyr::arrange(.data$domain)
     if (active_only && "active" %in% names(dat)) {
       dplyr::filter(dat, .data$active != FALSE | is.na(.data$active))
@@ -32,9 +32,10 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
 
   # capabilities
   dat <- readr::read_csv(file.path(source_dir, "capabilities.csv"),
-                         col_types = readr::cols(.default = readr::col_character(),
-                                                 active = readr::col_logical())) %>%
-      dplyr::arrange(.data$domain, .data$capability_id)
+                         col_types = readr::cols(capability = readr::col_character(),
+                                                 capability_id = readr::col_character(),
+                                                 domain_id = readr::col_character())) %>%
+      dplyr::arrange(.data$domain_id, .data$capability_id)
   caps <- if (active_only  && "active" %in% names(dat)) {
     dplyr::filter(dat, .data$active != FALSE | is.na(.data$active))
     } else {dat}
@@ -42,16 +43,22 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
   # scenarios
   scenarios <- {
     dat <- readr::read_csv(file.path(source_dir, "scenarios.csv"),
-                           col_types = readr::cols(.default = readr::col_character(),
-                                                   active = readr::col_logical())) %>%
-      dplyr::arrange(.data$domain, .data$scenario_id)
+                           col_types = readr::cols(
+                             scenario_id =  readr::col_character(),
+                             scenario_id =  readr::col_character(),
+                             threat_id =  readr::col_character(),
+                             domain_id =  readr::col_character(),
+                             controls =  readr::col_character())) %>%
+      dplyr::arrange(.data$domain_id, .data$scenario_id)
     if (active_only && "active" %in% names(dat)) {
       dplyr::filter(dat, .data$active != FALSE | is.na(.data$active))} else {dat}
   }
 
   # expertise
   expertise <- readr::read_csv(file.path(source_dir, "sme_top_domains.csv"),
-                               col_types = readr::cols(.default = readr::col_character()),
+                               col_types = readr::cols(
+                                 sme = readr::col_character(),
+                                 .default = readr::col_character()),
                                comment = "#") %>%
     tidyr::gather(key = "key", value = "value", -.data$sme) %>%
     tidyr::drop_na()
@@ -72,9 +79,9 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
        threat_communities = threat_communities)
 }
 
-#' Read all SMEs answers
+#' Read all SMEs responses
 #'
-#' Reads in all the answers recorded to the calibration, scenarios, and
+#' Reads in all the responses recorded to the calibration, scenarios, and
 #'   capability questions.
 #'
 #' @param source_dir Directory location where input files are found.
@@ -88,16 +95,16 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
 #'
 #' @examples
 #' \dontrun{
-#' read_answers()
+#' read_responses()
 #' }
-read_answers <- function(source_dir = getwd()) {
+read_responses <- function(source_dir = getwd()) {
   cal_ans <- readr::read_csv(file.path(source_dir, "calibration_answers.csv"),
                              col_types = readr::cols(.default = readr::col_character(),
                                                      sme = readr::col_character(),
                                                      calibration_id = readr::col_character(),
                                                      low = readr::col_character(),
                                                      high = readr::col_character(),
-                                                     date = readr::col_date(format = "%m/%d/%y"))) %>%
+                                                     date = readr::col_date())) %>%
     dplyr::mutate_at(c("low", "high"), funs(stringr::str_extract_all(., "\\d+") %>%
                                        purrr::map(~ paste(.x, collapse ="")) %>%
                                        as.numeric()))
@@ -110,7 +117,7 @@ read_answers <- function(source_dir = getwd()) {
                                freq_high = readr::col_integer(),
                                imp_low = readr::col_character(),
                                imp_high = readr::col_character(),
-                               date = readr::col_date(format = "%m/%d/%y"))) %>%
+                               date = readr::col_date())) %>%
     tidyr::drop_na() %>%
     dplyr::mutate_at(c("imp_low", "imp_high"), dplyr::funs(stringr::str_extract_all(., "\\d+") %>%
                                                purrr::map(~ paste(.x, collapse = "")) %>%
@@ -122,7 +129,7 @@ read_answers <- function(source_dir = getwd()) {
                                capability_id = readr::col_character(),
                                low = readr::col_character(),
                                high = readr::col_character(),
-                               date = readr::col_date(format = "%m/%d/%y"))) %>%
+                               date = readr::col_date())) %>%
     tidyr::drop_na() %>%
     dplyr::mutate_at(c("low", "high"), dplyr::funs(stringr::str_extract_all(., "[\\d.]+") %>%
                                        purrr::map(~ paste(.x, collapse ="")) %>%
