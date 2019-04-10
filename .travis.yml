@@ -8,6 +8,9 @@ matrix:
     dist: xenial
     r: release
     env: REPORTS_DEPLOY="true"
+    after_success:
+    - Rscript -e 'covr::codecov()'
+    - Rscript ./scripts/generate_sample_reports.R
   - os: linux
     dist: xenial
     r: devel
@@ -18,8 +21,6 @@ addons:
       - sourceline: 'ppa:opencpu/imagemagick'
     packages:
       - libmagick++-dev
-after_success:
-- Rscript -e 'covr::codecov()'
 before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 deploy:
   - provider: script
