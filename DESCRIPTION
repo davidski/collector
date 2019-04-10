@@ -13,7 +13,7 @@ RoxygenNote: 6.1.1
 Imports:
     EnvStats,
     dplyr,
-    evaluator (>= 0.3.2.900),
+    evaluator (>= 0.4.0),
     flextable,
     ggplot2,
     ggpubr,
@@ -32,7 +32,6 @@ Suggests:
     spelling,
     testthat,
     covr
-Remotes: davidski/evaluator
 URL: https://collector.tidyrisk.org
 BugReports: https://github.com/davidski/collector/issues
 Language: en-US
