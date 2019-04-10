@@ -1,5 +1,6 @@
 This is a new package submission.
 
+
 ## Test environments
 
 * local OS X install, R 3.5.2
@@ -14,3 +15,6 @@ This is a new package submission.
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
+* This pacakge depends on the recently released v0.4.0 version of evaluator. 
+  Checks may fail if the local CRAN respository does not yet have this 
+  version of evaluator.
