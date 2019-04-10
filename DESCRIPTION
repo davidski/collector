@@ -1,6 +1,6 @@
 Package: collector
 Title: Quantified Risk Assessment Data Collection
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person("David", "Severski", email = "davidski@deadheaven.com", role = c("aut", "cre"), comment = c(ORCID ="0000-0001-7867-0459"))
 Description: An open source process for collecting quantified data inputs from 
   subject matter experts. Intended for feeding into an OpenFAIR analysis using 
