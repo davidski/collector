@@ -12,9 +12,6 @@ init:
 install:
   ps: Bootstrap
 
-cache:
-  - C:\RLibrary
-
 # Adapt as necessary starting from here
 
 environment:
@@ -22,6 +19,20 @@ environment:
     GCC_PATH: mingw_64
     NOT_CRAN: true
     USE_RTOOLS: true
+
+# begin pandoc fix via https://github.com/krlmlr/r-appveyor/issues/82
+cache:
+  - C:\RLibrary
+  - C:\Program Files (x86)\Pandoc\
+
+before_test:
+  - ps: >-
+      if (-Not (Test-Path "C:\Program Files (x86)\Pandoc\")) {
+        cinst pandoc
+      }
+  - ps: $env:Path += ";C:\Program Files (x86)\Pandoc\"
+  - pandoc -v
+# end pandoc fix
 
 build_script:
   - travis-tool.sh install_deps
