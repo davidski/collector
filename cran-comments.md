@@ -1,4 +1,11 @@
-This is a new package submission.
+This is a re-submission of a new package.
+
+Corrected since last submission:
+
+- fixed URL going to 404 on CRAN
+- expanded package description as requested
+- made as many examples runnable (not wrapped in \dontrun) as possible
+- corrected function that was inadvertently writing to the user's homedir
 
 
 ## Test environments
@@ -12,9 +19,6 @@ This is a new package submission.
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
 
 * This is a new release.
-* This pacakge depends on the recently released v0.4.0 version of evaluator. 
-  Checks may fail if the local CRAN respository does not yet have this 
-  version of evaluator.

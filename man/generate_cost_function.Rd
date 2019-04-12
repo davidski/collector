@@ -19,7 +19,7 @@ This is an internal helper function that generates a sum of squares
   quantiles to distribution parameters.
 }
 \examples{
-NULL
+generate_cost_function(stats::qlnorm)
 }
 \seealso{
 Other distribution fitting functions: \code{\link{combine_lognorm_trunc}},

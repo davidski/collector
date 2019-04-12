@@ -16,7 +16,8 @@ A dataframe.
 Fit capability parameters via a geometric mean
 }
 \examples{
-NULL
+data(mc_capability_answers)
+fit_capabilities_geomean(mc_capability_answers)
 }
 \seealso{
 Other distribution fitting functions: \code{\link{combine_lognorm_trunc}},

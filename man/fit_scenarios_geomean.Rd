@@ -16,7 +16,8 @@ A dataframe.
 Fit scenario parameters by applying a geometric mean
 }
 \examples{
-NULL
+data(mc_scenario_answers)
+fit_scenarios_geomean(mc_scenario_answers)
 }
 \seealso{
 Other distribution fitting functions: \code{\link{combine_lognorm_trunc}},

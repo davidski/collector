@@ -31,7 +31,6 @@ clean_answers <- function(capability_answers, scenario_answers) {
     # set a floor for minimum impact (both low and high range)
     dplyr::mutate(imp_low = dplyr::if_else(.data$imp_low < 1000, 1000, .data$imp_low),
            imp_high = dplyr::if_else(.data$imp_high < 1000, 1000, .data$imp_high)) %>%
-    #mutate_at(.vars = c("imp_low", "imp_high"), .funs = funs( . / 1000 )) %>%
     dplyr::mutate(freq_low = dplyr::if_else(.data$freq_low == 0, 0.1, .data$freq_low),
            freq_high = dplyr::if_else(.data$freq_high == 0, 1, .data$freq_high))
   list(capabilities = cap_ans,

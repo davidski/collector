@@ -10,6 +10,7 @@
 #' @param capability_answers Capability tidyrisk_response_set
 #' @param x object to coerce
 #'
+#' @export
 #' @examples
 #' NULL
 tidyrisk_response_set <- function(calibration_answers, scenario_answers, capability_answers) {

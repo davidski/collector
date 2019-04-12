@@ -1,3 +1,5 @@
+context("Make Scorecard")
+
 test_that("scorecard generation works", {
   data(calibration_questions)
   data(mc_domains)
@@ -6,7 +8,7 @@ test_that("scorecard generation works", {
   data(mc_sme_top_domains)
   data(mc_threat_communities)
 
-  tmpdir <- tempdir()
+  tmpdir <- tempdir(check = TRUE)
 
   ques <- tidyrisk_question_set(domains = mc_domains,
                                 calibration = calibration_questions,

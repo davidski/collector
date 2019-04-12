@@ -14,6 +14,7 @@
 #' @param threat_communities Threat communities
 #' @param x object to coerce
 #'
+#' @export
 #' @examples
 #' NULL
 tidyrisk_question_set <- function(domains, scenarios, capabilities, calibration,

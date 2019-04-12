@@ -4,15 +4,13 @@
 \alias{make_slides}
 \title{Create interview slides}
 \usage{
-make_slides(sme, questions, source_dir, output_dir = getwd(),
+make_slides(sme, questions, output_dir = getwd(),
   assessment_title = "Strategic Risk Assessment")
 }
 \arguments{
 \item{sme}{Name of the SME being interviewed.}
 
 \item{questions}{tidyrisk_question_set object.}
-
-\item{source_dir}{Directory location for input files.}
 
 \item{output_dir}{Directory location for knitted slides.}
 
@@ -29,6 +27,6 @@ SME.
 }
 \examples{
 \dontrun{
-make_slides("Sally Expert", source_dir = getwd())
+make_slides("Sally Expert")
 }
 }

@@ -18,13 +18,25 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' question_set <- questions(mc_domains, mc_capabilities, mc_scenarios,
-#'                           mc_sme_top_domains, calibration_questions,
-#'                           mc_threat_communities))
-#  quantitative_scenarios <- prepare_data(scenario_parameters,
-#'       capability_parameters, threat_parameters, questions)
-#' }
+#' library(dplyr)
+#' data(mc_domains, mc_capabilities, mc_scenarios, mc_sme_top_domains,
+#'      calibration_questions, mc_threat_communities)
+#' question_set <- tidyrisk_question_set(mc_domains, mc_scenarios, mc_capabilities,
+#'                           calibration_questions, mc_sme_top_domains,
+#'                           mc_threat_communities)
+#' response_set <- tidyrisk_response_set(mc_calibration_answers,
+#'                           mc_scenario_answers, mc_capability_answers)
+#' sme_weightings <- generate_weights(question_set, response_set)
+#' data(mc_scenario_parameters_fitted, mc_capability_parameters_fitted,
+#'                           mc_threat_parameters_fitted)
+#' scenario_parameters <- left_join(mc_scenario_parameters_fitted, sme_weightings, by = "sme") %>%
+#'   combine_scenario_parameters()
+#' capability_parameters <- left_join(mc_capability_parameters_fitted, sme_weightings, by = "sme") %>%
+#'   combine_capability_parameters()
+#' quantitative_scenarios <- prepare_data(scenario_parameters,
+#'                                        capability_parameters,
+#'                                        mc_threat_parameters_fitted,
+#'                                        question_set)
 prepare_data <- function(scenario_parameters, capability_parameters,
                          threat_parameters, questions) {
 

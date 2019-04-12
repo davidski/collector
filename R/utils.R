@@ -86,7 +86,7 @@ read_questions <- function(source_dir = getwd(), active_only = TRUE) {
 #'
 #' @param source_dir Directory location where input files are found.
 #' @importFrom readr read_csv col_character col_date col_number col_integer cols
-#' @importFrom dplyr mutate_at funs
+#' @importFrom dplyr mutate_at
 #' @importFrom tidyr drop_na
 #' @importFrom purrr map
 #' @importFrom stringr str_extract_all
@@ -105,9 +105,9 @@ read_responses <- function(source_dir = getwd()) {
                                                      low = readr::col_character(),
                                                      high = readr::col_character(),
                                                      date = readr::col_date())) %>%
-    dplyr::mutate_at(c("low", "high"), funs(stringr::str_extract_all(., "\\d+") %>%
+    dplyr::mutate_at(c("low", "high"), ~stringr::str_extract_all(., "\\d+") %>%
                                        purrr::map(~ paste(.x, collapse ="")) %>%
-                                       as.numeric()))
+                                       as.numeric())
 
   sce_ans <- readr::read_csv(file.path(source_dir, "scenario_answers.csv"),
                              col_types = readr::cols(
@@ -119,9 +119,9 @@ read_responses <- function(source_dir = getwd()) {
                                imp_high = readr::col_character(),
                                date = readr::col_date())) %>%
     tidyr::drop_na() %>%
-    dplyr::mutate_at(c("imp_low", "imp_high"), dplyr::funs(stringr::str_extract_all(., "\\d+") %>%
+    dplyr::mutate_at(c("imp_low", "imp_high"), ~stringr::str_extract_all(., "\\d+") %>%
                                                purrr::map(~ paste(.x, collapse = "")) %>%
-                                               as.numeric()))
+                                               as.numeric())
 
   cap_ans <- readr::read_csv(file.path(source_dir, "capability_answers.csv"),
                              col_types = readr::cols(
@@ -131,9 +131,9 @@ read_responses <- function(source_dir = getwd()) {
                                high = readr::col_character(),
                                date = readr::col_date())) %>%
     tidyr::drop_na() %>%
-    dplyr::mutate_at(c("low", "high"), dplyr::funs(stringr::str_extract_all(., "[\\d.]+") %>%
+    dplyr::mutate_at(c("low", "high"), ~stringr::str_extract_all(., "[\\d.]+") %>%
                                        purrr::map(~ paste(.x, collapse ="")) %>%
-                                       as.numeric()))
+                                       as.numeric())
 
   tidyrisk_response_set(capability_answers = cap_ans,
             scenario_answers = sce_ans,

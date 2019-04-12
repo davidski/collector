@@ -1,3 +1,5 @@
+context("Make Handouts")
+
 test_that("handouts works", {
   data(calibration_questions)
   data(mc_domains)

@@ -16,7 +16,8 @@ A dataframe.
 Fit each of the threat communities to a distribution
 }
 \examples{
-NULL
+data(mc_threat_communities)
+fit_threat_communities(mc_threat_communities)
 }
 \seealso{
 Other distribution fitting functions: \code{\link{combine_lognorm_trunc}},

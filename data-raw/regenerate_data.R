@@ -59,3 +59,13 @@ usethis::use_data(mc_calibration_answers, overwrite = TRUE)
 # generate and save sme top domains
 mc_sme_top_domains <- readr::read_csv(here::here("data-raw/sme_top_domains.csv"))
 usethis::use_data(mc_sme_top_domains, overwrite = TRUE)
+
+# generate and save fitted parameters
+response_set <- tidyrisk_response_set(mc_calibration_answers,
+                                      mc_scenario_answers, mc_capability_answers)
+mc_scenario_parameters_fitted <- fit_scenarios(response_set)
+usethis::use_data(mc_scenario_parameters_fitted, overwrite = TRUE)
+mc_capability_parameters_fitted <- fit_capabilities(response_set)
+usethis::use_data(mc_capability_parameters_fitted, overwrite = TRUE)
+mc_threat_parameters_fitted <- fit_threat_communities(mc_threat_communities)
+usethis::use_data(mc_threat_parameters_fitted, overwrite = TRUE)

@@ -8,7 +8,6 @@
 #' @param sme Name of the SME being interviewed.
 #' @param questions tidyrisk_question_set object.
 #' @param output_dir Directory location for knitted slides.
-#' @param source_dir Directory location for input files.
 #' @param assessment_title Title of the assessment being performed.
 #'
 #' @return Output of render.
@@ -18,15 +17,18 @@
 #'
 #' @examples
 #' \dontrun{
-#' make_slides("Sally Expert", source_dir = getwd())
+#' make_slides("Sally Expert")
 #' }
-make_slides <- function(sme, questions, source_dir, output_dir = getwd(),
+make_slides <- function(sme, questions, output_dir = getwd(),
                         assessment_title = "Strategic Risk Assessment") {
 
   enforce_tidyrisk_question_set(questions)
 
   # ensure output directory is available
   if (!dir.exists(output_dir)) dir.create(output_dir)
+
+  # save questions object
+  saveRDS(questions, file.path(output_dir, "questions.rds"))
 
   # prepare output location with libs subdir, css + image files
   if (!dir.exists(file.path(output_dir, "css"))) dir.create(file.path(output_dir, "css"))
@@ -48,11 +50,13 @@ make_slides <- function(sme, questions, source_dir, output_dir = getwd(),
                     #output_dir = output_dir,
                     output_file = paste0(tolower(sme) %>% stringr::str_replace_all(" ", "_"), ".html"),
                     knit_root_dir = output_dir,
+                    quiet = TRUE,
                     params = list("sme" = sme,
                                   "assessment_title" = stringr::str_glue("{assessment_title}<br>{logo_emoji}"),
                                   "domain_list" = get_smes_domains(sme, questions),
-                                  "source_dir" = source_dir))
+                                  "questions_file" = file.path(output_dir, "questions.rds")))
 
-  # remove the temporary Rmd file
+  # remove the temporary rds and Rmd files
+  file.remove(file.path(output_dir, "questions.rds"))
   file.remove(file.path(output_dir, "interview.Rmd"))
 }

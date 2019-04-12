@@ -2,7 +2,7 @@
 #'
 #' @param questions tidyrisk_question_set object.
 #' @param responses tidyrisk_response_set object
-#' @importFrom dplyr mutate_at left_join group_by mutate summarize n case_when arrange vars funs
+#' @importFrom dplyr mutate_at left_join group_by mutate summarize n case_when arrange vars
 #' @importFrom stringr str_extract_all
 #' @importFrom purrr map
 #' @return A dataframe of SMEs and their numerical weighting.
@@ -17,9 +17,9 @@ generate_weights <- function(questions, responses){
 
   # convert string formatted calibration answers to numbers
   responses$calibration %>% dplyr::mutate_at(dplyr::vars(.data$low, .data$high),
-                                             dplyr::funs(stringr::str_extract_all(., "[\\d.]+") %>%
-                                             purrr::map(~ paste(.x, collapse ="")) %>%
-                                             as.numeric())) -> dat
+                                             ~stringr::str_extract_all(., "[\\d.]+") %>%
+                                               purrr::map(~ paste(.x, collapse ="")) %>%
+                                               as.numeric()) -> dat
 
   # calculate how many each SME got correct and compare to target
   dplyr::left_join(dat, questions$calibration, by = "calibration_id") %>%

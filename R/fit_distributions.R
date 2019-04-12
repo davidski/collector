@@ -125,7 +125,7 @@ combine_norm <- function(dat) {
   dat %>%
     #unnest() %>%
     dplyr::summarize_at(.var = vars(-matches("weight")),
-                        .funs = funs(sum(. * .data$weight) / sum(.data$weight)))
+                        .funs = ~sum(. * weight) / sum(weight))
     #dplyr::summarize(mean = sum(.data$mean * .data$weight) / sum(.data$weight),
     #          sd = sum(.data$sd * .data$weight) / sum(.data$weight))
 }
@@ -148,7 +148,7 @@ combine_norm <- function(dat) {
 #' @importFrom rlang get_expr
 #'
 #' @examples
-#' NULL
+#' generate_cost_function(stats::qlnorm)
 generate_cost_function <- function(func) {
   function(x, quant, est, ...) {
     x1 <- x[1]
@@ -173,7 +173,7 @@ generate_cost_function <- function(func) {
 #' @importFrom stats optim qlnorm
 #'
 #' @examples
-#' NULL
+#' fit_lognorm(low = .20, high = .50)
 fit_lognorm <- function(low, high) {
   dat <- stats::optim(c(0, 1), generate_cost_function(stats::qlnorm),
                quant = c(.05, .95), est = c(low, high))
@@ -280,7 +280,8 @@ fit_pois <- function(low, high) {
 #' @importFrom rlang .data
 #'
 #' @examples
-#' NULL
+#' data(mc_capability_answers)
+#' fit_capabilities_geomean(mc_capability_answers)
 fit_capabilities_geomean <- function(capabilities_answers) {
   capabilities_answers %>% dplyr::group_by(.data$capability_id) %>%
     dplyr::summarise(low = EnvStats::geoMean(.data$low, na.rm = TRUE),
@@ -307,7 +308,8 @@ fit_capabilities_geomean <- function(capabilities_answers) {
 #' @family distribution fitting functions
 #'
 #' @examples
-#' NULL
+#' data(mc_scenario_answers)
+#' fit_scenarios_geomean(mc_scenario_answers)
 fit_scenarios_geomean <- function(scenario_answers) {
   scenario_answers %>% dplyr::group_by(.data$scenario_id) %>%
     dplyr::summarise_at(dplyr::vars(matches("low|high")), .funs = EnvStats::geoMean, na.rm = TRUE) %>%
@@ -412,7 +414,8 @@ fit_capabilities <- function(answers) {
 #' @family distribution fitting functions
 #'
 #' @examples
-#' NULL
+#' data(mc_threat_communities)
+#' fit_threat_communities(mc_threat_communities)
 fit_threat_communities <- function(threat_communities) {
   threat_communities %>%
     tidyr::nest(.data$low:.data$high) %>%

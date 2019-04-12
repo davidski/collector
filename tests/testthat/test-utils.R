@@ -1,3 +1,5 @@
+context("Utilities")
+
 test_that("Read questions", {
   data(mc_domains)
   data("mc_capabilities")

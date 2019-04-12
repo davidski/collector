@@ -1,3 +1,5 @@
+context("Prepare Data")
+
 test_that("Scenario objects are created", {
   data(calibration_questions)
   data(mc_domains)

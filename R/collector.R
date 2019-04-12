@@ -1,10 +1,9 @@
 #' \code{collector} package
 #'
-#' Quantified Risk Assessment Data Collection
+#' Quantified Information Risk Assessment Data Collection
 #'
-#' See the README on
-#' \href{https://cran.r-project.org/package=collector/README.html}{CRAN}
-#' or \href{https://github.com/davidski/collector}{GitHub}
+#' See the online documentation located at
+#' \href{https://evaluator.tidyrisk.org/}{https://evaluator.tidyrisk.org/}
 #'
 #' @docType package
 #' @name collector

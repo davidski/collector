@@ -1,5 +1,6 @@
+context("Make Slides")
+
 test_that("make slides", {
-  skip("Not yet ready.")
   data(calibration_questions)
   data(mc_domains)
   data(mc_scenarios)
@@ -7,7 +8,7 @@ test_that("make slides", {
   data(mc_sme_top_domains)
   data(mc_threat_communities)
 
-  tmpdir <- tempdir()
+  tmpdir <- tempdir(check = TRUE)
 
   ques <- tidyrisk_question_set(domains = mc_domains,
                                 calibration = calibration_questions,
@@ -17,7 +18,7 @@ test_that("make slides", {
                                 threat_communities = mc_threat_communities)
 
   make_slides("Natalie Wade", ques, tmpdir)
-  file_location <- file.path(tmpdir, "natalie_wade_scorecard.pdf")
+  file_location <- file.path(tmpdir, "natalie_wade.html")
   expect_true(file.exists(file_location))
   unlink(file_location)
 })

@@ -150,3 +150,78 @@
 #'   \item{controls}{comma separated list of control ids}
 #' }
 "mc_scenarios"
+
+#' MetroCare Hospital Scenario Parameters (fitted)
+#'
+#' A dataset of sample fitted scenario parameters.
+#'
+#' @source
+#' This is hypothetical information. Any similarity to any other
+#' entity is completely coincidental.
+#' @format A data frame with 280 rows and 17 variables:
+#' \describe{
+#'   \item{sme}{text title of the threat community}
+#'   \item{scenario_id}{unique identifier}
+#'   \item{date}{text description of the threat community}
+#'   \item{impact_func}{threat communities capability, low end}
+#'   \item{impact_meanlog}{threat communities capability, high end}
+#'   \item{impact_sdlog}{type of the threat community}
+#'   \item{impact_min}{action type of the threat community}
+#'   \item{impact_max}{action type of the threat community}
+#'   \item{imp_low}{action type of the threat community}
+#'   \item{imp_high}{action type of the threat community}
+#'   \item{frequency_func}{threat communities capability, low end}
+#'   \item{frequency_meanlog}{threat communities capability, high end}
+#'   \item{frequency_sdlog}{type of the threat community}
+#'   \item{frequency_min}{action type of the threat community}
+#'   \item{frequency_max}{action type of the threat community}
+#'   \item{freq_low}{action type of the threat community}
+#'   \item{freq_high}{action type of the threat community}
+#' }
+"mc_scenario_parameters_fitted"
+
+#' MetroCare Hospital Capability Parameters (fitted)
+#'
+#' A dataset of sample fitted capability parameters.
+#'
+#' @source
+#' This is hypothetical information. Any similarity to any other
+#' entity is completely coincidental.
+#' @format A data frame with 300 rows and 10 variables:
+#' \describe{
+#'   \item{sme}{text title of the threat community}
+#'   \item{capability_id}{unique identifier}
+#'   \item{date}{text description of the threat community}
+#'   \item{capability_func}{threat communities capability, low end}
+#'   \item{capability_mean}{threat communities capability, high end}
+#'   \item{capability_sd}{threat communities capability, high end}
+#'   \item{capability_min}{threat communities capability, high end}
+#'   \item{capability_max}{threat communities capability, high end}
+#'   \item{low}{threat communities capability, high end}
+#'   \item{high}{threat communities capability, high end}
+#' }
+"mc_capability_parameters_fitted"
+
+#' MetroCare Hospital Threat Parameters (fitted)
+#'
+#' A dataset of sample fitted threat parameters.
+#'
+#' @source
+#' This is hypothetical information. Any similarity to any other
+#' entity is completely coincidental.
+#' @format A data frame with 8 rows and 12 variables:
+#' \describe{
+#'   \item{action_type}{action type}
+#'   \item{category}{category}
+#'   \item{definition}{text description of the threat community}
+#'   \item{high}{action type of the threat community}
+#'   \item{low}{type of the threat community}
+#'   \item{threat_community}{text title of the threat community}
+#'   \item{threat_func}{sampling function}
+#'   \item{threat_id}{unique identifier}
+#'   \item{threat_max}{sampling function}
+#'   \item{threat_mean}{sampling function}
+#'   \item{threat_sd}{sampling function}
+#'   \item{threat_min}{sampling function}
+#' }
+"mc_threat_parameters_fitted"

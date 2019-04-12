@@ -3,7 +3,7 @@ title: "Scenarios and Capabilities"
 params:
   sme: NULL
   domain_list: NULL
-  source_dir: NULL
+  questions_file: NULL
   assessment_title: NULL
 output:
   xaringan::moon_reader:
@@ -23,11 +23,13 @@ class: title-slide, inverse, center
 # Scenarios and Capabilities
 
 ```{r smetitle,  results='asis', echo=FALSE}
-asssessment_title <- if (!is.null(params$assessment_title)) params$assessment_title else "Strategic Risk Assessment"
-cat("## ", assessment_title, "\n", sep="")
+asssessment_title <- if (!is.null(params$assessment_title)) {
+  params$assessment_title } else {
+    "Strategic Risk Assessment"}
+cat("## ", assessment_title, "\n", sep = "")
 
 sme <- if (!is.null(params$sme)) params$sme else "SME Interview"
-cat("### ", sme, "\n", sep="")
+cat("### ", sme, "\n", sep = "")
 ```
 
 ---
@@ -41,14 +43,14 @@ library(purrr)
 ```
 
 ```{r read_questions, include = FALSE}
-dat <- read_questions(params$source_dir)
+dat <- readRDS(params$questions_file)
 domains <- questions$domains
 scenarios <- questions$scenarios
 capabilities <- questions$capabilities
 rm(dat)
 
-questions <- scenarios %>% dplyr::left_join(domains, by = "domain")
-capabilities <- capabilities %>% dplyr::left_join(domains, by = "domain")
+questions <- scenarios %>% dplyr::left_join(domains, by = "domain_id")
+capabilities <- capabilities %>% dplyr::left_join(domains, by = "domain_id")
 ```
 
 ```{r define_helpers, include=FALSE}
@@ -61,7 +63,7 @@ make_slide <- function(x) {
   cat("<p class='domain-description'>", x$description, "</p>\n")
   cat(".footer-left[", x$scenario_id, "]\n")
   cat(".scenario.middle-text.center[", 
-      gsub(" (due to|resulting in) ", " __\\1__ ", x$scenario, fixed=FALSE), 
+      gsub(" (due to|resulting in) ", " __\\1__ ", x$scenario, fixed = FALSE), 
       "]", "\n\n")
   
   # cat("<hr>\n")
@@ -94,14 +96,18 @@ make_capabilty_slide <- function(x) {
 ```
 
 ```{r make_slides, results='asis', echo=FALSE, fig.height=1, fig.width=5}
-domains_to_display <- if (!is.null(params$domain_list)) params$domain_list else sort(unique(questions$domain))
-list(domain=domains_to_display, ix = 1:length(domains_to_display), n = length(domains_to_display)) %>% 
+domains_to_display <- if (!is.null(params$domain_list)) {
+  params$domain_list } else {
+    sort(unique(questions$domain))}
+list(domain = domains_to_display, 
+     ix = 1:length(domains_to_display), 
+     n = length(domains_to_display)) %>% 
   purrr::pwalk(function(domain, ix, n) {
-    questions[questions$domain==domain, ] %>% 
-      dplyr::mutate(rown = row_number(), ix = ix*2 -1, n = n*2) %>% 
+    questions[questions$domain == domain, ] %>% 
+      dplyr::mutate(rown = row_number(), ix = ix*2 - 1, n = n*2) %>% 
       dplyr::group_by(rown) %>% tidyr::nest() %>% dplyr::pull(data) %>% 
       purrr::walk(function(x) make_slide(x))
-    capabilities[capabilities$domain==domain, ] %>% 
+    capabilities[capabilities$domain == domain, ] %>% 
       dplyr::mutate(rown = row_number(), ix = ix*2, n = n*2) %>% 
       dplyr::group_by(rown) %>% tidyr::nest() %>% dplyr::pull(data) %>% 
       purrr::walk(function(x) make_capabilty_slide(x))

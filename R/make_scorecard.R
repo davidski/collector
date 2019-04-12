@@ -16,6 +16,7 @@
 #' @importFrom dplyr mutate row_number if_else
 #' @importFrom rlang .data
 #' @importFrom tibble tibble
+#' @importFrom purrr quietly
 #' @importFrom stringr str_wrap str_replace_all
 #' @import ggplot2
 #' @importFrom ggpubr ggexport ggarrange
@@ -69,8 +70,14 @@ make_scorecard <- function(sme, questions, output_dir = getwd()) {
 
   # make_combined_pdf
   combo <- ggpubr::ggarrange(gg, gg_cap, ncol = 1)
-  filename <- tolower(sme) %>% stringr::str_replace_all(" ", "_") %>% paste0(., "_scorecard.pdf")
-  ggpubr::ggexport(combo, filename = file.path(output_dir, filename))
+  filename <- tolower(sme) %>% stringr::str_replace_all(" ", "_") %>%
+    paste0(., "_scorecard.pdf")
+  quiet_export <- purrr::quietly(ggpubr::ggexport)
+  result <- quiet_export(combo, filename = file.path(output_dir, filename),
+                         verbose = FALSE)
+  if (length(result$warnings) > 0) {
+    warning(warnings, call. = FALSE)}
+  invisible(NULL)
 }
 
 #' @export

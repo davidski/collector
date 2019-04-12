@@ -19,7 +19,7 @@ With a 5th and 95th quantile point estimates, fit a lognormal distribution,
   returning the parameters of the distribution.
 }
 \examples{
-NULL
+fit_lognorm(low = .20, high = .50)
 }
 \seealso{
 Other distribution fitting functions: \code{\link{combine_lognorm_trunc}},
