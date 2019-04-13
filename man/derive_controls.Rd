@@ -15,7 +15,7 @@ derive_controls(capability_ids, capability_parameters)
 A list.
 }
 \description{
-Based on the \code{\link[evaluator]{derive_controls}} function
+Based on the \code{evaluator::\link[evaluator]{derive_controls}} function
 }
 \details{
 Creates the difficulty parameters (embedded list) for quantitative
@@ -25,5 +25,5 @@ Creates the difficulty parameters (embedded list) for quantitative
 NULL
 }
 \seealso{
-\code{\link[evaluator]{derive_controls}}
+\code{evaluator::\link[evaluator]{derive_controls}}
 }

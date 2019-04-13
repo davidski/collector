@@ -123,11 +123,8 @@ combine_lognorm <- function(dat) {
 #' combine_norm(dat)
 combine_norm <- function(dat) {
   dat %>%
-    #unnest() %>%
     dplyr::summarize_at(.var = vars(-matches("weight")),
                         .funs = ~sum(. * weight) / sum(weight))
-    #dplyr::summarize(mean = sum(.data$mean * .data$weight) / sum(.data$weight),
-    #          sd = sum(.data$sd * .data$weight) / sum(.data$weight))
 }
 
 
@@ -331,7 +328,7 @@ fit_scenarios_geomean <- function(scenario_answers) {
 #'   distribution for LM (losses cannot be infinite in size) and
 #'   for the TEF.
 #'
-#' @param answers Scenario responses.
+#' @param responses A \code{\link{tidyrisk_response_set}} object.
 #' @param maximum_impact The absolute maximum potential impact of any
 #'   single loss event.
 #' @param maximum_impact_factor Maximum impact factor - scaling factor
@@ -349,13 +346,13 @@ fit_scenarios_geomean <- function(scenario_answers) {
 #'
 #' @examples
 #' NULL
-fit_scenarios <- function(answers, maximum_impact = Inf,
+fit_scenarios <- function(responses, maximum_impact = Inf,
                           maximum_impact_factor = 10,
                           maximum_frequency_factor = 10) {
 
-  enforce_tidyrisk_response_set(answers)
+  enforce_tidyrisk_response_set(responses)
 
-  answers$scenarios %>%
+  responses$scenarios %>%
     # first we work on the impact data
     tidyr::nest(.data$imp_low:.data$imp_high) %>%
     dplyr::mutate(impact = purrr::map(.data$data, ~ fit_lognorm_trunc(
@@ -376,7 +373,7 @@ fit_scenarios <- function(answers, maximum_impact = Inf,
 
 #' Fit SME capability estimates to distribution parameters
 #'
-#' @param answers tidyrisk_response_set object
+#' @param responses A \code{\link{tidyrisk_response_set}} object
 #'
 #' @importFrom tidyr nest unnest
 #' @importFrom dplyr mutate
@@ -388,11 +385,11 @@ fit_scenarios <- function(answers, maximum_impact = Inf,
 #'
 #' @examples
 #' NULL
-fit_capabilities <- function(answers) {
+fit_capabilities <- function(responses) {
 
-  enforce_tidyrisk_response_set(answers)
+  enforce_tidyrisk_response_set(responses)
 
-  answers$capabilities %>%
+  responses$capabilities %>%
     tidyr::nest(.data$low:.data$high) %>%
     dplyr::mutate(capability = purrr::map(.data$data, ~ fit_norm_trunc(.x$low, .x$high,
                                                    min = 0, max = 100))) %>%

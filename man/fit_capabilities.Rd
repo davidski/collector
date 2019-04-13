@@ -4,10 +4,10 @@
 \alias{fit_capabilities}
 \title{Fit SME capability estimates to distribution parameters}
 \usage{
-fit_capabilities(answers)
+fit_capabilities(responses)
 }
 \arguments{
-\item{answers}{tidyrisk_response_set object}
+\item{responses}{A \code{\link{tidyrisk_response_set}} object}
 }
 \value{
 A dataframe.

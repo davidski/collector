@@ -11,13 +11,13 @@
 #' @importFrom tidyr gather drop_na
 #' @importFrom dplyr filter arrange
 #' @importFrom rlang .data
-#' @return A tidyrisk_question_set object
+#' @return A \code{\link{tidyrisk_question_set}} object
 #'
 #' @examples
 #' \dontrun{
 #' read_questions()
 #' }
-read_questions <- function(source_dir = getwd(), active_only = TRUE) {
+read_questions <- function(source_dir, active_only = TRUE) {
 
   # domains
   domains <- {
@@ -140,20 +140,19 @@ read_responses <- function(source_dir = getwd()) {
             calibration_answers = cal_ans)
 }
 
-#' Calculate the prioritized list of domains for a given SME
+#' Calculate the prioritized list of domains for a given subject matter expert (SME)
 #'
 #' Given a tidyrisk_question_set object and the name and the name of a specific SME of
 #'   interest, create a vector of the domains in order of priority.
 #'
-#' @param sme Name of SME.
-#' @param questions A tidyrisk_question_set object.
+#' @param sme Name of the subject matter expert.
+#' @param questions A \code{\link{tidyrisk_question_set}} object.
 #'
-#' @return A vector.
-#' @export
 #' @importFrom dplyr filter arrange distinct pull
 #' @importFrom tidyr gather drop_na
 #' @importFrom rlang .data !!
-#'
+#' @return An ordered vector of the domains for the requested SME.
+#' @export
 #'
 #' @examples
 #' \dontrun{
@@ -183,13 +182,12 @@ get_smes_domains <- function(sme, questions) {
 #'
 #' @param x Scenarios.
 #'
-#' @return A dataframe.
-#' @export
 #' @importFrom quanteda textstat_readability
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr arrange desc select bind_cols
 #' @importFrom rlang .data
 #' @return A dataframe of the scenario id, domain, and the Flesch-Kincaid readability score.
+#' @export
 #'
 #' @examples
 #' \dontrun{
@@ -204,36 +202,32 @@ check_readability <- function(x) {
     dplyr::select(.data$id, .data$domain, .data$Flesch.Kincaid)
 }
 
-#' Validate that the parameter passed is a tidyrisk_question_set object
+#' Validate that the parameter passed is a \code{\link{tidyrisk_question_set}} object
 #'
 #' @param x An object
 #'
 #' @return NULL
 #'
 #' @examples
-#' \dontrun{
-#' questions <- read_questions()
-#' enforce_tidyrisk_question_set(questions)
-#' }
+#' NULL
 enforce_tidyrisk_question_set <- function(x) {
   if (!is_tidyrisk_question_set(x)) {
     stop("Must pass a tidyrisk_question_set object.", call. = FALSE)
   }
+  NULL
 }
 
-#' Validate that the parameter passed is a tidyrisk_response_set object
+#' Validate that the parameter passed is a \code{\link{tidyrisk_response_set}} object
 #'
 #' @param x An object
 #'
 #' @return NULL
 #'
 #' @examples
-#' \dontrun{
-#' answers <- read_answers()
-#' enforce_answers(answers)
-#' }
+#' NULL
 enforce_tidyrisk_response_set <- function(x) {
   if (!is_tidyrisk_response_set(x)) {
     stop("Must pass a tidyrisk_response_set object.", call. = FALSE)
   }
+  NULL
 }

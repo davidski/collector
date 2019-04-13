@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{enforce_tidyrisk_question_set}
 \alias{enforce_tidyrisk_question_set}
-\title{Validate that the parameter passed is a tidyrisk_question_set object}
+\title{Validate that the parameter passed is a \code{\link{tidyrisk_question_set}} object}
 \usage{
 enforce_tidyrisk_question_set(x)
 }
@@ -10,11 +10,8 @@ enforce_tidyrisk_question_set(x)
 \item{x}{An object}
 }
 \description{
-Validate that the parameter passed is a tidyrisk_question_set object
+Validate that the parameter passed is a \code{\link{tidyrisk_question_set}} object
 }
 \examples{
-\dontrun{
-questions <- read_questions()
-enforce_tidyrisk_question_set(questions)
-}
+NULL
 }

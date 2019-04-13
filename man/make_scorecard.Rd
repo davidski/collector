@@ -5,7 +5,7 @@
 \alias{make_bingo}
 \title{Create a scorecard for marking progress through domains in an interview}
 \usage{
-make_scorecard(sme, questions, output_dir = getwd())
+make_scorecard(sme, questions, output_dir)
 
 make_bingo(sme, questions, output_dir = getwd())
 }
@@ -31,6 +31,6 @@ The domains are ordered according to the SME's expertise profile, ensuring
 \examples{
 \dontrun{
 questions <- read_questions()
-make_scorecard("Sally Expert", questions)
+make_scorecard("Sally Expert", questions, output_dir = tempdir())
 }
 }

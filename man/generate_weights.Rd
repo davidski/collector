@@ -7,9 +7,9 @@
 generate_weights(questions, responses)
 }
 \arguments{
-\item{questions}{tidyrisk_question_set object.}
+\item{questions}{\code{\link{tidyrisk_question_set}} object.}
 
-\item{responses}{tidyrisk_response_set object}
+\item{responses}{\code{\link{tidyrisk_response_set}} object}
 }
 \value{
 A dataframe of SMEs and their numerical weighting.

@@ -5,7 +5,7 @@ Authors@R: person("David", "Severski", email = "davidski@deadheaven.com", role =
 Description: An open source process for collecting quantified data inputs from 
   subject matter experts. Intended for feeding into an OpenFAIR analysis 
   <https://www2.opengroup.org/ogsys/catalog/C13K> using 
-  a tool such as `evaluator` <https://evaluator.tidyrisk.org>.
+  a tool such as 'evaluator' <https://evaluator.tidyrisk.org>.
 Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8

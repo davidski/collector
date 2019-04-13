@@ -4,7 +4,7 @@
 \alias{read_questions}
 \title{Read scenario questions}
 \usage{
-read_questions(source_dir = getwd(), active_only = TRUE)
+read_questions(source_dir, active_only = TRUE)
 }
 \arguments{
 \item{source_dir}{Directory location to find input files.}
@@ -12,7 +12,7 @@ read_questions(source_dir = getwd(), active_only = TRUE)
 \item{active_only}{Read in only the active elements, defaults to TRUE.}
 }
 \value{
-A tidyrisk_question_set object
+A \code{\link{tidyrisk_question_set}} object
 }
 \description{
 Reads in all the questions for which subject matter expert input is

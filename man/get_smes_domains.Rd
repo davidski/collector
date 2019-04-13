@@ -2,17 +2,17 @@
 % Please edit documentation in R/utils.R
 \name{get_smes_domains}
 \alias{get_smes_domains}
-\title{Calculate the prioritized list of domains for a given SME}
+\title{Calculate the prioritized list of domains for a given subject matter expert (SME)}
 \usage{
 get_smes_domains(sme, questions)
 }
 \arguments{
-\item{sme}{Name of SME.}
+\item{sme}{Name of the subject matter expert.}
 
-\item{questions}{A tidyrisk_question_set object.}
+\item{questions}{A \code{\link{tidyrisk_question_set}} object.}
 }
 \value{
-A vector.
+An ordered vector of the domains for the requested SME.
 }
 \description{
 Given a tidyrisk_question_set object and the name and the name of a specific SME of

@@ -4,11 +4,11 @@
 \alias{fit_scenarios}
 \title{Fit SME scenario estimates to distribution parameters}
 \usage{
-fit_scenarios(answers, maximum_impact = Inf,
+fit_scenarios(responses, maximum_impact = Inf,
   maximum_impact_factor = 10, maximum_frequency_factor = 10)
 }
 \arguments{
-\item{answers}{Scenario responses.}
+\item{responses}{A \code{\link{tidyrisk_response_set}} object.}
 
 \item{maximum_impact}{The absolute maximum potential impact of any
 single loss event.}

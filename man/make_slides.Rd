@@ -4,7 +4,7 @@
 \alias{make_slides}
 \title{Create interview slides}
 \usage{
-make_slides(sme, questions, output_dir = getwd(),
+make_slides(sme, questions, output_dir,
   assessment_title = "Strategic Risk Assessment")
 }
 \arguments{
@@ -27,6 +27,6 @@ SME.
 }
 \examples{
 \dontrun{
-make_slides("Sally Expert")
+make_slides("Sally Expert", questions, output_dir = tempdir())
 }
 }

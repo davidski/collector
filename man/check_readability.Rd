@@ -10,8 +10,6 @@ check_readability(x)
 \item{x}{Scenarios.}
 }
 \value{
-A dataframe.
-
 A dataframe of the scenario id, domain, and the Flesch-Kincaid readability score.
 }
 \description{

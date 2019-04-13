@@ -17,9 +17,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' make_slides("Sally Expert")
+#' make_slides("Sally Expert", questions, output_dir = tempdir())
 #' }
-make_slides <- function(sme, questions, output_dir = getwd(),
+make_slides <- function(sme, questions, output_dir,
                         assessment_title = "Strategic Risk Assessment") {
 
   enforce_tidyrisk_question_set(questions)

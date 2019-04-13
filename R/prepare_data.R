@@ -1,24 +1,24 @@
-#' Create one or more quantitative scenarios objects suitable for simulation by `evaluator`
+#' Create one or more quantitative scenarios objects suitable for simulation by 'evaluator'
 #'
 #' Given parameters for the scenarios, threat communities, capabilities, and
-#' the question set, generate a list of `tidyrisk_scenario` objects that may be
-#' fed into \code{evaluator::run_simulations()} for Monte Carlo simulation.
+#' the question set, generate a list of \code{\link{tidyrisk_scenario}} objects that may be
+#' fed into \code{evaluator::\link[evaluator]{run_simulation}} for Monte Carlo simulation.
 #'
 #' @param scenario_parameters Scenarios with final parameters defined.
 #' @param capability_parameters Capabilities with final parameters defined.
 #' @param threat_parameters Threat communities with final parameters defined.
-#' @param questions A questions object.
+#' @param questions A \code{\link{tidyrisk_question_set}} object.
 #'
 #' @importFrom dplyr rename left_join mutate select starts_with pull
 #' @importFrom tidyr drop_na
 #' @importFrom purrr map pmap
 #' @importFrom rlang .data
 #' @importFrom evaluator tidyrisk_scenario
-#' @return A list of \code{tidyrisk_scenario} objects.
+#' @return A list of one or more \code{\link{tidyrisk_scenario}} objects.
 #' @export
 #'
 #' @examples
-#' library(dplyr)
+#' suppressWarnings(library(dplyr))
 #' data(mc_domains, mc_capabilities, mc_scenarios, mc_sme_top_domains,
 #'      calibration_questions, mc_threat_communities)
 #' question_set <- tidyrisk_question_set(mc_domains, mc_scenarios, mc_capabilities,
@@ -55,9 +55,13 @@ prepare_data <- function(scenario_parameters, capability_parameters,
                   dplyr::starts_with("threat_"), .data$domain_id,
                   controls = .data$controls,
                   # TEF parameters
-                  tef_func = .data$frequency_func, tef_meanlog = .data$frequency_meanlog, tef_sdlog = .data$frequency_sdlog,
+                  tef_func = .data$frequency_func,
+                  tef_meanlog = .data$frequency_meanlog,
+                  tef_sdlog = .data$frequency_sdlog,
                   # LM parameters
-                  lm_func = .data$impact_func, lm_meanlog = .data$impact_meanlog, lm_sdlog = .data$impact_sdlog, lm_min = .data$impact_min, lm_max = .data$impact_max) %>%
+                  lm_func = .data$impact_func, lm_meanlog = .data$impact_meanlog,
+                  lm_sdlog = .data$impact_sdlog, lm_min = .data$impact_min,
+                  lm_max = .data$impact_max) %>%
     # the only NAs should be for retired scenarios
     tidyr::drop_na() ->
     scenarios_final
@@ -90,13 +94,13 @@ prepare_data <- function(scenario_parameters, capability_parameters,
 
 #' Generate the quantified capability parameters for a scenario
 #'
-#' Based on the \code{\link[evaluator]{derive_controls}} function
+#' Based on the \code{evaluator::\link[evaluator]{derive_controls}} function
 #'
 #' Creates the difficulty parameters (embedded list) for quantitative
 #'   parameters.
 #' @param capability_ids Comma-delimited list of capability ids
 #' @param capability_parameters Dataframe of fitted and combined capability parameters
-#' @seealso \code{\link[evaluator]{derive_controls}}
+#' @seealso \code{evaluator::\link[evaluator]{derive_controls}}
 #' @importFrom stringr str_split_fixed
 #' @importFrom dplyr select pull
 #' @importFrom purrr pmap

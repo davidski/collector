@@ -24,9 +24,9 @@
 #' @examples
 #' \dontrun{
 #' questions <- read_questions()
-#' make_scorecard("Sally Expert", questions)
+#' make_scorecard("Sally Expert", questions, output_dir = tempdir())
 #' }
-make_scorecard <- function(sme, questions, output_dir = getwd()) {
+make_scorecard <- function(sme, questions, output_dir) {
 
   enforce_tidyrisk_question_set(questions)
 

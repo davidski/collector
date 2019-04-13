@@ -2,21 +2,28 @@
 % Please edit documentation in R/clean_answers.R
 \name{clean_answers}
 \alias{clean_answers}
-\title{Clean the answers data frames}
+\title{Clean extreme answers}
 \usage{
-clean_answers(capability_answers, scenario_answers)
+clean_answers(scenario_answers, capability_answers)
 }
 \arguments{
-\item{capability_answers}{Capability answers.}
+\item{scenario_answers}{Scenario answers dataframe.}
 
-\item{scenario_answers}{Scenario answers.}
+\item{capability_answers}{Capability answers dataframe.}
 }
 \value{
-A list.
+A list of modified scenarios and capabilities.
 }
 \description{
+You may wish to apply some sanity checking bounds on the responses from
+  subject matter experts. This function applies a set of predefined
+  transformations to the scenario and capability responses. Review these
+  assumptions carefully before using them in your own analysis.
+}
+\details{
 Make the following assumptions/modifications
-  - minimum capacity is 5% (we've thought about it - 90% CI)
+
+- minimum capacity is 5% (we've thought about it - 90% CI)
   - maximum capacity is 95% (we're just about the best - 90% CI)
   - minimum loss is 1000 dollars (both low and high)
   - scale all impact into thousands of dollars (make normal
@@ -25,8 +32,7 @@ Make the following assumptions/modifications
   - set a minimum frequency of once per 10 years (0.1)
 }
 \examples{
-\dontrun{
-answers <- read_answers()
-clean_answers(answers)
-}
+data(mc_capability_answers)
+data(mc_scenario_answers)
+clean_answers(mc_scenario_answers, mc_capability_answers)
 }

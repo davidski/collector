@@ -2,7 +2,7 @@
 #'
 #' \code{new.tidyrisk_response_set} is a low-level constructor that takes a list of dataframes.
 #' \code{tidyrisk_response_set} constructs a tidyrisk_response_set from dataframes.
-#' \code{as.blob} is a S3 generic that converts existing objects.
+#' \code{as.tidyrisk_response_set} is a S3 generic that converts existing objects.
 #'
 #' @param ... Individual dataframes
 #' @param calibration_answers Calibration tidyrisk_response_set

@@ -1,7 +1,7 @@
 #' Generate a weighting table for SMEs based upon their calibration answers
 #'
-#' @param questions tidyrisk_question_set object.
-#' @param responses tidyrisk_response_set object
+#' @param questions \code{\link{tidyrisk_question_set}} object.
+#' @param responses \code{\link{tidyrisk_response_set}} object
 #' @importFrom dplyr mutate_at left_join group_by mutate summarize n case_when arrange vars
 #' @importFrom stringr str_extract_all
 #' @importFrom purrr map

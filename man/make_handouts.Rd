@@ -4,13 +4,12 @@
 \alias{make_handouts}
 \title{Create a set of interview handouts for a SME}
 \usage{
-make_handouts(sme, questions, output_dir = getwd(),
-  calibration_questions = 10)
+make_handouts(sme, questions, output_dir, calibration_questions = 10)
 }
 \arguments{
 \item{sme}{Name of the SME.}
 
-\item{questions}{tidyrisk_question_set object}
+\item{questions}{\code{\link{tidyrisk_question_set}} object}
 
 \item{output_dir}{Directory to place output.}
 
@@ -25,6 +24,6 @@ Creates two MS Word documents. One is an `answers` document that contains
 \examples{
 \dontrun{
 questions <- read_questions()
-make_handouts("Sally Expert", questions)
+make_handouts("Sally Expert", questions, output_dir = tempdir())
 }
 }

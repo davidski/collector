@@ -6,7 +6,7 @@
 #'   take away) for the SME.
 #'
 #' @param sme Name of the SME.
-#' @param questions tidyrisk_question_set object
+#' @param questions \code{\link{tidyrisk_question_set}} object
 #' @param output_dir Directory to place output.
 #' @param calibration_questions Number of calibration questions to ask.
 #'
@@ -21,9 +21,9 @@
 #' @examples
 #' \dontrun{
 #' questions <- read_questions()
-#' make_handouts("Sally Expert", questions)
+#' make_handouts("Sally Expert", questions, output_dir = tempdir())
 #' }
-make_handouts <- function(sme, questions, output_dir = getwd(), calibration_questions = 10) {
+make_handouts <- function(sme, questions, output_dir, calibration_questions = 10) {
 
   enforce_tidyrisk_question_set(questions)
 

@@ -2,10 +2,10 @@ This is a re-submission of a new package.
 
 Corrected since last submission:
 
-- fixed URL going to 404 on CRAN
-- expanded package description as requested
-- made as many examples runnable (not wrapped in \dontrun) as possible
-- corrected function that was inadvertently writing to the user's homedir
+- converted to undirected quotation marks in description text
+- removed all function defaults that went to a user filespace. Functions 
+  that write to disk now require explicit user decisions. Examples use 
+  tempdir().
 
 
 ## Test environments

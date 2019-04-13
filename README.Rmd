@@ -72,6 +72,7 @@ generating parameters for simulation via
 3. Generate materials for interviewing a SME
 
     ```{r, eval=FALSE}
+    output_dir <- tempdir()
     make_handouts("Leader Name", questions, output_dir)
     make_scorecard("Leader Name", questions, output_dir)
     make_slides("Leader Name", questions, output_dir)

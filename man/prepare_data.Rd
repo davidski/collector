@@ -2,7 +2,7 @@
 % Please edit documentation in R/prepare_data.R
 \name{prepare_data}
 \alias{prepare_data}
-\title{Create one or more quantitative scenarios objects suitable for simulation by `evaluator`}
+\title{Create one or more quantitative scenarios objects suitable for simulation by 'evaluator'}
 \usage{
 prepare_data(scenario_parameters, capability_parameters, threat_parameters,
   questions)
@@ -14,18 +14,18 @@ prepare_data(scenario_parameters, capability_parameters, threat_parameters,
 
 \item{threat_parameters}{Threat communities with final parameters defined.}
 
-\item{questions}{A questions object.}
+\item{questions}{A \code{\link{tidyrisk_question_set}} object.}
 }
 \value{
-A list of \code{tidyrisk_scenario} objects.
+A list of one or more \code{\link{tidyrisk_scenario}} objects.
 }
 \description{
 Given parameters for the scenarios, threat communities, capabilities, and
-the question set, generate a list of `tidyrisk_scenario` objects that may be
-fed into \code{evaluator::run_simulations()} for Monte Carlo simulation.
+the question set, generate a list of \code{\link{tidyrisk_scenario}} objects that may be
+fed into \code{evaluator::\link[evaluator]{run_simulation}} for Monte Carlo simulation.
 }
 \examples{
-library(dplyr)
+suppressWarnings(library(dplyr))
 data(mc_domains, mc_capabilities, mc_scenarios, mc_sme_top_domains,
      calibration_questions, mc_threat_communities)
 question_set <- tidyrisk_question_set(mc_domains, mc_scenarios, mc_capabilities,
