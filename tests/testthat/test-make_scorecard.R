@@ -22,3 +22,23 @@ test_that("scorecard generation works", {
   expect_true(file.exists(file_location))
   unlink(file_location)
 })
+
+test_that("Bingo function is deprecated", {
+  data(calibration_questions)
+  data(mc_domains)
+  data(mc_scenarios)
+  data(mc_capabilities)
+  data(mc_sme_top_domains)
+  data(mc_threat_communities)
+
+  tmpdir <- tempdir(check = TRUE)
+
+  ques <- tidyrisk_question_set(domains = mc_domains,
+                                calibration = calibration_questions,
+                                scenarios = mc_scenarios,
+                                capabilities = mc_capabilities,
+                                expertise =  mc_sme_top_domains,
+                                threat_communities = mc_threat_communities)
+
+  expect_warning(make_bingo("Natalie Wade", ques, tmpdir), "deprecate")
+})
