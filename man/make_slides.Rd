@@ -17,7 +17,7 @@ make_slides(sme, questions, output_dir,
 \item{assessment_title}{Title of the assessment being performed.}
 }
 \value{
-Output of render.
+Invisibly returns the full path to the slide file.
 }
 \description{
 Creates an in-browser slideshow as a visual aide when conducting an

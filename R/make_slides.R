@@ -10,7 +10,7 @@
 #' @param output_dir Directory location for knitted slides.
 #' @param assessment_title Title of the assessment being performed.
 #'
-#' @return Output of render.
+#' @return Invisibly returns the full path to the slide file.
 #' @export
 #' @importFrom rmarkdown render
 #' @importFrom stringr str_replace_all str_glue
@@ -46,17 +46,20 @@ make_slides <- function(sme, questions, output_dir,
 
   logo_emoji <- "\\U0002696"  # scales emoji
 
-  rmarkdown::render(file.path(output_dir, "interview.Rmd"),
-                    #output_dir = output_dir,
-                    output_file = paste0(tolower(sme) %>% stringr::str_replace_all(" ", "_"), ".html"),
-                    knit_root_dir = output_dir,
-                    quiet = TRUE,
-                    params = list("sme" = sme,
-                                  "assessment_title" = stringr::str_glue("{assessment_title}<br>{logo_emoji}"),
-                                  "domain_list" = get_smes_domains(sme, questions),
-                                  "questions_file" = file.path(output_dir, "questions.rds")))
+  slides_path <- rmarkdown::render(
+    file.path(output_dir, "interview.Rmd"),
+    #output_dir = output_dir,
+    output_file = paste0(tolower(sme) %>% stringr::str_replace_all(" ", "_"), ".html"),
+    knit_root_dir = output_dir,
+    quiet = TRUE,
+    params = list("sme" = sme,
+                  "assessment_title" = stringr::str_glue("{assessment_title}<br>{logo_emoji}"),
+                  "domain_list" = get_smes_domains(sme, questions),
+                  "questions_file" = file.path(output_dir, "questions.rds")))
 
   # remove the temporary rds and Rmd files
   file.remove(file.path(output_dir, "questions.rds"))
   file.remove(file.path(output_dir, "interview.Rmd"))
+
+  invisible(slides_path)
 }
