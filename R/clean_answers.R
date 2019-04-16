@@ -44,8 +44,8 @@ clean_answers <- function(scenario_answers, capability_answers) {
     dplyr::mutate(freq_low = dplyr::if_else(.data$freq_low == 0,
                                             0.1,
                                             .data$freq_low),
-           freq_high = dplyr::if_else(.data$freq_high == 0L,
-                                      1L,
+           freq_high = dplyr::if_else(.data$freq_high == 0,
+                                      1,
                                       .data$freq_high))
   list(capabilities = cap_ans,
        scenarios = sce_ans)
