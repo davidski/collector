@@ -149,7 +149,7 @@ read_responses <- function(source_dir = getwd()) {
 #' @param questions A \code{\link{tidyrisk_question_set}} object.
 #'
 #' @importFrom dplyr filter arrange distinct pull
-#' @importFrom tidyr gather drop_na
+#' @importFrom tidyr drop_na
 #' @importFrom rlang .data !!
 #' @return An ordered vector of the domains for the requested SME.
 #' @export
@@ -164,7 +164,6 @@ get_smes_domains <- function(sme, questions) {
   enforce_tidyrisk_question_set(questions)
 
   doms <- dplyr::filter(questions$expertise, sme == !!sme) %>%
-    tidyr::gather("key", "value", -sme) %>%
     tidyr::drop_na() %>%
     dplyr::arrange(.data$key) %>%
     dplyr::distinct(.data$value) %>%
