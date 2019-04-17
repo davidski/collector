@@ -24,23 +24,24 @@ offers functions for the following stages of input collection:
     and handouts
   - calibration testing, similar to that promoted by Doug Hubbard and
     the FAIR Institute
-  - opinion pooling
   - distribution fitting
-  - generating quantitative data structures for simulation and further
-    reporting by [Evaluator](https://evaluator.tidyrisk.org)
+  - opinion pooling of multiple SMEs into a single representative
+    distribution
+  - generating quantitative risk scenarios for simulation and reporting
+    by [Evaluator](https://evaluator.tidyrisk.org)
 
 ## Installation
 
-Collector is not currently on CRAN. The following sample code to install
-will not work until a release is made to CRAN.
+Collector is not yet on CRAN. The following sample code will not work
+until a CRAN release is available.
 
 ``` r
 install.packages("collector")
 ```
 
 If you wish to run the development (and potentially bleeding edge)
-version of Collector, you can install directly from GitHub via the
-following `devtools` command.
+version, you can install directly from GitHub via the following
+`devtools` command.
 
 ``` r
 # install.pacakges("devtools")
@@ -65,7 +66,7 @@ the results, and generating parameters for simulation via
     questions <- read_questions()
     ```
 
-3.  Generate materials for interviewing a SME
+3.  Generate materials for interviewing a SME.
     
     ``` r
     output_dir <- tempdir()
@@ -100,7 +101,7 @@ the results, and generating parameters for simulation via
     ```
 
 7.  Build quantitative scenarios for
-    [evaluator](https://evaluator.severski.net)
+    [evaluator](https://evaluator.tidyrisk.org).
     
     ``` r
     scenarios <- prepare_data(scenario_parameters, capability_parameters, 

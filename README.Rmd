@@ -29,22 +29,21 @@ functions for the following stages of input collection:
  - generate scenario and capability questions
  - building interview artifacts, including progress card, slide decks, and handouts
  - calibration testing, similar to that promoted by Doug Hubbard and the FAIR Institute
- - opinion pooling
  - distribution fitting
- - generating quantitative data structures for simulation and further reporting by [Evaluator](https://evaluator.tidyrisk.org)
+ - opinion pooling of multiple SMEs into a single representative distribution
+ - generating quantitative risk scenarios for simulation and reporting by [Evaluator](https://evaluator.tidyrisk.org)
 
 ## Installation
 
-Collector is not currently on CRAN. The following sample code to install will 
-not work until a release is made to CRAN.
+Collector is not yet on CRAN. The following sample code will not work until a 
+CRAN release is available.
 
 ```{r install_cran, eval=FALSE}
 install.packages("collector")
 ```
 
-If you wish to run the development (and potentially bleeding edge) version of 
-Collector, you can install directly from GitHub via the following `devtools` 
-command.
+If you wish to run the development (and potentially bleeding edge) version, 
+you can install directly from GitHub via the following `devtools` command.
 
 ```{r github_install, eval=FALSE}
 # install.pacakges("devtools")
@@ -68,7 +67,7 @@ processing the results, and generating parameters for simulation via
     questions <- read_questions()
     ```
    
-3. Generate materials for interviewing a SME
+3. Generate materials for interviewing a SME.
 
     ```{r, eval=FALSE}
     output_dir <- tempdir()
@@ -91,7 +90,8 @@ processing the results, and generating parameters for simulation via
     capability_answers_fitted <- fit_capabilities(responses)
     ```
     
-6. Combine distributions into final parameters, applying weighting based on each SMEs level of calibration.
+6. Combine distributions into final parameters, applying weighting based on 
+    each SMEs level of calibration.
 
     ```{r eval=FALSE}
     sme_weightings <- generate_weights(questions, responses)
@@ -101,7 +101,7 @@ processing the results, and generating parameters for simulation via
       combine_capability_parameters()
     ```
     
-7. Build quantitative scenarios for [evaluator](https://evaluator.severski.net)
+7. Build quantitative scenarios for [evaluator](https://evaluator.tidyrisk.org).
 
     ```{r eval=FALSE}
     scenarios <- prepare_data(scenario_parameters, capability_parameters, 
