@@ -14,8 +14,8 @@ A dataframe.
 }
 \description{
 Given a dataframe with multiple SME fitted distributions for a single
-  capability, apply weighting for opinion pooling, and construct a final
-  combined distribution for each OpenFAIR scenario parameter.
+capability, apply weighting for opinion pooling, and construct a final
+combined distribution for each OpenFAIR scenario parameter.
 }
 \examples{
 NULL

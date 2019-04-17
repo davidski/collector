@@ -20,8 +20,8 @@ A dataframe.
 }
 \description{
 With a 5th and 95th quantile point estimates and optional lower and
-  upper bounds, fit a lognormal distribution, returning the parameters of
-  the distribution.
+upper bounds, fit a lognormal distribution, returning the parameters of
+the distribution.
 }
 \examples{
 fit_lognorm_trunc(low = 10, high = 50, min = 0, max = 100)

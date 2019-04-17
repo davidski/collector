@@ -6,9 +6,9 @@
 \title{MetroCare Hospital Capabilities}
 \format{A data frame with 60 rows and 3 variables:
 \describe{
-  \item{capability_id}{unique identifier of the capability}
-  \item{domain_id}{domain associated with the capability}
-  \item{capability}{text description of the capability}
+\item{capability_id}{unique identifier of the capability}
+\item{domain_id}{domain associated with the capability}
+\item{capability}{text description of the capability}
 }}
 \source{
 This is hypothetical information. Any similarity to any other

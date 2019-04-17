@@ -24,10 +24,10 @@ A dataframe.
 }
 \description{
 Given a set of subject matter expert estimates for the 5th and 95th
-  quantiles of impact and frequency of contact for events, calculate the
-  distribution parameters for TEF and LM. Use a truncated lognormal
-  distribution for LM (losses cannot be infinite in size) and
-  for the TEF.
+quantiles of impact and frequency of contact for events, calculate the
+distribution parameters for TEF and LM. Use a truncated lognormal
+distribution for LM (losses cannot be infinite in size) and
+for the TEF.
 }
 \examples{
 NULL

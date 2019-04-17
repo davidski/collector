@@ -16,8 +16,34 @@ A \code{\link{tidyrisk_question_set}} object
 }
 \description{
 Reads in all the questions for which subject matter expert input is
-  needed. Includes the domains, capabilities, scenarios, calibration
-  questions, and threat communities.
+needed. Includes the domains, capabilities, scenarios, calibration
+questions, and threat communities.
+}
+\details{
+Expects the following files to be present:
+\itemize{
+\item \code{domains.csv} - Domains
+\itemize{
+\item domain_id, domain
+}
+\item \code{capabilities.csv} - Capabilities
+\itemize{
+\item domain_id, capability_id, capability
+}
+\item \code{scenarios.csv} -  Scenarios
+\itemize{
+\item scenario_id, scenario, threat_id, domain_id, controls
+}
+\item \code{sme_top_domains.csv} - SME expertise
+\itemize{
+\item sme, domain1, domain2, domain3, domain4, domain5, domsin6, domain7
+}
+\item \code{calibration_questions.csv} - Calibration questions
+\item \code{threat_communities.csv} - Threat communities
+\itemize{
+\item threat_community, threat_id, definition, low, high
+}
+}
 }
 \examples{
 \dontrun{

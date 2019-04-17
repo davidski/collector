@@ -6,11 +6,11 @@
 \title{MetroCare Hospital Calibration Answers}
 \format{A data frame with 50 rows and 5 variables:
 \describe{
-  \item{sme}{name of the subject matter expert}
-  \item{calibration_id}{unique identifier of the calibration question}
-  \item{low}{SME's low end estimate}
-  \item{high}{SME's high end estimate}
-  \item{date}{date of answer}
+\item{sme}{name of the subject matter expert}
+\item{calibration_id}{unique identifier of the calibration question}
+\item{low}{SME's low end estimate}
+\item{high}{SME's high end estimate}
+\item{date}{date of answer}
 }}
 \source{
 This is hypothetical information. Any similarity to any other

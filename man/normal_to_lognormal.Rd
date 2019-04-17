@@ -16,7 +16,7 @@ A list.
 }
 \description{
 Given parameters that describe a normal distribution, convert them back
-  to parameters for a lognormal distribution.
+to parameters for a lognormal distribution.
 }
 \examples{
 normal_to_lognormal(normmean = 20, normsd = 3)

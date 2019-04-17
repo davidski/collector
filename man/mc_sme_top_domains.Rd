@@ -6,13 +6,13 @@
 \title{MetroCare Hospital SME Top Domains}
 \format{A data frame with 5 rows and 7 variables:
 \describe{
-  \item{sme}{SME name}
-  \item{domain1}{SME's first domain}
-  \item{domain2}{SME's second domain}
-  \item{domain3}{SME's third domain}
-  \item{domain4}{SME's fourth domain}
-  \item{domain5}{SME's fifth domain}
-  \item{domain6}{SME's sixth domain}
+\item{sme}{SME name}
+\item{domain1}{SME's first domain}
+\item{domain2}{SME's second domain}
+\item{domain3}{SME's third domain}
+\item{domain4}{SME's fourth domain}
+\item{domain5}{SME's fifth domain}
+\item{domain6}{SME's sixth domain}
 }}
 \source{
 This is hypothetical information. Any similarity to any other

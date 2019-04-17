@@ -3,7 +3,7 @@
 \name{fit_norm_trunc}
 \alias{fit_norm_trunc}
 \title{Find parameters that fit quantile values of an unknown truncated normal
-  distribution}
+distribution}
 \usage{
 fit_norm_trunc(low, high, min = 0, max = Inf)
 }
@@ -21,8 +21,8 @@ Dataframe.
 }
 \description{
 With a 5th and 95th quantile point estimates and optional lower and
-  upper bounds, fit a truncated normal distribution, returning the parameters of
-  the distribution.
+upper bounds, fit a truncated normal distribution, returning the parameters of
+the distribution.
 }
 \examples{
 fit_norm_trunc(low = 10, high = 50, min = 0, max = 100)

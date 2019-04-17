@@ -25,7 +25,7 @@ the question set, generate a list of \code{\link{tidyrisk_scenario}} objects tha
 fed into \code{evaluator::\link[evaluator]{run_simulation}} for Monte Carlo simulation.
 }
 \examples{
-suppressWarnings(library(dplyr))
+suppressPackageStartupMessages(library(dplyr))
 data(mc_domains, mc_capabilities, mc_scenarios, mc_sme_top_domains,
      calibration_questions, mc_threat_communities)
 question_set <- tidyrisk_question_set(mc_domains, mc_scenarios, mc_capabilities,

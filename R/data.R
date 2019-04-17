@@ -160,21 +160,21 @@
 #' entity is completely coincidental.
 #' @format A data frame with 280 rows and 17 variables:
 #' \describe{
-#'   \item{sme}{text title of the threat community}
+#'   \item{sme}{name of the sme providing the response}
 #'   \item{scenario_id}{unique identifier}
-#'   \item{date}{text description of the threat community}
-#'   \item{impact_func}{threat communities capability, low end}
+#'   \item{date}{date of the response}
+#'   \item{impact_func}{function to use for impact sampling}
 #'   \item{impact_meanlog}{threat communities capability, high end}
 #'   \item{impact_sdlog}{type of the threat community}
 #'   \item{impact_min}{action type of the threat community}
 #'   \item{impact_max}{action type of the threat community}
 #'   \item{imp_low}{action type of the threat community}
 #'   \item{imp_high}{action type of the threat community}
-#'   \item{frequency_func}{threat communities capability, low end}
-#'   \item{frequency_meanlog}{threat communities capability, high end}
-#'   \item{frequency_sdlog}{type of the threat community}
-#'   \item{frequency_min}{action type of the threat community}
-#'   \item{frequency_max}{action type of the threat community}
+#'   \item{frequency_func}{function to use for frequency sampling}
+#'   \item{frequency_meanlog}{frequency meanlog}
+#'   \item{frequency_sdlog}{frequency standard deviation log}
+#'   \item{frequency_min}{frequency minimum}
+#'   \item{frequency_max}{frequency maximum}
 #'   \item{freq_low}{action type of the threat community}
 #'   \item{freq_high}{action type of the threat community}
 #' }
@@ -189,14 +189,14 @@
 #' entity is completely coincidental.
 #' @format A data frame with 300 rows and 10 variables:
 #' \describe{
-#'   \item{sme}{text title of the threat community}
+#'   \item{sme}{name of the sme providing the response}
 #'   \item{capability_id}{unique identifier}
 #'   \item{date}{text description of the threat community}
-#'   \item{capability_func}{threat communities capability, low end}
-#'   \item{capability_mean}{threat communities capability, high end}
-#'   \item{capability_sd}{threat communities capability, high end}
-#'   \item{capability_min}{threat communities capability, high end}
-#'   \item{capability_max}{threat communities capability, high end}
+#'   \item{capability_func}{capability sampling function}
+#'   \item{capability_mean}{capability mean}
+#'   \item{capability_sd}{capability standard deviation}
+#'   \item{capability_min}{capability minimum}
+#'   \item{capability_max}{capability maximum}
 #'   \item{low}{threat communities capability, high end}
 #'   \item{high}{threat communities capability, high end}
 #' }
@@ -219,9 +219,9 @@
 #'   \item{threat_community}{text title of the threat community}
 #'   \item{threat_func}{sampling function}
 #'   \item{threat_id}{unique identifier}
-#'   \item{threat_max}{sampling function}
-#'   \item{threat_mean}{sampling function}
-#'   \item{threat_sd}{sampling function}
-#'   \item{threat_min}{sampling function}
+#'   \item{threat_max}{threat maximum capability}
+#'   \item{threat_mean}{threat mean capability}
+#'   \item{threat_sd}{threat capability standard deviation}
+#'   \item{threat_min}{threat capability minimum}
 #' }
 "mc_threat_parameters_fitted"

@@ -50,14 +50,14 @@ devtools::install_github("davidski/collector")
 ## Basic Flow
 
 See the [package website](https://collector.tidyrisk.org) for reference.
-While long form vignettes need to be created, the basic flow for
-preparing for interviews with your SMEs, processing the results, and
-generating parameters for simulation via
+The basic flow for preparing for interviews with your SMEs, processing
+the results, and generating parameters for simulation via
 [evaluator](https://evaluator.tidyrisk.org) is:
 
 1.  Build questions and define SME expertise
 
-2.  Read in the questions
+2.  Read in the question set. See `read_questions()` for more
+    information.
     
     ``` r
     library(collector)
@@ -68,36 +68,39 @@ generating parameters for simulation via
 3.  Generate materials for interviewing a SME
     
     ``` r
+    output_dir <- tempdir()
     make_handouts("Leader Name", questions, output_dir)
     make_scorecard("Leader Name", questions, output_dir)
     make_slides("Leader Name", questions, output_dir)
     ```
 
-4.  Read in the answers from your SMEs
+4.  Read in the responses from your SMEs. See `read_responses()`
+    documentation for more information.
     
     ``` r
-    answers <- read_answers()
+    responses <- read_responses()
     ```
 
 5.  Fit the SME answers to distributions.
     
     ``` r
-    scenario_answers_fitted <- fit_scenarios(answers)
-    capability_answers_fitted <- fit_capabilities(answers)
+    scenario_answers_fitted <- fit_scenarios(responses)
+    capability_answers_fitted <- fit_capabilities(responses)
     ```
 
 6.  Combine distributions into final parameters, applying weighting
     based on each SMEs level of calibration.
     
     ``` r
-    sme_weightings <- generate_weights(questions, answers)
+    sme_weightings <- generate_weights(questions, responses)
     scenario_parameters <- left_join(scenario_answers_fitted, sme_weightings, by = "sme") %>% 
       combine_scenario_parameters()
     capability_parameters <- left_join(capability_answers_fitted, sme_weightings, by = "sme") %>% 
       combine_capability_parameters()
     ```
 
-7.  Build quantitative parameters for `evaluator`
+7.  Build quantitative scenarios for
+    [evaluator](https://evaluator.severski.net)
     
     ``` r
     scenarios <- prepare_data(scenario_parameters, capability_parameters, 

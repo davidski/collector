@@ -14,7 +14,15 @@ A tidyrisk_response_set object
 }
 \description{
 Reads in all the responses recorded to the calibration, scenarios, and
-  capability questions.
+capability questions.
+}
+\details{
+Expects the following files to be present:
+\itemize{
+\item \code{calibration_answers.csv} - Calibration
+\item \code{scenario_answers.csv} - Scenarios
+\item \code{capability_answers.csv} - Capabilities
+}
 }
 \examples{
 \dontrun{

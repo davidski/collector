@@ -19,7 +19,7 @@ Based on the \code{evaluator::\link[evaluator]{derive_controls}} function
 }
 \details{
 Creates the difficulty parameters (embedded list) for quantitative
-  parameters.
+parameters.
 }
 \examples{
 NULL

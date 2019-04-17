@@ -16,20 +16,23 @@ A list of modified scenarios and capabilities.
 }
 \description{
 You may wish to apply some sanity checking bounds on the responses from
-  subject matter experts. This function applies a set of predefined
-  transformations to the scenario and capability responses. Review these
-  assumptions carefully before using them in your own analysis.
+subject matter experts. This function applies a set of predefined
+transformations to the scenario and capability responses. Review these
+assumptions carefully before using them in your own analysis.
 }
 \details{
 Make the following assumptions/modifications
-
-- minimum capacity is 5% (we've thought about it - 90% CI)
-  - maximum capacity is 95% (we're just about the best - 90% CI)
-  - minimum loss is 1000 dollars (both low and high)
-  - scale all impact into thousands of dollars (make normal
-      decomposition easier, and is in line of the scale of
-      a strategic analysis)
-  - set a minimum frequency of once per 10 years (0.1)
+\itemize{
+\item minimum capacity is 5% (we've thought about it - 90% CI)
+\itemize{
+\item maximum capacity is 95% (we're just about the best - 90% CI)
+\item minimum loss is 1000 dollars (both low and high)
+\item scale all impact into thousands of dollars (make normal
+decomposition easier, and is in line of the scale of
+a strategic analysis)
+\item set a minimum frequency of once per 10 years (0.1)
+}
+}
 }
 \examples{
 data(mc_capability_answers)

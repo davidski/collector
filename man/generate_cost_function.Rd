@@ -14,9 +14,9 @@ A function.
 }
 \description{
 This is an internal helper function that generates a sum of squares
-  cost function for any given `r*` function (e.g. rnorm, rlognorm). The
-  resulting function is intended to be used by an `optim` call for fitting
-  quantiles to distribution parameters.
+cost function for any given \code{r*} function (e.g. rnorm, rlognorm). The
+resulting function is intended to be used by an \code{optim} call for fitting
+quantiles to distribution parameters.
 }
 \examples{
 generate_cost_function(stats::qlnorm)

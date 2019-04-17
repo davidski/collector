@@ -16,7 +16,7 @@ A list.
 }
 \description{
 Given a set of parameters describing a lognormal distribution, return
-  the parameters of the underlying normal distribution.
+the parameters of the underlying normal distribution.
 }
 \examples{
 lognormal_to_normal(meanlog=1, sdlog=3)

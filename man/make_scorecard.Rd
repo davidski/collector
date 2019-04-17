@@ -21,12 +21,12 @@ An invisible null.
 }
 \description{
 Creates a two page PDF with one grid for scenarios and one for capabilities.
-  Each grid contains a square for each domain. An analyst can mark/stamp
-  each domain as it is covered in an interview, gamifying progress.
+Each grid contains a square for each domain. An analyst can mark/stamp
+each domain as it is covered in an interview, gamifying progress.
 }
 \details{
 The domains are ordered according to the SME's expertise profile, ensuring
-  they match the interview order flow.
+they match the interview order flow.
 }
 \examples{
 \dontrun{

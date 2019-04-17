@@ -11,7 +11,7 @@ is_tidyrisk_response_set(x)
 }
 \description{
 This function returns TRUE for tidyrisk_response_set or sub-classes
-  thereof, and FALSE for all other objects.
+thereof, and FALSE for all other objects.
 }
 \examples{
 \dontrun{

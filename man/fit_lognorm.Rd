@@ -16,7 +16,7 @@ A dataframe.
 }
 \description{
 With a 5th and 95th quantile point estimates, fit a lognormal distribution,
-  returning the parameters of the distribution.
+returning the parameters of the distribution.
 }
 \examples{
 fit_lognorm(low = .20, high = .50)

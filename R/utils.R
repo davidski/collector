@@ -4,6 +4,20 @@
 #'   needed. Includes the domains, capabilities, scenarios, calibration
 #'   questions, and threat communities.
 #'
+#' Expects the following files to be present:
+#'
+#'  * `domains.csv` - Domains
+#'    - domain_id, domain
+#'  * `capabilities.csv` - Capabilities
+#'    - domain_id, capability_id, capability
+#'  * `scenarios.csv` -  Scenarios
+#'    - scenario_id, scenario, threat_id, domain_id, controls
+#'  * `sme_top_domains.csv` - SME expertise
+#'    - sme, domain1, domain2, domain3, domain4, domain5, domsin6, domain7
+#'  * `calibration_questions.csv` - Calibration questions
+#'  * `threat_communities.csv` - Threat communities
+#'    - threat_community, threat_id, definition, low, high
+#'
 #' @export
 #' @param source_dir Directory location to find input files.
 #' @param active_only Read in only the active elements, defaults to TRUE.
@@ -83,6 +97,13 @@ read_questions <- function(source_dir, active_only = TRUE) {
 #'
 #' Reads in all the responses recorded to the calibration, scenarios, and
 #'   capability questions.
+#'
+#' Expects the following files to be present:
+#'
+#'  * `calibration_answers.csv` - Calibration
+#'  * `scenario_answers.csv` - Scenarios
+#'  * `capability_answers.csv` - Capabilities
+#'
 #'
 #' @param source_dir Directory location where input files are found.
 #' @importFrom readr read_csv col_character col_date col_number col_integer cols
@@ -175,11 +196,10 @@ get_smes_domains <- function(sme, questions) {
 
 #' Check the readability of scenario text
 #'
-#' With a dataframe of scenario text, scenario_id, and domain, generate the Flesch-
-#'   Kincaid score and return that score along with the scenario ID and domain
-#'   as a tidy dataframe.
+#' Calculate the Flesch-Kincaid score for each scenario and return that score
+#'   along with the scenario ID and domain as a tidy dataframe.
 #'
-#' @param x Scenarios.
+#' @param x A `tidyrisk_question_set` object
 #'
 #' @importFrom quanteda textstat_readability
 #' @importFrom tibble as_tibble

@@ -6,18 +6,18 @@
 \title{MetroCare Hospital Threat Parameters (fitted)}
 \format{A data frame with 8 rows and 12 variables:
 \describe{
-  \item{action_type}{action type}
-  \item{category}{category}
-  \item{definition}{text description of the threat community}
-  \item{high}{action type of the threat community}
-  \item{low}{type of the threat community}
-  \item{threat_community}{text title of the threat community}
-  \item{threat_func}{sampling function}
-  \item{threat_id}{unique identifier}
-  \item{threat_max}{sampling function}
-  \item{threat_mean}{sampling function}
-  \item{threat_sd}{sampling function}
-  \item{threat_min}{sampling function}
+\item{action_type}{action type}
+\item{category}{category}
+\item{definition}{text description of the threat community}
+\item{high}{action type of the threat community}
+\item{low}{type of the threat community}
+\item{threat_community}{text title of the threat community}
+\item{threat_func}{sampling function}
+\item{threat_id}{unique identifier}
+\item{threat_max}{sampling function}
+\item{threat_mean}{sampling function}
+\item{threat_sd}{sampling function}
+\item{threat_min}{sampling function}
 }}
 \source{
 This is hypothetical information. Any similarity to any other

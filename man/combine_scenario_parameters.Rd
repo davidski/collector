@@ -14,9 +14,9 @@ A dataframe.
 }
 \description{
 Given a dataframe with multiple SME fitted distributions for a single
-  scenario, decompose the lognormal distribution into normal parameters,
-  apply weighting for opinion pooling, and construct a final combined
-  distribution for each OpenFAIR scenario factor.
+scenario, decompose the lognormal distribution into normal parameters,
+apply weighting for opinion pooling, and construct a final combined
+distribution for each OpenFAIR scenario factor.
 }
 \examples{
 NULL

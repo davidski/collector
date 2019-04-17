@@ -6,13 +6,13 @@
 \title{MetroCare Hospital Threat Communities}
 \format{A data frame with 6 rows and 7 variables:
 \describe{
-  \item{threat_community}{text title of the threat community}
-  \item{threat_id}{unique identifier}
-  \item{definition}{text description of the threat community}
-  \item{low}{threat communities capability, low end}
-  \item{high}{threat communities capability, high end}
-  \item{category}{type of the threat community}
-  \item{action_type}{action type of the threat community}
+\item{threat_community}{text title of the threat community}
+\item{threat_id}{unique identifier}
+\item{definition}{text description of the threat community}
+\item{low}{threat communities capability, low end}
+\item{high}{threat communities capability, high end}
+\item{category}{type of the threat community}
+\item{action_type}{action type of the threat community}
 }}
 \source{
 This is hypothetical information. Any similarity to any other

@@ -22,6 +22,9 @@ reference:
   - title: "Combination Functions"
     contents:
       - starts_with("combine")
+  - title: "Create Scenario Objects"
+    contents:
+      - prepare_data
   - title: "Distribution Fitting"
     contents:
       - starts_with("fit")
@@ -38,9 +41,6 @@ reference:
       - get_smes_domains
       - lognormal_to_normal
       - normal_to_lognormal
-      - prepare_data
-      - read_answers
-      - read_questions
   - title: "Object Classes"
     contents:
       - contains("tidyrisk")
@@ -49,3 +49,8 @@ reference:
     contents:
       - starts_with("mc_")
       - calibration_questions
+  - title: "Read Questions and Responses"
+    desc: "Read datasets from disk"
+    contents:
+      - read_questions
+      - read_responses

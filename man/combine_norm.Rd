@@ -14,7 +14,7 @@ A dataframe.
 }
 \description{
 Given a set of arbitrary parameters that includes at least a weight column,
-  take a weighted average of all the other parameters.
+take a weighted average of all the other parameters.
 }
 \examples{
 dat <- data.frame(mean = c(10, 20, 30),

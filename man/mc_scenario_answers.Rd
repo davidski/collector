@@ -6,13 +6,13 @@
 \title{MetroCare Hospital Scenario Answers}
 \format{A data frame with 1 rows and 7 variables:
 \describe{
-  \item{sme}{name of the SME}
-  \item{scenario_id}{identifier of the scenario}
-  \item{freq_low}{frequency estimate, low}
-  \item{freq_high}{frequency estimate, high}
-  \item{imp_low}{impact estimate, low}
-  \item{imp_high}{impact estimate, high}
-  \item{date}{date of the answer}
+\item{sme}{name of the SME}
+\item{scenario_id}{identifier of the scenario}
+\item{freq_low}{frequency estimate, low}
+\item{freq_high}{frequency estimate, high}
+\item{imp_low}{impact estimate, low}
+\item{imp_high}{impact estimate, high}
+\item{date}{date of the answer}
 }}
 \source{
 This is hypothetical information. Any similarity to any other
