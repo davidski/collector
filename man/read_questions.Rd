@@ -30,13 +30,13 @@ Expects the following files to be present:
 \itemize{
 \item domain_id, capability_id, capability
 }
-\item \code{scenarios.csv} -  Scenarios
+\item \code{scenarios.csv} - Scenarios
 \itemize{
 \item scenario_id, scenario, threat_id, domain_id, controls
 }
 \item \code{sme_top_domains.csv} - SME expertise
 \itemize{
-\item sme, domain1, domain2, domain3, domain4, domain5, domsin6, domain7
+\item sme, domain1, domain2, domain3, domain4, domain5, domain6, domain7
 }
 \item \code{calibration_questions.csv} - Calibration questions
 \item \code{threat_communities.csv} - Threat communities

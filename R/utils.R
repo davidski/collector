@@ -10,10 +10,10 @@
 #'    - domain_id, domain
 #'  * `capabilities.csv` - Capabilities
 #'    - domain_id, capability_id, capability
-#'  * `scenarios.csv` -  Scenarios
+#'  * `scenarios.csv` - Scenarios
 #'    - scenario_id, scenario, threat_id, domain_id, controls
 #'  * `sme_top_domains.csv` - SME expertise
-#'    - sme, domain1, domain2, domain3, domain4, domain5, domsin6, domain7
+#'    - sme, domain1, domain2, domain3, domain4, domain5, domain6, domain7
 #'  * `calibration_questions.csv` - Calibration questions
 #'  * `threat_communities.csv` - Threat communities
 #'    - threat_community, threat_id, definition, low, high
@@ -50,7 +50,7 @@ read_questions <- function(source_dir, active_only = TRUE) {
                                                  capability_id = readr::col_character(),
                                                  domain_id = readr::col_character())) %>%
       dplyr::arrange(.data$domain_id, .data$capability_id)
-  caps <- if (active_only  && "active" %in% names(dat)) {
+  caps <- if (active_only && "active" %in% names(dat)) {
     dplyr::filter(dat, .data$active != FALSE | is.na(.data$active))
     } else {dat}
 

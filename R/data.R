@@ -103,15 +103,11 @@
 #' @source
 #' This is hypothetical information. Any similarity to any other
 #' entity is completely coincidental.
-#' @format A data frame with 5 rows and 7 variables:
+#' @format A data frame with 35 rows and 3 variables:
 #' \describe{
 #'   \item{sme}{SME name}
-#'   \item{domain1}{SME's first domain}
-#'   \item{domain2}{SME's second domain}
-#'   \item{domain3}{SME's third domain}
-#'   \item{domain4}{SME's fourth domain}
-#'   \item{domain5}{SME's fifth domain}
-#'   \item{domain6}{SME's sixth domain}
+#'   \item{key}{index of domain}
+#'   \item{value}{name of domain}
 #' }
 "mc_sme_top_domains"
 

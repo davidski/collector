@@ -57,7 +57,9 @@ mc_calibration_answers <- readr::read_csv(here::here("data-raw/calibration_answe
 usethis::use_data(mc_calibration_answers, overwrite = TRUE)
 
 # generate and save sme top domains
-mc_sme_top_domains <- readr::read_csv(here::here("data-raw/sme_top_domains.csv"))
+mc_sme_top_domains <- readr::read_csv(here::here("data-raw/sme_top_domains.csv")) %>%
+  tidyr::gather(key = "key", value = "value", -.data$sme) %>%
+  tidyr::drop_na()
 usethis::use_data(mc_sme_top_domains, overwrite = TRUE)
 
 # generate and save fitted parameters

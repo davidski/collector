@@ -7,15 +7,14 @@
 check_readability(x)
 }
 \arguments{
-\item{x}{Scenarios.}
+\item{x}{A \code{tidyrisk_question_set} object}
 }
 \value{
 A dataframe of the scenario id, domain, and the Flesch-Kincaid readability score.
 }
 \description{
-With a dataframe of scenario text, scenario_id, and domain, generate the Flesch-
-Kincaid score and return that score along with the scenario ID and domain
-as a tidy dataframe.
+Calculate the Flesch-Kincaid score for each scenario and return that score
+along with the scenario ID and domain as a tidy dataframe.
 }
 \examples{
 \dontrun{

@@ -6,21 +6,21 @@
 \title{MetroCare Hospital Scenario Parameters (fitted)}
 \format{A data frame with 280 rows and 17 variables:
 \describe{
-\item{sme}{text title of the threat community}
+\item{sme}{name of the sme providing the response}
 \item{scenario_id}{unique identifier}
-\item{date}{text description of the threat community}
-\item{impact_func}{threat communities capability, low end}
+\item{date}{date of the response}
+\item{impact_func}{function to use for impact sampling}
 \item{impact_meanlog}{threat communities capability, high end}
 \item{impact_sdlog}{type of the threat community}
 \item{impact_min}{action type of the threat community}
 \item{impact_max}{action type of the threat community}
 \item{imp_low}{action type of the threat community}
 \item{imp_high}{action type of the threat community}
-\item{frequency_func}{threat communities capability, low end}
-\item{frequency_meanlog}{threat communities capability, high end}
-\item{frequency_sdlog}{type of the threat community}
-\item{frequency_min}{action type of the threat community}
-\item{frequency_max}{action type of the threat community}
+\item{frequency_func}{function to use for frequency sampling}
+\item{frequency_meanlog}{frequency meanlog}
+\item{frequency_sdlog}{frequency standard deviation log}
+\item{frequency_min}{frequency minimum}
+\item{frequency_max}{frequency maximum}
 \item{freq_low}{action type of the threat community}
 \item{freq_high}{action type of the threat community}
 }}

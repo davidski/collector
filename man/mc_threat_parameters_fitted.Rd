@@ -14,10 +14,10 @@
 \item{threat_community}{text title of the threat community}
 \item{threat_func}{sampling function}
 \item{threat_id}{unique identifier}
-\item{threat_max}{sampling function}
-\item{threat_mean}{sampling function}
-\item{threat_sd}{sampling function}
-\item{threat_min}{sampling function}
+\item{threat_max}{threat maximum capability}
+\item{threat_mean}{threat mean capability}
+\item{threat_sd}{threat capability standard deviation}
+\item{threat_min}{threat capability minimum}
 }}
 \source{
 This is hypothetical information. Any similarity to any other
