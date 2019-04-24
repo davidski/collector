@@ -1,0 +1,45 @@
+---
+title: "Flat File Schemas"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Flat File Schemas}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Key flat file schemas:
+
+# Responses
+
+## `calibration_answers.csv`
+char(SME), char(ID), int(LOW), int(HIGH), date(DATE)
+
+## `scenario_answers.csv`
+char(SME), char(ID), dbl(FREQ_LOW), dbl(FREQ_HIGH), int(IMP_LOW), int(IMP_HIGH), date(DATE)
+
+## `capability_answers.csv`
+char(SME), char(ID), int(LOW), int(HIGH), date(DATE)
+
+# Questions
+
+## `domains.csv`
+char(domain), char(domain_id)
+
+## `capabilities.csv`
+char(capability), char(capability_id), char(domain_id)
+
+## `scenarios.csv`
+char(scenario_id), char(scenario), char(threat_id), char(domain_id), char(controls)
+
+#W `expertise.csv`
+char(sme)
+
+## `calibration.csv`
+char(*)

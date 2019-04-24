@@ -33,7 +33,9 @@ Imports:
 Suggests:
     spelling,
     testthat,
-    covr
+    covr,
+    knitr
 URL: https://collector.tidyrisk.org
 BugReports: https://github.com/davidski/collector/issues
 Language: en-US
+VignetteBuilder: knitr

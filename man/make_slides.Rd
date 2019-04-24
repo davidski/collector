@@ -10,7 +10,7 @@ make_slides(sme, questions, output_dir,
 \arguments{
 \item{sme}{Name of the SME being interviewed.}
 
-\item{questions}{tidyrisk_question_set object.}
+\item{questions}{A \code{\link{tidyrisk_question_set}} object.}
 
 \item{output_dir}{Directory location for knitted slides.}
 

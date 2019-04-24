@@ -15,8 +15,9 @@ get_smes_domains(sme, questions)
 An ordered vector of the domains for the requested SME.
 }
 \description{
-Given a tidyrisk_question_set object and the name and the name of a specific SME of
-interest, create a vector of the domains in order of priority.
+Given a \code{\link{tidyrisk_question_set}} object and the name and the
+name of a specific SME of interest, create a vector of the domains in
+order of priority.
 }
 \examples{
 \dontrun{

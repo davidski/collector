@@ -12,7 +12,7 @@ make_bingo(sme, questions, output_dir = getwd())
 \arguments{
 \item{sme}{Name of SME.}
 
-\item{questions}{Questions object.}
+\item{questions}{\code{\link{tidyrisk_question_set}} object.}
 
 \item{output_dir}{Directory to place scorecards.}
 }
