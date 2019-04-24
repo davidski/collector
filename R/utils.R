@@ -163,8 +163,9 @@ read_responses <- function(source_dir = getwd()) {
 
 #' Calculate the prioritized list of domains for a given subject matter expert (SME)
 #'
-#' Given a tidyrisk_question_set object and the name and the name of a specific SME of
-#'   interest, create a vector of the domains in order of priority.
+#' Given a \code{\link{tidyrisk_question_set}} object and the name and the
+#'   name of a specific SME of interest, create a vector of the domains in
+#'   order of priority.
 #'
 #' @param sme Name of the subject matter expert.
 #' @param questions A \code{\link{tidyrisk_question_set}} object.

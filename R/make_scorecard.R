@@ -8,7 +8,7 @@
 #'   they match the interview order flow.
 #'
 #' @param sme Name of SME.
-#' @param questions Questions object.
+#' @param questions \code{\link{tidyrisk_question_set}} object.
 #' @param output_dir Directory to place scorecards.
 #'
 #' @return An invisible null.

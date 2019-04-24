@@ -6,7 +6,7 @@
 #' SME.
 #'
 #' @param sme Name of the SME being interviewed.
-#' @param questions tidyrisk_question_set object.
+#' @param questions \code{\link\{tidyrisk_question_set}} object.
 #' @param output_dir Directory location for knitted slides.
 #' @param assessment_title Title of the assessment being performed.
 #'
