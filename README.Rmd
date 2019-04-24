@@ -35,19 +35,18 @@ functions for the following stages of input collection:
 
 ## Installation
 
-Collector is not yet on CRAN. The following sample code will not work until a 
-CRAN release is available.
+Collector is now available on CRAN.
 
 ```{r install_cran, eval=FALSE}
 install.packages("collector")
 ```
 
 If you wish to run the development (and potentially bleeding edge) version, 
-you can install directly from GitHub via the following `devtools` command.
+you can install directly from GitHub via the following `remotes` command.
 
 ```{r github_install, eval=FALSE}
-# install.pacakges("devtools")
-devtools::install_github("davidski/collector")
+# install.packages("remotes")
+remotes::install_github("davidski/collector")
 ```
 
 ## Basic Flow

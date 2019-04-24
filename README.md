@@ -32,8 +32,7 @@ offers functions for the following stages of input collection:
 
 ## Installation
 
-Collector is not yet on CRAN. The following sample code will not work
-until a CRAN release is available.
+Collector is now available on CRAN.
 
 ``` r
 install.packages("collector")
@@ -41,11 +40,11 @@ install.packages("collector")
 
 If you wish to run the development (and potentially bleeding edge)
 version, you can install directly from GitHub via the following
-`devtools` command.
+`remotes` command.
 
 ``` r
-# install.pacakges("devtools")
-devtools::install_github("davidski/collector")
+# install.packages("remotes")
+remotes::install_github("davidski/collector")
 ```
 
 ## Basic Flow
