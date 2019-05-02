@@ -8,7 +8,8 @@ test_that("Read questions", {
   data("calibration_questions")
   data("mc_threat_communities")
 
-  workdir <- tempdir(check = TRUE)
+  workdir <- file.path(tempdir(), "collector")
+  dir.create(workdir, showWarnings = FALSE)
   readr::write_csv(mc_domains, file.path(workdir, "domains.csv"))
   readr::write_csv(mc_capabilities, file.path(workdir, "capabilities.csv"))
   readr::write_csv(mc_scenarios, file.path(workdir, "scenarios.csv"))
@@ -26,7 +27,8 @@ test_that("Read answers", {
   data("mc_scenario_answers")
   data("mc_calibration_answers")
 
-  workdir <- tempdir(check = TRUE)
+  workdir <- file.path(tempdir(), "collector")
+  dir.create(workdir, showWarnings = FALSE)
   readr::write_csv(mc_capability_answers, file.path(workdir, "capability_answers.csv"))
   readr::write_csv(mc_scenario_answers, file.path(workdir, "scenario_answers.csv"))
   readr::write_csv(mc_calibration_answers, file.path(workdir, "calibration_answers.csv"))
