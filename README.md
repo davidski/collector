@@ -11,7 +11,7 @@ Status](https://travis-ci.org/davidski/collector.svg?branch=master)](https://tra
 Status](https://ci.appveyor.com/api/projects/status/github/davidski/collector?branch=master&svg=true)](https://ci.appveyor.com/project/davidski/collector)
 [![Coverage
 Status](https://codecov.io/gh/davidski/collector/branch/master/graph/badge.svg)](https://codecov.io/github/davidski/collector?branch=master)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/collector)](https://cran.r-project.org/package=colector)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/collector)](https://cran.r-project.org/package=collector)
 ![downloads](https://cranlogs.r-pkg.org/badges/grand-total/collector)
 <!-- badges: end -->
 
