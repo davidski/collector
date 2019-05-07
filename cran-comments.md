@@ -1,12 +1,5 @@
-This is a re-submission of a new package.
-
-Corrected since last submission:
-
-- converted to undirected quotation marks in description text
-- removed all function defaults that went to a user filespace. Functions 
-  that write to disk now require explicit user decisions. Examples use 
-  tempdir().
-
+This is a minor bug fix release, updating documentation and correcting 
+NOTES and ERRORS on CRAN builds due to failure to document pandoc requirement.
 
 ## Test environments
 
@@ -21,4 +14,3 @@ Corrected since last submission:
 
 0 errors | 0 warnings | 0 notes
 
-* This is a new release.
