@@ -1,4 +1,4 @@
-# collector (development version)
+# collector 0.1.1
 
 * Documentation improvements.
 * Add system dependency on pandoc.
