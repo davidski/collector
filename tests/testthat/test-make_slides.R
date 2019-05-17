@@ -1,6 +1,8 @@
 context("Make Slides")
 
 test_that("make slides", {
+  skip_if(!rmarkdown::pandoc_available(),
+          "Cannot test slide generation without pandoc.")
   data(calibration_questions)
   data(mc_domains)
   data(mc_scenarios)

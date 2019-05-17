@@ -14,6 +14,10 @@ matrix:
   - os: linux
     dist: xenial
     r: devel
+  - os: linux
+    dist: xenial
+    r: release
+    pandoc: false
 addons:
   apt:
     update: true
