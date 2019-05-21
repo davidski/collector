@@ -1,8 +1,7 @@
 # collector 0.1.2
 
-# collector (development version)
-
-* Do not run pandoc tests when pandoc is not available
+* Fix namepsace requirement for xaringan.
+* Do not run pandoc tests when pandoc is not available.
 
 # collector 0.1.1
 
