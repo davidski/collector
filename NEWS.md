@@ -1,3 +1,5 @@
+# collector 0.1.2
+
 # collector (development version)
 
 * Do not run pandoc tests when pandoc is not available
