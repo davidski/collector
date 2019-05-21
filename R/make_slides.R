@@ -12,6 +12,7 @@
 #'
 #' @return Invisibly returns the full path to the slide file.
 #' @export
+#' @import xaringan
 #' @importFrom rmarkdown render
 #' @importFrom stringr str_replace_all str_glue
 #'

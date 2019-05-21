@@ -1,5 +1,6 @@
-This is a minor bug fix release, updating documentation and correcting 
-NOTES and ERRORS on CRAN builds due to failure to document pandoc requirement.
+This restores an archived package to CRAN, correcting incorrectly handled 
+pandoc dependencies, adding additional CI checks for pandoc issues, and 
+correcting a NOTE about namespace and imports mismatch.
 
 ## Test environments
 
