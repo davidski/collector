@@ -37,3 +37,26 @@ test_that("Read answers", {
   expect_s3_class(resp, "tidyrisk_response_set")
   unlink(workdir, recursive = TRUE)
 })
+
+test_that("Readability functions", {
+  data(mc_domains)
+  data("mc_capabilities")
+  data("mc_scenarios")
+  data("mc_sme_top_domains")
+  data("calibration_questions")
+  data("mc_threat_communities")
+
+  workdir <- file.path(tempdir(), "collector")
+  dir.create(workdir, showWarnings = FALSE)
+  readr::write_csv(mc_domains, file.path(workdir, "domains.csv"))
+  readr::write_csv(mc_capabilities, file.path(workdir, "capabilities.csv"))
+  readr::write_csv(mc_scenarios, file.path(workdir, "scenarios.csv"))
+  readr::write_csv(mc_sme_top_domains, file.path(workdir, "sme_top_domains.csv"))
+  readr::write_csv(calibration_questions, file.path(workdir, "calibration_questions.csv"))
+  readr::write_csv(mc_threat_communities, file.path(workdir, "threat_communities.csv"))
+
+  ques <- read_questions(source_dir = workdir)
+  readability_scores <- check_readability(ques)
+  expect_s3_class(readability_scores, "tbl_df")
+  unlink(workdir, recursive = TRUE)
+})

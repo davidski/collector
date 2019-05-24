@@ -10,7 +10,7 @@ check_readability(x)
 \item{x}{A \code{tidyrisk_question_set} object}
 }
 \value{
-A dataframe of the scenario id, domain, and the Flesch-Kincaid readability score.
+A dataframe of the scenario id, domain id, and the Flesch-Kincaid readability score for the scenario text.
 }
 \description{
 Calculate the Flesch-Kincaid score for each scenario and return that score

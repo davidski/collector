@@ -206,7 +206,7 @@ get_smes_domains <- function(sme, questions) {
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr arrange desc select bind_cols
 #' @importFrom rlang .data
-#' @return A dataframe of the scenario id, domain, and the Flesch-Kincaid readability score.
+#' @return A dataframe of the scenario id, domain id, and the Flesch-Kincaid readability score for the scenario text.
 #' @export
 #'
 #' @examples
@@ -217,9 +217,9 @@ get_smes_domains <- function(sme, questions) {
 check_readability <- function(x) {
   enforce_tidyrisk_question_set(x)
   x <- x$scenarios
-  dplyr::bind_cols(x, quanteda::textstat_readability(x$scenarios, "Flesch.Kincaid")) %>%
+  dplyr::bind_cols(x, quanteda::textstat_readability(x$scenario, "Flesch.Kincaid")) %>%
     dplyr::arrange(dplyr::desc(.data$Flesch.Kincaid)) %>%
-    dplyr::select(.data$id, .data$domain, .data$Flesch.Kincaid)
+    dplyr::select(.data$scenario_id, .data$domain_id, .data$Flesch.Kincaid)
 }
 
 #' Validate that the parameter passed is a \code{\link{tidyrisk_question_set}} object
