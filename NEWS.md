@@ -1,3 +1,5 @@
+# collector (development version)
+
 # collector 0.1.2
 
 * Fix namepsace requirement for xaringan.
