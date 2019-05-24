@@ -2,7 +2,7 @@
 
 # collector 0.1.2
 
-* Fix namepsace requirement for xaringan.
+* Fix namespace requirement for xaringan.
 * Do not run pandoc tests when pandoc is not available.
 
 # collector 0.1.1
