@@ -1,5 +1,8 @@
 # collector (development version)
 
+* Remove timer from interview slides.
+* Correct `check_readability()` column errors.
+
 # collector 0.1.2
 
 * Fix namespace requirement for xaringan.

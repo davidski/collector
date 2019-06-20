@@ -14,7 +14,6 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-      countdown: 60000
     seal: false
 ---
 
