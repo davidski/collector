@@ -4,8 +4,12 @@
 \alias{make_slides}
 \title{Create interview slides}
 \usage{
-make_slides(sme, questions, output_dir,
-  assessment_title = "Strategic Risk Assessment")
+make_slides(
+  sme,
+  questions,
+  output_dir,
+  assessment_title = "Strategic Risk Assessment"
+)
 }
 \arguments{
 \item{sme}{Name of the SME being interviewed.}

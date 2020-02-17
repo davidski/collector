@@ -6,11 +6,17 @@
 \alias{as.tidyrisk_response_set}
 \title{Construct a tidyrisk_response_set object}
 \usage{
-tidyrisk_response_set(calibration_answers, scenario_answers,
-  capability_answers)
+tidyrisk_response_set(
+  calibration_answers,
+  scenario_answers,
+  capability_answers
+)
 
-new_tidyrisk_response_set(calibration_answers, scenario_answers,
-  capability_answers)
+new_tidyrisk_response_set(
+  calibration_answers,
+  scenario_answers,
+  capability_answers
+)
 
 as.tidyrisk_response_set(x, ...)
 }

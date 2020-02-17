@@ -2,6 +2,7 @@
 
 * Remove timer from interview slides.
 * Correct `check_readability()` column errors.
+* Update for tidyr 1.0 changes.
 
 # collector 0.1.2
 

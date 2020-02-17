@@ -3,7 +3,6 @@
 \docType{package}
 \name{collector}
 \alias{collector}
-\alias{collector-package}
 \title{\code{collector} package}
 \description{
 Quantified Information Risk Assessment Data Collection

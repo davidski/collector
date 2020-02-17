@@ -23,15 +23,13 @@ assumptions carefully before using them in your own analysis.
 \details{
 Make the following assumptions/modifications
 \itemize{
-\item minimum capacity is 5% (we've thought about it - 90% CI)
-\itemize{
-\item maximum capacity is 95% (we're just about the best - 90% CI)
+\item minimum capacity is 5\% (we've thought about it - 90\% CI)
+\item maximum capacity is 95\% (we're just about the best - 90\% CI)
 \item minimum loss is 1000 dollars (both low and high)
 \item scale all impact into thousands of dollars (make normal
 decomposition easier, and is in line of the scale of
 a strategic analysis)
 \item set a minimum frequency of once per 10 years (0.1)
-}
 }
 }
 \examples{

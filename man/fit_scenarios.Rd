@@ -4,8 +4,12 @@
 \alias{fit_scenarios}
 \title{Fit SME scenario estimates to distribution parameters}
 \usage{
-fit_scenarios(responses, maximum_impact = Inf,
-  maximum_impact_factor = 10, maximum_frequency_factor = 10)
+fit_scenarios(
+  responses,
+  maximum_impact = Inf,
+  maximum_impact_factor = 10,
+  maximum_frequency_factor = 10
+)
 }
 \arguments{
 \item{responses}{A \code{\link{tidyrisk_response_set}} object.}
@@ -33,18 +37,20 @@ for the TEF.
 NULL
 }
 \seealso{
-Other distribution fitting functions: \code{\link{combine_lognorm_trunc}},
-  \code{\link{combine_lognorm}},
-  \code{\link{combine_norm}},
-  \code{\link{fit_capabilities_geomean}},
-  \code{\link{fit_capabilities}},
-  \code{\link{fit_lognorm_trunc}},
-  \code{\link{fit_lognorm}}, \code{\link{fit_norm_trunc}},
-  \code{\link{fit_pois}},
-  \code{\link{fit_scenarios_geomean}},
-  \code{\link{fit_threat_communities}},
-  \code{\link{generate_cost_function}},
-  \code{\link{lognormal_to_normal}},
-  \code{\link{normal_to_lognormal}}
+Other distribution fitting functions: 
+\code{\link{combine_lognorm_trunc}()},
+\code{\link{combine_lognorm}()},
+\code{\link{combine_norm}()},
+\code{\link{fit_capabilities_geomean}()},
+\code{\link{fit_capabilities}()},
+\code{\link{fit_lognorm_trunc}()},
+\code{\link{fit_lognorm}()},
+\code{\link{fit_norm_trunc}()},
+\code{\link{fit_pois}()},
+\code{\link{fit_scenarios_geomean}()},
+\code{\link{fit_threat_communities}()},
+\code{\link{generate_cost_function}()},
+\code{\link{lognormal_to_normal}()},
+\code{\link{normal_to_lognormal}()}
 }
 \concept{distribution fitting functions}

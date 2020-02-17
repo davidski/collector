@@ -4,8 +4,12 @@
 \alias{prepare_data}
 \title{Create one or more quantitative scenarios objects suitable for simulation by 'evaluator'}
 \usage{
-prepare_data(scenario_parameters, capability_parameters, threat_parameters,
-  questions)
+prepare_data(
+  scenario_parameters,
+  capability_parameters,
+  threat_parameters,
+  questions
+)
 }
 \arguments{
 \item{scenario_parameters}{Scenarios with final parameters defined.}

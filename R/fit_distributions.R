@@ -284,7 +284,7 @@ fit_capabilities_geomean <- function(capabilities_answers) {
     dplyr::summarise(low = EnvStats::geoMean(.data$low, na.rm = TRUE),
               high = EnvStats::geoMean(.data$high, na.rm = TRUE)) %>%
     tidyr::replace_na(list(low = 1, high = 1)) %>%
-    tidyr::nest(.data$low:.data$high) %>%
+    tidyr::nest(data = c(.data$low:.data$high)) %>%
     dplyr::mutate(capability = purrr::map(.data$data,
                                           ~ fit_norm_trunc(.x$low, .x$high,
                                                            min = 0, max = 100))) %>%
@@ -312,12 +312,12 @@ fit_scenarios_geomean <- function(scenario_answers) {
     dplyr::summarise_at(dplyr::vars(matches("low|high")), .funs = EnvStats::geoMean, na.rm = TRUE) %>%
     # if we are missing any answers, fill it in with default values
     tidyr::replace_na(list(imp_low = 1, imp_high = 1, freq_low = 1, freq_high = 1)) %>%
-    tidyr::nest(.data$imp_low:.data$imp_high) %>%
+    tidyr::nest(data = c(.data$imp_low:.data$imp_high)) %>%
     dplyr::mutate(impact = purrr::map(.data$data, ~ fit_lognorm(.x$imp_low, .x$imp_high))) %>%
-    tidyr::unnest(.data$impact, .sep = "_") %>% unnest(.data$data) %>%
-    tidyr::nest(.data$freq_low:.data$freq_high) %>%
+    tidyr::unnest(.data$impact, names_sep = "_") %>% unnest(.data$data) %>%
+    tidyr::nest(data = c(.data$freq_low:.data$freq_high)) %>%
     dplyr::mutate(frequency = purrr::map(.data$data, ~ fit_lognorm(.x$freq_low, .x$freq_high))) %>%
-    tidyr::unnest(.data$frequency, .sep = "_") %>% tidyr::unnest(.data$data)
+    tidyr::unnest(.data$frequency, names_sep = "_") %>% tidyr::unnest(.data$data)
 }
 
 #' Fit SME scenario estimates to distribution parameters
@@ -354,18 +354,18 @@ fit_scenarios <- function(responses, maximum_impact = Inf,
 
   responses$scenarios %>%
     # first we work on the impact data
-    tidyr::nest(.data$imp_low:.data$imp_high) %>%
+    tidyr::nest(data = c(.data$imp_low:.data$imp_high)) %>%
     dplyr::mutate(impact = purrr::map(.data$data, ~ fit_lognorm_trunc(
       .x$imp_low, .x$imp_high, max = min(.x$imp_high * maximum_impact_factor, maximum_impact)))) %>%
-    tidyr::unnest(.data$impact, .sep = "_") %>% tidyr::unnest(.data$data) ->
+    tidyr::unnest(.data$impact, names_sep = "_") %>% tidyr::unnest(.data$data) ->
     sce_ans_fitted
 
     # now process the frequency data
   sce_ans_fitted %>%
-    tidyr::nest(.data$freq_low:.data$freq_high) %>%
+    tidyr::nest(data = c(.data$freq_low:.data$freq_high)) %>%
     dplyr::mutate(frequency = purrr::map(.data$data, ~ fit_lognorm_trunc(
       .x$freq_low, .x$freq_high, max = .x$freq_high * maximum_frequency_factor))) %>%
-    tidyr::unnest(.data$frequency, .sep = "_") %>% tidyr::unnest(.data$data) ->
+    tidyr::unnest(.data$frequency, names_sep = "_") %>% tidyr::unnest(.data$data) ->
     sce_ans_fitted
 
   sce_ans_fitted
@@ -390,10 +390,10 @@ fit_capabilities <- function(responses) {
   enforce_tidyrisk_response_set(responses)
 
   responses$capabilities %>%
-    tidyr::nest(.data$low:.data$high) %>%
+    tidyr::nest(data = c(.data$low:.data$high)) %>%
     dplyr::mutate(capability = purrr::map(.data$data, ~ fit_norm_trunc(.x$low, .x$high,
                                                    min = 0, max = 100))) %>%
-    tidyr::unnest(.data$capability, .sep = "_") %>%
+    tidyr::unnest(.data$capability, names_sep = "_") %>%
     tidyr::unnest(.data$data) -> cap_ans_fitted
   cap_ans_fitted
 }
@@ -415,10 +415,10 @@ fit_capabilities <- function(responses) {
 #' fit_threat_communities(mc_threat_communities)
 fit_threat_communities <- function(threat_communities) {
   threat_communities %>%
-    tidyr::nest(.data$low:.data$high) %>%
+    tidyr::nest(data = c(.data$low:.data$high)) %>%
     dplyr::mutate(threat = purrr::map(.data$data, ~ fit_norm_trunc(.x$low, .x$high,
                                                                    min = 0, max = 100))) %>%
-    tidyr::unnest(.data$threat, .sep = "_") %>%
+    tidyr::unnest(.data$threat, names_sep = "_") %>%
     tidyr::unnest(.data$data) -> threat_fitted
   threat_fitted
 }
@@ -431,7 +431,7 @@ fit_threat_communities <- function(threat_communities) {
 #'
 #' @param capability_parameters Fitted individual parameters for capabilities.
 #'
-#' @importFrom dplyr rename group_by mutate select
+#' @importFrom dplyr rename group_by mutate select group_vars
 #' @importFrom tidyr nest unnest
 #' @importFrom purrr map
 #' @importFrom rlang .data
@@ -448,10 +448,11 @@ combine_capability_parameters <- function(capability_parameters) {
     # iterate over each id & capability function pair
     dplyr::group_by(.data$capability_id, .data$capability_func) %>%
     # nest up the elements we want to combine
-    tidyr::nest(c(.data$mean:.data$sd, .data$weight, .data$min, .data$max)) %>%
+    select(group_cols(), c(.data$mean:.data$sd, .data$weight, .data$min, .data$max)) %>%
+    tidyr::nest(data = c(.data$mean:.data$sd, .data$weight, .data$min, .data$max)) %>%
     # perform the combination
     dplyr::mutate(capability = purrr::map(.data$data, combine_norm)) %>%
-    tidyr::unnest(.data$capability, .sep = "_") %>%
+    tidyr::unnest(.data$capability, names_sep = "_") %>%
     dplyr::select(-.data$data)
 }
 
@@ -464,7 +465,7 @@ combine_capability_parameters <- function(capability_parameters) {
 #'
 #' @param scenario_parameters Fitted scenario factors for individual SMEs.
 #'
-#' @importFrom dplyr rename group_by mutate select
+#' @importFrom dplyr rename group_by mutate select ungroup group_cols
 #' @importFrom tidyr nest unnest
 #' @importFrom purrr map
 #' @importFrom rlang .data
@@ -479,9 +480,12 @@ combine_scenario_parameters <- function(scenario_parameters) {
            weight = .data$weight, min = .data$impact_min,
            max = .data$impact_max) %>%
     dplyr::group_by(.data$scenario_id, .data$impact_func) %>%
-    tidyr::nest(c(.data$meanlog:.data$sdlog, .data$weight, .data$min, .data$max), .key = "data") %>%
+    select(group_cols(), c(.data$meanlog:.data$sdlog, .data$weight, .data$min, .data$max)) %>%
+    tidyr::nest(data = c(.data$meanlog:.data$sdlog, .data$weight, .data$min, .data$max)) %>%
     dplyr::mutate(impact = purrr::map(.data$data, combine_lognorm_trunc)) %>%
-    tidyr::unnest(.data$impact, .sep = "_", .drop = TRUE) -> combined_sce_impact
+    tidyr::unnest(.data$impact, names_sep = "_") %>%
+    select(-.data$data) %>%
+    ungroup() -> combined_sce_impact
 
   scenario_parameters %>%
     dplyr::rename(meanlog = .data$frequency_meanlog,
@@ -490,9 +494,12 @@ combine_scenario_parameters <- function(scenario_parameters) {
                   min = .data$frequency_min,
                   max = .data$frequency_max) %>%
     dplyr::group_by(.data$scenario_id, .data$frequency_func) %>%
-    tidyr::nest(c(.data$meanlog:.data$sdlog, .data$weight, .data$min, .data$max), .key = "data") %>%
+    select(group_cols(), c(.data$meanlog:.data$sdlog, .data$weight, .data$min, .data$max)) %>%
+    tidyr::nest(data = c(.data$meanlog:.data$sdlog, .data$weight, .data$min, .data$max)) %>%
     dplyr::mutate(frequency = purrr::map(.data$data, combine_lognorm_trunc)) %>%
-    tidyr::unnest(.data$frequency, .sep = "_", .drop = TRUE) -> combined_sce_frequency
+    tidyr::unnest(.data$frequency, names_sep = "_") %>%
+    select(-.data$data) %>%
+    ungroup() -> combined_sce_frequency
 
   dplyr::left_join(combined_sce_impact, combined_sce_frequency, by = "scenario_id")
 }

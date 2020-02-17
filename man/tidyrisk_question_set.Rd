@@ -7,8 +7,14 @@
 \alias{validate_tidyrisk_question_set}
 \title{Construct a tidyrisk_question_set object}
 \usage{
-tidyrisk_question_set(domains, scenarios, capabilities, calibration,
-  expertise, threat_communities)
+tidyrisk_question_set(
+  domains,
+  scenarios,
+  capabilities,
+  calibration,
+  expertise,
+  threat_communities
+)
 
 new_tidyrisk_question_set(x)
 

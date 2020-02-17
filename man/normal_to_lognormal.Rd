@@ -22,18 +22,20 @@ to parameters for a lognormal distribution.
 normal_to_lognormal(normmean = 20, normsd = 3)
 }
 \seealso{
-Other distribution fitting functions: \code{\link{combine_lognorm_trunc}},
-  \code{\link{combine_lognorm}},
-  \code{\link{combine_norm}},
-  \code{\link{fit_capabilities_geomean}},
-  \code{\link{fit_capabilities}},
-  \code{\link{fit_lognorm_trunc}},
-  \code{\link{fit_lognorm}}, \code{\link{fit_norm_trunc}},
-  \code{\link{fit_pois}},
-  \code{\link{fit_scenarios_geomean}},
-  \code{\link{fit_scenarios}},
-  \code{\link{fit_threat_communities}},
-  \code{\link{generate_cost_function}},
-  \code{\link{lognormal_to_normal}}
+Other distribution fitting functions: 
+\code{\link{combine_lognorm_trunc}()},
+\code{\link{combine_lognorm}()},
+\code{\link{combine_norm}()},
+\code{\link{fit_capabilities_geomean}()},
+\code{\link{fit_capabilities}()},
+\code{\link{fit_lognorm_trunc}()},
+\code{\link{fit_lognorm}()},
+\code{\link{fit_norm_trunc}()},
+\code{\link{fit_pois}()},
+\code{\link{fit_scenarios_geomean}()},
+\code{\link{fit_scenarios}()},
+\code{\link{fit_threat_communities}()},
+\code{\link{generate_cost_function}()},
+\code{\link{lognormal_to_normal}()}
 }
 \concept{distribution fitting functions}
