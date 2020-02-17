@@ -109,7 +109,8 @@ the results, and generating parameters for simulation via
 
 ## Contributing
 
-This project is governed by a [Code of Conduct](CODE_OF_CONDUCT.md). By
+This project is governed by a [Code of
+Conduct](https://collector.tidyrisk.org/CODE_OF_CONDUCT.html). By
 participating in this project you agree to abide by these terms.
 
 ## License

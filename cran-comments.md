@@ -1,6 +1,8 @@
 This restores an archived package to CRAN, updating for dependency changes 
 associated with tidyr 1.0.0.
 
+This is a resubmission - correcting an invalid URI contained in the README.
+
 ## Test environments
 
 * local OS X install, R 3.6.2
@@ -9,7 +11,6 @@ associated with tidyr 1.0.0.
   * r-devel
 * OS X 10.14 (on travis-ci), r-release
 * r-hub
-  * 2008 R2 SP1, R-devel
 * win-builder (devel and release)
 
 ## R CMD check results
