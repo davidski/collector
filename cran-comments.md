@@ -9,6 +9,7 @@ associated with tidyr 1.0.0.
   * r-devel
 * OS X 10.14 (on travis-ci), r-release
 * r-hub
+  * 2008 R2 SP1, R-devel
 * win-builder (devel and release)
 
 ## R CMD check results
