@@ -1,4 +1,4 @@
-# collector (development version)
+# collector 0.1.3
 
 * Remove timer from interview slides.
 * Correct `check_readability()` column errors.
