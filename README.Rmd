@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 # collector <a href="https://collector.tidyrisk.org"><img alt="collector Logo" title="collector" align="right" src="man/figures/logo.png" height="139"></a>
 
 <!-- badges: start --> 
-[![Travis Build Status](https://travis-ci.org/davidski/collector.svg?branch=master)](https://travis-ci.org/davidski/collector)
+[![R build status](https://github.com/davidski/collector/workflows/R-CMD-check/badge.svg)](https://github.com/davidski/collector/actions)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/davidski/collector?branch=master&svg=true)](https://ci.appveyor.com/project/davidski/collector)
 [![Coverage Status](https://codecov.io/gh/davidski/collector/branch/master/graph/badge.svg)](https://codecov.io/github/davidski/collector?branch=master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/collector)](https://cran.r-project.org/package=collector)
