@@ -5,10 +5,8 @@
 
 <!-- badges: start -->
 
-[![Travis Build
-Status](https://travis-ci.org/davidski/collector.svg?branch=master)](https://travis-ci.org/davidski/collector)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/davidski/collector?branch=master&svg=true)](https://ci.appveyor.com/project/davidski/collector)
+[![R build
+status](https://github.com/davidski/collector/workflows/R-CMD-check/badge.svg)](https://github.com/davidski/collector/actions)
 [![Coverage
 Status](https://codecov.io/gh/davidski/collector/branch/master/graph/badge.svg)](https://codecov.io/github/davidski/collector?branch=master)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/collector)](https://cran.r-project.org/package=collector)
@@ -19,15 +17,15 @@ Status](https://codecov.io/gh/davidski/collector/branch/master/graph/badge.svg)]
 matter experts (SMEs) on the risk scenarios facing an organization. It
 offers functions for the following stages of input collection:
 
-  - generate scenario and capability questions
-  - building interview artifacts, including progress card, slide decks,
+-   generate scenario and capability questions
+-   building interview artifacts, including progress card, slide decks,
     and handouts
-  - calibration testing, similar to that promoted by Doug Hubbard and
+-   calibration testing, similar to that promoted by Doug Hubbard and
     the FAIR Institute
-  - distribution fitting
-  - opinion pooling of multiple SMEs into a single representative
+-   distribution fitting
+-   opinion pooling of multiple SMEs into a single representative
     distribution
-  - generating quantitative risk scenarios for simulation and reporting
+-   generating quantitative risk scenarios for simulation and reporting
     by [Evaluator](https://evaluator.tidyrisk.org)
 
 ## Installation
@@ -58,15 +56,15 @@ the results, and generating parameters for simulation via
 
 2.  Read in the question set. See `read_questions()` for more
     information.
-    
+
     ``` r
     library(collector)
-    
+
     questions <- read_questions()
     ```
 
 3.  Generate materials for interviewing a SME.
-    
+
     ``` r
     output_dir <- tempdir()
     make_handouts("Leader Name", questions, output_dir)
@@ -76,13 +74,13 @@ the results, and generating parameters for simulation via
 
 4.  Read in the responses from your SMEs. See `read_responses()`
     documentation for more information.
-    
+
     ``` r
     responses <- read_responses()
     ```
 
 5.  Fit the SME answers to distributions.
-    
+
     ``` r
     scenario_answers_fitted <- fit_scenarios(responses)
     capability_answers_fitted <- fit_capabilities(responses)
@@ -90,7 +88,7 @@ the results, and generating parameters for simulation via
 
 6.  Combine distributions into final parameters, applying weighting
     based on each SMEs level of calibration.
-    
+
     ``` r
     sme_weightings <- generate_weights(questions, responses)
     scenario_parameters <- left_join(scenario_answers_fitted, sme_weightings, by = "sme") %>% 
@@ -101,7 +99,7 @@ the results, and generating parameters for simulation via
 
 7.  Build quantitative scenarios for
     [evaluator](https://evaluator.tidyrisk.org).
-    
+
     ``` r
     scenarios <- prepare_data(scenario_parameters, capability_parameters, 
                               threat_parameters, questions)
