@@ -43,7 +43,7 @@ jobs:
 
       - name: Build site
         run: |
-          Rscript -e 'pkgdown::build_site(preview = FALSE)''
+          Rscript -e 'pkgdown::build_site(preview = FALSE)'
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
