@@ -22,7 +22,7 @@ RUN apt-get update \
 
 # Silence pragma warnings for RcppEigen
 # Reference https://github.com/kaskr/adcomp/issues/277#issuecomment-400191014
-COPY Makevars /root/.R/Makevars
+COPY /scripts/Makevars /root/.R/Makevars
 
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
