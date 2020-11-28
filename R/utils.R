@@ -202,7 +202,7 @@ get_smes_domains <- function(sme, questions) {
 #'
 #' @param x A `tidyrisk_question_set` object
 #'
-#' @importFrom quanteda textstat_readability
+#' @importFrom quanteda.textstats textstat_readability
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr arrange desc select bind_cols
 #' @importFrom rlang .data
@@ -217,7 +217,7 @@ get_smes_domains <- function(sme, questions) {
 check_readability <- function(x) {
   enforce_tidyrisk_question_set(x)
   x <- x$scenarios
-  dplyr::bind_cols(x, quanteda::textstat_readability(x$scenario, "Flesch.Kincaid")) %>%
+  dplyr::bind_cols(x, textstat_readability(x$scenario, "Flesch.Kincaid")) %>%
     dplyr::arrange(dplyr::desc(.data$Flesch.Kincaid)) %>%
     dplyr::select(.data$scenario_id, .data$domain_id, .data$Flesch.Kincaid)
 }
