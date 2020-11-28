@@ -1,3 +1,8 @@
+# collector 0.1.4
+
+* Update package dependency for  `textstat_readability()` import to
+  **quanteda.textstats**.
+
 # collector 0.1.3
 
 * Remove timer from interview slides.
