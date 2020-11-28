@@ -35,6 +35,8 @@ Suggests:
     testthat,
     covr,
     knitr
+Remotes:
+    quanteda/quanteda.textstats
 SystemRequirements: pandoc
 URL: https://collector.tidyrisk.org
 BugReports: https://github.com/davidski/collector/issues
