@@ -4,14 +4,16 @@
 \name{mc_capability_answers}
 \alias{mc_capability_answers}
 \title{MetroCare Hospital Capability Answers}
-\format{A data frame with 1 rows and 7 variables:
+\format{
+A data frame with 1 rows and 7 variables:
 \describe{
 \item{sme}{name of the SME}
 \item{capability_id}{identifier of the capability}
 \item{low}{capability estimate, low}
 \item{high}{capability estimate, high}
 \item{date}{date of the answer}
-}}
+}
+}
 \source{
 This is hypothetical information. Any similarity to any other
 entity is completely coincidental.

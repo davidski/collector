@@ -4,13 +4,15 @@
 \name{mc_domains}
 \alias{mc_domains}
 \title{MetroCare Hospital Domains}
-\format{A data frame with 15 rows and 4 variables:
+\format{
+A data frame with 15 rows and 4 variables:
 \describe{
 \item{domain}{domain title}
 \item{description}{descriptive text describing the content of the domain}
 \item{active}{logical flag indicating whether or not the domain is in use}
 \item{domain_id}{unique domain id}
-}}
+}
+}
 \source{
 This is hypothetical information. Any similarity to any other
 entity is completely coincidental.

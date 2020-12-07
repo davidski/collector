@@ -4,7 +4,8 @@
 \name{mc_capability_parameters_fitted}
 \alias{mc_capability_parameters_fitted}
 \title{MetroCare Hospital Capability Parameters (fitted)}
-\format{A data frame with 300 rows and 10 variables:
+\format{
+A data frame with 300 rows and 10 variables:
 \describe{
 \item{sme}{name of the sme providing the response}
 \item{capability_id}{unique identifier}
@@ -16,7 +17,8 @@
 \item{capability_max}{capability maximum}
 \item{low}{threat communities capability, high end}
 \item{high}{threat communities capability, high end}
-}}
+}
+}
 \source{
 This is hypothetical information. Any similarity to any other
 entity is completely coincidental.

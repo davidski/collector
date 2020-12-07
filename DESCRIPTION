@@ -10,7 +10,7 @@ Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Imports:
     EnvStats,
@@ -35,8 +35,6 @@ Suggests:
     testthat,
     covr,
     knitr
-Remotes:
-    quanteda/quanteda.textstats
 SystemRequirements: pandoc
 URL: https://collector.tidyrisk.org
 BugReports: https://github.com/davidski/collector/issues

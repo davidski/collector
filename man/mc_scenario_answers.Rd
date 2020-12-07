@@ -4,7 +4,8 @@
 \name{mc_scenario_answers}
 \alias{mc_scenario_answers}
 \title{MetroCare Hospital Scenario Answers}
-\format{A data frame with 1 rows and 7 variables:
+\format{
+A data frame with 1 rows and 7 variables:
 \describe{
 \item{sme}{name of the SME}
 \item{scenario_id}{identifier of the scenario}
@@ -13,7 +14,8 @@
 \item{imp_low}{impact estimate, low}
 \item{imp_high}{impact estimate, high}
 \item{date}{date of the answer}
-}}
+}
+}
 \source{
 This is hypothetical information. Any similarity to any other
 entity is completely coincidental.
