@@ -4,7 +4,8 @@
 \name{mc_scenario_parameters_fitted}
 \alias{mc_scenario_parameters_fitted}
 \title{MetroCare Hospital Scenario Parameters (fitted)}
-\format{A data frame with 280 rows and 17 variables:
+\format{
+A data frame with 280 rows and 17 variables:
 \describe{
 \item{sme}{name of the sme providing the response}
 \item{scenario_id}{unique identifier}
@@ -23,7 +24,8 @@
 \item{frequency_max}{frequency maximum}
 \item{freq_low}{action type of the threat community}
 \item{freq_high}{action type of the threat community}
-}}
+}
+}
 \source{
 This is hypothetical information. Any similarity to any other
 entity is completely coincidental.

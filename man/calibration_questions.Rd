@@ -4,12 +4,14 @@
 \name{calibration_questions}
 \alias{calibration_questions}
 \title{Calibration questions}
-\format{A data frame with 27 rows and 3 variables:
+\format{
+A data frame with 27 rows and 3 variables:
 \describe{
 \item{question}{text of the calibration question}
 \item{answer}{answer text to the calibration question}
 \item{calibration_id}{unique identifier for the calibration question}
-}}
+}
+}
 \source{
 Common trivia questions drawn from a variety of open source web resources.
 }

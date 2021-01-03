@@ -4,7 +4,8 @@
 \name{mc_threat_parameters_fitted}
 \alias{mc_threat_parameters_fitted}
 \title{MetroCare Hospital Threat Parameters (fitted)}
-\format{A data frame with 8 rows and 12 variables:
+\format{
+A data frame with 8 rows and 12 variables:
 \describe{
 \item{action_type}{action type}
 \item{category}{category}
@@ -18,7 +19,8 @@
 \item{threat_mean}{threat mean capability}
 \item{threat_sd}{threat capability standard deviation}
 \item{threat_min}{threat capability minimum}
-}}
+}
+}
 \source{
 This is hypothetical information. Any similarity to any other
 entity is completely coincidental.

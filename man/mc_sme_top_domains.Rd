@@ -4,12 +4,14 @@
 \name{mc_sme_top_domains}
 \alias{mc_sme_top_domains}
 \title{MetroCare Hospital SME Top Domains}
-\format{A data frame with 35 rows and 3 variables:
+\format{
+A data frame with 35 rows and 3 variables:
 \describe{
 \item{sme}{SME name}
 \item{key}{index of domain}
 \item{value}{name of domain}
-}}
+}
+}
 \source{
 This is hypothetical information. Any similarity to any other
 entity is completely coincidental.

@@ -1,15 +1,12 @@
-This restores an archived package to CRAN, updating for dependency changes 
-associated with tidyr 1.0.0.
-
-This is a resubmission - correcting an invalid URI contained in the README.
+This changes an import for textstat_readability(), reflecting changes in the
+quanteda package structure.
 
 ## Test environments
 
-* local OS X install, R 3.6.2
-* Ubuntu 16.04 (on travis-ci)
+* local MacOS install, R 4.0.3
+* Ubuntu 20.04 (on github actions)
   * r-release
   * r-devel
-* OS X 10.14 (on travis-ci), r-release
 * r-hub
 * win-builder (devel and release)
 
