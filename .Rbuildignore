@@ -13,4 +13,5 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^\.github$
-\scripts$
+^scripts$
+^Dockerfile$

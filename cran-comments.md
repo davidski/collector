@@ -4,9 +4,8 @@ quanteda package structure.
 ## Test environments
 
 * local MacOS install, R 4.0.3
-* Ubuntu 20.04 (on github actions)
+* MacOS (on github actions)
   * r-release
-  * r-devel
 * r-hub
 * win-builder (devel and release)
 
