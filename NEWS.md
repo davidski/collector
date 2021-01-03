@@ -1,5 +1,8 @@
 # collector (development version)
 
+* Convert from quanteda to quanteda.textstats
+* Convert from ggpubr to patchwork
+
 # collector 0.1.3
 
 * Remove timer from interview slides.

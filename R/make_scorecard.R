@@ -19,7 +19,7 @@
 #' @importFrom purrr quietly
 #' @importFrom stringr str_wrap str_replace_all
 #' @import ggplot2
-#' @importFrom ggpubr ggexport ggarrange
+#' @importFrom patchwork wrap_plots
 #'
 #' @examples
 #' \dontrun{
@@ -69,12 +69,10 @@ make_scorecard <- function(sme, questions, output_dir) {
          caption = paste0("SME: ", sme))
 
   # make_combined_pdf
-  combo <- ggpubr::ggarrange(gg, gg_cap, ncol = 1)
+  combo <- patchwork::wrap_plots(gg, gg_cap, ncol = 1)
   filename <- tolower(sme) %>% stringr::str_replace_all(" ", "_") %>%
     paste0(., "_scorecard.pdf")
-  quiet_export <- purrr::quietly(ggpubr::ggexport)
-  result <- quiet_export(combo, filename = file.path(output_dir, filename),
-                         verbose = FALSE)
+  result <- ggplot2::ggsave(combo, filename = file.path(output_dir, filename))
   if (length(result$warnings) > 0) {
     warning(warnings, call. = FALSE)}
   invisible(NULL)
