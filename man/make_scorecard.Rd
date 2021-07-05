@@ -17,7 +17,7 @@ make_bingo(sme, questions, output_dir = getwd())
 \item{output_dir}{Directory to place scorecards.}
 }
 \value{
-An invisible null.
+Invisibly returns the full path to the saved scorecard.
 }
 \description{
 Creates a two page PDF with one grid for scenarios and one for capabilities.

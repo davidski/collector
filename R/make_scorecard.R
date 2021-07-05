@@ -11,7 +11,7 @@
 #' @param questions \code{\link{tidyrisk_question_set}} object.
 #' @param output_dir Directory to place scorecards.
 #'
-#' @return An invisible null.
+#' @return Invisibly returns the full path to the saved scorecard.
 #' @export
 #' @importFrom dplyr mutate row_number if_else
 #' @importFrom rlang .data
@@ -48,7 +48,7 @@ make_scorecard <- function(sme, questions, output_dir) {
   gg <- ggplot(dat, aes_string(x = "column", y = "row", label = "id")) +
     geom_tile(aes(fill = "highlight"), alpha = 0.5, color = "black") +
     scale_fill_manual(values = c("N" = "white", "Y" = "lightslategray"),
-                      guide = FALSE) +
+                      guide = "none") +
     coord_equal() + geom_text() + scale_y_reverse() +
     theme_void() +
     theme(axis.text = element_blank(), panel.grid = element_blank()) +
@@ -60,7 +60,7 @@ make_scorecard <- function(sme, questions, output_dir) {
   gg_cap <- ggplot(dat, aes_string(x = "column", y = "row", label = "id")) +
     geom_tile(aes_string(fill = "highlight"), alpha = 0.5, color = "black") +
     scale_fill_manual(values = c("N" = "white", "Y" = "lightslategray"),
-                      guide = FALSE) +
+                      guide = "none") +
     coord_equal() + geom_text() + scale_y_reverse() +
     theme_void() +
     theme(axis.text = element_blank(), panel.grid = element_blank()) +
@@ -73,9 +73,7 @@ make_scorecard <- function(sme, questions, output_dir) {
   filename <- tolower(sme) %>% stringr::str_replace_all(" ", "_") %>%
     paste0(., "_scorecard.pdf")
   result <- ggplot2::ggsave(combo, filename = file.path(output_dir, filename))
-  if (length(result$warnings) > 0) {
-    warning(warnings, call. = FALSE)}
-  invisible(NULL)
+  invisible(result)
 }
 
 #' @export

@@ -1,5 +1,5 @@
-This changes an import for textstat_readability(), reflecting changes in the
-quanteda package structure.
+This is a resubmission of a previously archived package, correcting previously 
+failing tests.
 
 ## Test environments
 

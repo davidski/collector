@@ -1,9 +1,11 @@
 AppVeyor
 Flesch
 gamifying
+ggpubr
 https
 Kincaid
 LM
+magrittr
 meanlog
 MetroCare
 ogsys
@@ -12,6 +14,7 @@ opengroup
 optim
 pandoc
 poisson
+quanteda
 README
 rlognorm
 rnorm
@@ -25,6 +28,7 @@ SME's
 SMEs
 TEF
 th
+textstats
 tidyr
 tidyrisk
 www

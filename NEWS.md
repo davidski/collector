@@ -1,4 +1,4 @@
-# collector (development version)
+# collector 0.1.4
 
 * Convert from quanteda to quanteda.textstats
 * Convert from ggpubr to patchwork
