@@ -19,6 +19,7 @@ Imports:
     flextable,
     ggplot2,
     magrittr,
+    markdown,
     patchwork,
     purrr,
     quanteda.textstats,
